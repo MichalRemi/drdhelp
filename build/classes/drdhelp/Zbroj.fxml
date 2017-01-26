@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" style="-fx-background-color: white;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="drdhelp.ZbrojController">
+    <stylesheets>
+        <URL value="@DrDhelp.css" />
+    </stylesheets>
+   <children>
+      <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <children>
+            <VBox prefWidth="340.0" VBox.vgrow="SOMETIMES">
+               <children>
+                  <Label text="detail zbroje">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <GridPane style="-fx-border-color: Silver;" VBox.vgrow="SOMETIMES">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="70.0" minWidth="50.0" prefWidth="60.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="60.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="15.0" prefHeight="25.0" valignment="TOP" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="nazev" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="nazevTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label fx:id="nazevChybaLabel" style="-fx-text-fill: red;" text="Zadejte 1 až 50 znaků!" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                        <Label text="druh" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <ComboBox fx:id="druhComboBox" prefHeight="30.0" prefWidth="150.0" promptText="zvolte druh ..." GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <Label text="kvalita" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" minHeight="20.0" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                           <children>
+                              <TextField fx:id="kvalitaTextField" alignment="CENTER" maxWidth="60.0" />
+                              <Label fx:id="kvalitaChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo od -200 do 200!">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label text="váha" GridPane.rowIndex="7">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="A" GridPane.rowIndex="8">
+                           <GridPane.margin>
+                              <Insets left="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" minHeight="20.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                           <children>
+                              <TextField fx:id="vahaATextField" alignment="CENTER" maxWidth="60.0" />
+                              <Label fx:id="vahaAChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo 0 až 90 000!">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label text="B" GridPane.rowIndex="9">
+                           <GridPane.margin>
+                              <Insets left="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" minHeight="20.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                           <children>
+                              <TextField fx:id="vahaBTextField" alignment="CENTER" maxWidth="60.0" />
+                              <Label fx:id="vahaBChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo 0 až 90 000!">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label text="C" GridPane.rowIndex="10">
+                           <GridPane.margin>
+                              <Insets left="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" minHeight="20.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                           <children>
+                              <TextField fx:id="vahaCTextField" alignment="CENTER" maxWidth="60.0" />
+                              <Label fx:id="vahaCChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo 0 až 90 000!">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label text="cena" GridPane.rowIndex="12">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="A" GridPane.rowIndex="13">
+                           <GridPane.margin>
+                              <Insets left="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" minHeight="20.0" GridPane.columnIndex="1" GridPane.rowIndex="13">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                           <children>
+                              <TextField fx:id="cenaATextField" alignment="CENTER" maxWidth="80.0" />
+                              <Label fx:id="cenaAChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo 0 až 1 000 000!">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label text="B" GridPane.rowIndex="14">
+                           <GridPane.margin>
+                              <Insets left="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" minHeight="20.0" GridPane.columnIndex="1" GridPane.rowIndex="14">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                           <children>
+                              <TextField fx:id="cenaBTextField" alignment="CENTER" maxWidth="80.0" />
+                              <Label fx:id="cenaBChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo 0 až 1 000 000!">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label text="C" GridPane.rowIndex="15">
+                           <GridPane.margin>
+                              <Insets left="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" minHeight="20.0" GridPane.columnIndex="1" GridPane.rowIndex="15">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                           <children>
+                              <TextField fx:id="cenaCTextField" alignment="CENTER" maxWidth="80.0" />
+                              <Label fx:id="cenaCChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo 0 až 1 000 000!">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
+                  <Label text="Popis">
+                     <VBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextArea fx:id="popisTextArea" prefHeight="80.0" VBox.vgrow="SOMETIMES" />
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" maxHeight="42.0" spacing="50.0" VBox.vgrow="SOMETIMES">
+               <children>
+                  <Button fx:id="odejitButton" mnemonicParsing="false" onAction="#handleOdejit" prefHeight="42.0" prefWidth="70.0" text="Odejít" />
+                  <Button fx:id="vlozitButton" mnemonicParsing="false" onAction="#handleVlozit" prefHeight="42.0" prefWidth="70.0" text="Vložit" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="15.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+   </children>
+</AnchorPane>
