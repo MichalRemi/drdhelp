@@ -63,8 +63,8 @@ public abstract class Logika {
      * vrátí null
      */
     protected Integer vratIdOdkazu() {
-        if (SeznamOdkazu.getUpravit() != null) {
-            return SeznamOdkazu.getUpravit().getId();
+        if (SeznamOdkazu.getAktualniOdkaz()!= null) {
+            return SeznamOdkazu.getAktualniOdkaz().getId();
         } else return null;
     }
 
@@ -105,9 +105,9 @@ public abstract class Logika {
      */
     protected Integer vyhodnotAVratInt(String hodnota) {
         if (hodnota != null) {
-            for (String s : Tvor.HODNOTY) {
+            for (String s : Tvor.hodnotyArray) {
                 if (hodnota.equals(s)) {
-                    if (s.equals("N/A")) return 0;
+                    if (s.equals("N/A")) return null;
                     else return Integer.parseInt(s);
                 }
             }
@@ -121,25 +121,38 @@ public abstract class Logika {
      * @return String
      */
     protected String vyhodnotAVratString(Integer hodnota) {
-        return vyhodnotAVratString(hodnota, Tvor.HODNOTY_NA);
+        return vyhodnotAVratString(hodnota, Tvor.hodnotyArray);
     }
 
     /**
-     * Vyhodnotí, zda je hodnota v poli. Pokud ano, vrátí ho
-     * ve String. Pokud ne, nebo pro hodnotu 0 vrátí "N/A".
+     * Vyhodnotí, zda je hodnota v poli. Pokud ano, vrátí ho ve String. Pokud ne
+     * vrátí "N/A".
      * @param hodnota
      * @param pole
      * @return
      */
     protected String vyhodnotAVratString(Integer hodnota, String[] pole) {
-        String hodnotaString = String.valueOf(hodnota);
-        if (hodnotaString.equals("0")) return "N/A";
-        for (String s : pole) {
-            if (hodnotaString.equals(s)) return hodnotaString;
+        if (hodnota != null) {
+            String hodnotaString = String.valueOf(hodnota);
+            if (hodnotaString.equals("0")) return "N/A";
+            for (String s : pole) {
+                if (hodnotaString.equals(s)) return hodnotaString;
+            }
         }
         return "N/A";
     }
 
+    /** Pokud je text null, "", nebo "nic" vrátí null, jinak vrátí text */
+    protected String vyhodnotAVratString(String text) {
+        if (text == null || text.equals("") || text.equals("nic")) return null;
+        return text;
+    }
+
+    /** Převede prázdný řetězec "" nebo "nic" na null. */
+    protected String prazdnyStringNaNull(String text) {
+        if (text.equals("") || text.equals("nic")) return null;
+        return text;
+    }
 
 
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================

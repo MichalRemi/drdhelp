@@ -181,6 +181,11 @@ public class ZbranSAVLogika extends VybaveniLogika {
                && jeMedakyValidni();
     }
 
+    /**
+     * Dotáže se, zda se položka upravuje, nebo vkládá nová a podle toho buď nechá
+     * formulář prázdný, nebo se dotáže na příslušnou položku z databáze a vloží
+     * ji do formuláře
+     */
     public void naplnFormular() {
         ZbranSAV zbranSAV = pridatNeboUpravit();
         if (zbranSAV != null) {
@@ -201,6 +206,11 @@ public class ZbranSAVLogika extends VybaveniLogika {
 
     }
 
+    /**
+     * Logika tlačítka Vložit. Podle odkazu ve statické proměnné SeznamOdkazu.upravit určí, zda se vkládá
+     * nová položka (null), nebo upravuje (odkaz je na ní). Zalová příslušnou
+     * metodu a předá ji obsah formuláře.
+     */
     public void pridejZbranSAV() {
         Integer id = vratIdOdkazu();
         if (id != null) {

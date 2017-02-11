@@ -1,10 +1,33 @@
+/* The file is saved in UTF-8 codepage.
+ * Check: «Stereotype», Section mark-§, Copyright-©, Alpha-α, Beta-β, Smile-☺
+ */
 package drdhelp.model;
 
-/**
+
+
+/*******************************************************************************
+ * Instance třídy {@code Povolani} představují ...
  *
- * @author Lachi
+ * @author  Michal Remišovský
+ * @version 0.01.0000 — 2017-02-10
  */
-public class Povolani {
+public class Povolani
+{
+//== CONSTANT CLASS ATTRIBUTES =================================================
+//== VARIABLE CLASS ATTRIBUTES =================================================
+
+
+
+//##############################################################################
+//== STATIC INITIALIZER (CLASS CONSTRUCTOR) ====================================
+//== CLASS GETTERS AND SETTERS =================================================
+//== OTHER NON-PRIVATE CLASS METHODS ===========================================
+//== PRIVATE AND AUXILIARY CLASS METHODS =======================================
+
+
+
+//##############################################################################
+//== CONSTANT AND VARIABLE INSTANCE ATTRIBUTES =================================
 
     /**
      * Název povolání.
@@ -35,6 +58,9 @@ public class Povolani {
     private final String popis;
 
 
+//##############################################################################
+//== CONSTUCTORS AND FACTORY METHODS ===========================================
+
     /**
      * Konstruktor.
      *
@@ -53,6 +79,11 @@ public class Povolani {
         this.popis = popis;
     }
 
+
+
+//== ABSTRACT METHODS ==========================================================
+//== INSTANCE GETTERS AND SETTERS ==============================================
+
      /**
      * @return jmeno povolání
      */
@@ -67,6 +98,9 @@ public class Povolani {
         return vlastnosti;
     }
 
+
+//== OTHER NON-PRIVATE INSTANCE METHODS ========================================
+
     /**
      * @return název povolání
      */
@@ -74,6 +108,38 @@ public class Povolani {
     public String toString(){
         return getNazev();
     }
+
+
+//== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================
+
+
+
+//##############################################################################
+//== NESTED DATA TYPES =========================================================
+
+//    public enum ZvlSchopnosti {
+//
+//        ZASTRASENI("Zastrašení"),
+//        POZNANI_ARTEFAKTU("Poznání artefaktů"),
+//        PRESNOST("Přesnost"),
+//        SEHRANOST("Sehranost"),
+//        LECBA_VLASTNICH_ZRANENI("Léčba vlastních zranění"),
+//        ODHAD_ZBRANE("Odhad zbraně"),
+//        ODHAD_SOUPERE("Odhad soupeře"),
+//        VICENASOBNE_UTOKY("vícenásobné útoky");
+//
+//        private final String nazev;
+//        private final String povolani;
+//
+//        ZvlSchopnosti(String nazev) {
+//            this.nazev = nazev;
+//        }
+//
+//        @Override
+//        public String toString() {
+//            return nazev;
+//        }
+//    }
 
 
 

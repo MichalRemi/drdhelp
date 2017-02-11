@@ -98,12 +98,12 @@ public class ZbranTVT extends Vybava implements IPopis{
         return    "Název:   " + super.getNazev() + "\n"
                 + "Druh:   " + super.getDruh() + " " + DRZENI + "\n"
                 + "Síla zbraně:   " + SILA + "\n"
-                + "Útočnost:   " + getUtocnostString() + "\n"
-                + "Obrana zbraně:   " + OBRANA + "\n"
+                  + "Útočnost:   " + getStringSeZnamenkem(UTOCNOST)+ "\n"
+                  + "Obrana zbraně:   " + getStringSeZnamenkem(OBRANA) + "\n"
                 + "Délka:   " + DELKA + "\n"
                 + "Váha:   " + super.getVaha() + " mn\n"
                 + "Cena:   " + super.getCenaVypis()
-                + super.nactiPopis();
+                + super.vratPopis();
     }
 
 //== INSTANCE GETTERS AND SETTERS ==============================================
@@ -130,29 +130,6 @@ public class ZbranTVT extends Vybava implements IPopis{
 
 
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
-
-//    /**
-//     * Vrátí podrobný popis zbraně tváří v tvář
-//     *
-//     * @return String
-//     */
-//    @Override
-//    public String getPodrobnyPopis() {
-//        return "název: \t" + getNazev() + "\n" +
-//               "druh: \t" + getDruh() + " " + getDrzeni() + "\n" +
-//               "síla zbraně: \t" + getSila() + "\n" +
-//               "útočnost:  \t" + getUtocnost()+ "\n" +
-//               "obrana zbraně: \t" + getObrana()+ "\n" +
-//               "délka zbraně: \t" + getDelka()+ "\n" +
-//               "cena: \t" + getCena() + "\n" +
-//               "vaha: \t" + getVaha() + "\n" +
-//               "\npopis:\n" + getPopis();
-//    }
-
-    /** Vrátí útočnost se znaménkem i pro kladná čísla a 0 */
-    public String getUtocnostString() {
-        return String.format("%+d",UTOCNOST);
-    }
 
     @Override
     public String toString()

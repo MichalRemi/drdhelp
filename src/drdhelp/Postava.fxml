@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="drdhelp.PostavaController">
+    <stylesheets>
+        <URL value="@DrDhelp.css" />
+    </stylesheets>
+   <children>
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label text="Postava">
+               <VBox.margin>
+                  <Insets left="3.0" />
+               </VBox.margin>
+            </Label>
+            <Separator prefWidth="200.0" VBox.vgrow="SOMETIMES" />
+            <HBox spacing="10.0" VBox.vgrow="SOMETIMES">
+               <children>
+                  <VBox>
+                     <children>
+                        <Label text="jméno">
+                           <VBox.margin>
+                              <Insets left="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="nazevTextField" alignment="CENTER" editable="false" focusTraversable="false" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="230.0" VBox.vgrow="SOMETIMES" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="rasa">
+                           <VBox.margin>
+                              <Insets left="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="rasaTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="60.0" prefWidth="85.0" VBox.vgrow="SOMETIMES" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="povolání">
+                           <VBox.margin>
+                              <Insets left="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="povolaniTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="60.0" prefWidth="85.0" VBox.vgrow="SOMETIMES" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="úroveň">
+                           <VBox.margin>
+                              <Insets left="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="urovenComboBox" minWidth="60.0" prefWidth="70.0" VBox.vgrow="SOMETIMES" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="3.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox spacing="10.0" VBox.vgrow="SOMETIMES">
+               <children>
+                  <VBox>
+                     <children>
+                        <Label text="zkušenosti">
+                           <VBox.margin>
+                              <Insets left="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox alignment="CENTER" VBox.vgrow="SOMETIMES">
+                           <children>
+                              <TextField fx:id="zkusenostiTextField" alignment="CENTER" minWidth="60.0" prefWidth="90.0" text="150" HBox.hgrow="SOMETIMES" />
+                              <Label text="/">
+                                 <HBox.margin>
+                                    <Insets left="3.0" right="3.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="zkusenostiDalsiUrovenTField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="60.0" prefWidth="90.0" text="325" HBox.hgrow="SOMETIMES" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="životy">
+                           <VBox.margin>
+                              <Insets left="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="zivotyTextField" alignment="CENTER" minWidth="45.0" prefWidth="60.0" text="6" VBox.vgrow="SOMETIMES" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="magy">
+                           <VBox.margin>
+                              <Insets left="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="magyTextField" alignment="CENTER" minWidth="45.0" prefWidth="60.0" text="0" VBox.vgrow="SOMETIMES" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="výška">
+                           <VBox.margin>
+                              <Insets left="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="vyskaTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="50.0" prefWidth="70.0" VBox.vgrow="SOMETIMES" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="váha">
+                           <VBox.margin>
+                              <Insets left="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="vahaTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="50.0" prefWidth="80.0" VBox.vgrow="SOMETIMES" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox VBox.vgrow="SOMETIMES">
+               <children>
+                  <VBox maxWidth="176.0" spacing="9.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" maxHeight="36.0" maxWidth="160.0" prefHeight="35.0" spacing="9.0" VBox.vgrow="SOMETIMES">
+                           <children>
+                              <Label alignment="CENTER_RIGHT" prefWidth="65.0" text="Síla" />
+                              <TextField fx:id="silaTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="16" />
+                              <TextField fx:id="silaBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="+2" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" maxHeight="36.0" maxWidth="160.0" prefHeight="35.0" spacing="9.0" VBox.vgrow="SOMETIMES">
+                           <children>
+                              <Label alignment="CENTER_RIGHT" prefWidth="65.0" text="Obratnost" />
+                              <TextField fx:id="obratnostTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="16" />
+                              <TextField fx:id="obratnostBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="+2" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" maxHeight="36.0" maxWidth="160.0" prefHeight="35.0" spacing="9.0" VBox.vgrow="SOMETIMES">
+                           <children>
+                              <Label alignment="CENTER_RIGHT" prefWidth="65.0" text="Odolnost" />
+                              <TextField fx:id="odolnostTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="16" />
+                              <TextField fx:id="odolnostbonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="+2" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" maxHeight="36.0" maxWidth="160.0" prefHeight="35.0" spacing="9.0" VBox.vgrow="SOMETIMES">
+                           <children>
+                              <Label alignment="CENTER_RIGHT" prefWidth="65.0" text="Inteligence" />
+                              <TextField fx:id="inteligenceTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="16" />
+                              <TextField fx:id="inteligenceBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="+2" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" maxHeight="36.0" maxWidth="160.0" prefHeight="35.0" spacing="9.0" VBox.vgrow="SOMETIMES">
+                           <children>
+                              <Label alignment="CENTER_RIGHT" prefWidth="65.0" text="Charisma" />
+                              <TextField fx:id="charismaTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="16" />
+                              <TextField fx:id="charismaBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="+2" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" maxHeight="36.0" maxWidth="160.0" prefHeight="35.0" spacing="9.0" VBox.vgrow="SOMETIMES">
+                           <children>
+                              <Label alignment="CENTER_RIGHT" prefWidth="65.0" text="Pohyblivost" />
+                              <TextField fx:id="pohyblivostTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="16" />
+                              <TextField fx:id="pohyblivostBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="+2" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" maxHeight="36.0" maxWidth="160.0" prefHeight="35.0" spacing="8.0">
+                           <children>
+                              <Label alignment="CENTER_RIGHT" prefWidth="65.0" text="Velikost" />
+                              <TextField fx:id="velikostTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="B" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox minHeight="250.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" spacing="10.0">
+                           <children>
+                              <Label text="zbraně tváří v tvář">
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
+                                 <children>
+                                    <Button fx:id="pridejZbranTVTButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+                                    <Button fx:id="odeberZbranTVTButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <ListView fx:id="zbranTVTListView" focusTraversable="false" prefHeight="71.0" />
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" spacing="10.0">
+                           <children>
+                              <Label text="zbraně střelné a vrhací">
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
+                                 <children>
+                                    <Button fx:id="pridejZbranSAVButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+                                    <Button fx:id="odeberZbranSAVButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ListView fx:id="zbranSAVListView" focusTraversable="false" prefHeight="71.0" />
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" spacing="10.0">
+                           <children>
+                              <Label text="zbroj a štít">
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
+                                 <children>
+                                    <Button fx:id="pridejZbrojButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+                                    <Button fx:id="odeberZbrojButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ListView fx:id="zbrojListView" focusTraversable="false" prefHeight="55.0" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="13.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="400.0" spacing="13.0" VBox.vgrow="SOMETIMES">
+               <children>
+                  <VBox prefWidth="244.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" spacing="10.0">
+                           <children>
+                              <Label text="zvláštní schopnosti">
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
+                                 <children>
+                                    <Button fx:id="pridejZvlButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+                                    <Button fx:id="odeberZvlButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="2.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <ListView fx:id="zvlListView" focusTraversable="false" VBox.vgrow="SOMETIMES" />
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" spacing="10.0">
+                           <children>
+                              <Label text="kouzla">
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
+                                 <children>
+                                    <Button fx:id="pridejKouzloButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+                                    <Button fx:id="odeberKouzloVButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="2.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets top="3.0" />
+                                 </HBox.margin>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ListView fx:id="kouzlaListView" focusTraversable="false" VBox.vgrow="SOMETIMES" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="244.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" spacing="10.0">
+                           <children>
+                              <Label text="výbava">
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
+                                 <children>
+                                    <Button fx:id="pridejVybavaButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+                                    <Button fx:id="odeberVybavaButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="2.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <ListView fx:id="vybavaListView" focusTraversable="false" VBox.vgrow="SOMETIMES" />
+                        <Label text="poznámka">
+                           <VBox.margin>
+                              <Insets top="7.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextArea fx:id="popisTextArea" prefHeight="300.0" VBox.vgrow="SOMETIMES" />
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="13.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" spacing="50.0" VBox.vgrow="SOMETIMES">
+               <children>
+                  <Button fx:id="odejitButton" mnemonicParsing="false" onAction="#handleOdejit" prefHeight="42.0" prefWidth="70.0" text="Odejít" />
+                  <Button fx:id="vlozitButton" mnemonicParsing="false" onAction="#handleVlozit" prefHeight="42.0" prefWidth="70.0" text="Vložit" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

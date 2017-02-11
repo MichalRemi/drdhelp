@@ -131,6 +131,11 @@ public class VybavaLogika extends VybaveniLogika {
                 && jeZlatakyValidni() && jeStribrnakyValidni() && jeMedakyValidni();
     }
 
+    /**
+     * Dotáže se, zda se položka upravuje, nebo vkládá nová a podle toho buď nechá
+     * formulář prázdný, nebo se dotáže na příslušnou položku z databáze a vloží
+     * ji do formuláře
+     */
     public void naplnFormular() {
         Vybava vybava = pridatNeboUpravit();
         if (vybava != null) {
@@ -144,12 +149,17 @@ public class VybavaLogika extends VybaveniLogika {
         }
     }
 
+    /**
+     * Logika tlačítka Vložit. Podle odkazu ve statické proměnné SeznamOdkazu.upravit určí, zda se vkládá
+     * nová položka (null), nebo upravuje (odkaz je na ní). Zalová příslušnou
+     * metodu a předá ji obsah formuláře.
+     */
     public void pridejVybavu() {
         Integer id = vratIdOdkazu();
         if (id != null) {
             setData.zmenVybava(nactiZFormulare(id));
         } else {
-            setData.vlozVybavu(nactiZFormulare(0));
+            setData.vlozVybava(nactiZFormulare(0));
         }
     }
 

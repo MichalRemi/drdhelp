@@ -15,7 +15,7 @@ public class Vlastnosti
 {
 //== CONSTANT CLASS ATTRIBUTES =================================================
 
-    public final String[] NAZVY_VLASTNOSTI = {"Síla", "Obratnost", "Odolnost",
+    public final String[] nazvyVlastnostiArray = {"Síla", "Obratnost", "Odolnost",
                                                "Inteligence", "Charisma"};
 
 //== VARIABLE CLASS ATTRIBUTES =================================================
@@ -27,52 +27,6 @@ public class Vlastnosti
 //== CLASS GETTERS AND SETTERS =================================================
 //== OTHER NON-PRIVATE CLASS METHODS ===========================================
 
-    /**
-     * Vrátí vlastnosti podle rasy a povolání ve formě intervalu - počet k6
-     * plus konstanta
-     *
-     * @param rasa Rasa
-     * @param povolani Povolání
-     * @param opravy Opravy vlastností podle rasy.
-     * @return 2D Pole int, v prvním rozmětu počet k6, ve druhém konstanta.
-     */
-    public static int[][] vlastnostiVIntervalech(Rasa rasa, Povolani povolani,
-                                                 int[] opravy) {
-        int[][] vlastnostiRasy = rasa.getVlastnosti();
-        int delka = vlastnostiRasy[0].length;
-        int[][] vlastnostiPovolani = povolani.getVlastnosti();
-        int[][] vlastnostiNovePostavy = new int[5][5];
-
-        // Výběr vlastností. Pokud se jedná o základní vlastnost povolání,
-        // je zvolena ta. V opčaném případě je použita vlastnost rasy.
-        // U vlastnosti povolání se ke konstantě přičte oprava za rasu.
-        for (int i = 0; i < delka; i++) {
-            if (vlastnostiPovolani[0][i] > 0) {
-                vlastnostiNovePostavy[0][i] = vlastnostiPovolani[0][i];
-                vlastnostiNovePostavy[1][i] = vlastnostiPovolani[1][i] + opravy[i];
-            }
-            else {
-                vlastnostiNovePostavy[0][i] = vlastnostiRasy[0][i];
-                vlastnostiNovePostavy[1][i] = vlastnostiRasy[1][i];
-            }
-        }
-        return vlastnostiNovePostavy;
-    }
-
-    /**
-     * Vygeneruje náhodně hodnoty vlastností.
-     *
-     * @param interval 2D pole vlastností, první rozměr udává počet k6, druhý
-     * konstantu.
-     * @return Pole hodnot vlastností - výsledek "hodů" xk6 + konstanta.
-     */
-    public static int[] generujVlastnosti(int[][] interval) {
-        int[] pomocne = new int[interval.length];
-        for (int i = 0; i < interval.length; i++) {
-            pomocne[i] = Vlastnost.generujVlastnost(interval[0][i],interval[1][i]);
-        }
-        return pomocne;
-    }
 
 //== PRIVATE AND AUXILIARY CLASS METHODS =======================================
 
@@ -97,8 +51,14 @@ public class Vlastnosti
      * @param hodnotyVlastnosti
      */
     public Vlastnosti(Integer[] hodnotyVlastnosti) {
-        for (int i = 0; i < hodnotyVlastnosti.length; i++) {
-            vlastnosti[i] = new Vlastnost(NAZVY_VLASTNOSTI[i], hodnotyVlastnosti[i]);
+        int delkaPole = hodnotyVlastnosti.length;
+        if (delkaPole == 5) {
+            for (int i = 0; i < 5; i++) {
+                this.vlastnosti[i] =
+                        new Vlastnost(nazvyVlastnostiArray[i], hodnotyVlastnosti[i]);
+            }
+        } else {
+            System.err.println("Chyba parametru konstruktoru: pole musí mít 5 prvků!");
         }
     }
 
@@ -158,7 +118,9 @@ public class Vlastnosti
     public ArrayList<String> getVlastnostiArrayList() {
         ArrayList<String> seznamVlastnosti = new ArrayList<>();
         for (Vlastnost v : vlastnosti) {
-            if (v.getHodnota() != null) seznamVlastnosti.add(v.toString());
+            if (v.getHodnota() != null) {
+                seznamVlastnosti.add(v.toString());
+            }
         }
         return seznamVlastnosti;
     }

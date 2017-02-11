@@ -76,36 +76,33 @@ public class MainLogika {
      * @return IPopis
      */
     public IPopis ziskejOdkaz(Odkaz odkaz) {
-        try {
-            String tabulka = odkaz.getTabulka();
-            int id = odkaz.getId();
 
-            if (tabulka.equals(TabulkaDB.POSTAVA.getTabNazev())) {
-                Postava postava = getData.getPostava(id);
-                return postava;
-            }
-            if (tabulka.equals(TabulkaDB.NESTVURA.getTabNazev())) {
-                Nestvura nestvura = getData.getNestvura(id);
-                return nestvura;
-            }
-            if (tabulka.equals(TabulkaDB.ZBRAN_TVT.getTabNazev())) {
-                ZbranTVT zbran = getData.getZbranTVT(id);
-                return zbran;
-            }
-            if (tabulka.equals(TabulkaDB.ZBRAN_SAV.getTabNazev())) {
-                ZbranSAV zbran = getData.getZbranSAV(id);
-                return zbran;
-            }
-            if (tabulka.equals(TabulkaDB.ZBROJ.getTabNazev())) {
-                Zbroj zbroj = getData.getZbroj(id);
-                return zbroj;
-            }
-            if (tabulka.equals(TabulkaDB.VYBAVA.getTabNazev())) {
-                Vybava vybava = getData.getVybava(id);
-                return vybava;
-            }
-        } catch (Exception e) {
-            System.out.println(e);
+        String tabulka = odkaz.getTabulka();
+        int id = odkaz.getId();
+
+        if (tabulka.equals(TabulkaDB.POSTAVA.getTabNazev())) {
+            Postava postava = getData.getPostava(id);
+            return postava;
+        }
+        if (tabulka.equals(TabulkaDB.NESTVURA.getTabNazev())) {
+            Nestvura nestvura = getData.getNestvura(id);
+            return nestvura;
+        }
+        if (tabulka.equals(TabulkaDB.ZBRAN_TVT.getTabNazev())) {
+            ZbranTVT zbran = getData.getZbranTVT(id);
+            return zbran;
+        }
+        if (tabulka.equals(TabulkaDB.ZBRAN_SAV.getTabNazev())) {
+            ZbranSAV zbran = getData.getZbranSAV(id);
+            return zbran;
+        }
+        if (tabulka.equals(TabulkaDB.ZBROJ.getTabNazev())) {
+            Zbroj zbroj = getData.getZbroj(id);
+            return zbroj;
+        }
+        if (tabulka.equals(TabulkaDB.VYBAVA.getTabNazev())) {
+            Vybava vybava = getData.getVybava(id);
+            return vybava;
         }
         return null;
     }
@@ -117,28 +114,46 @@ public class MainLogika {
      * @return String název příslušného souboru fxml
      */
     public String getNazevSouboruFxmlPodleOdkazu(String tabulka) {
+
         if (tabulka.equals(TabulkaDB.POSTAVA.getTabNazev())) {
+
+            if (jeNovaPostava()) {
             return "Postava.fxml";
+            }
+
+            if (SeznamOdkazu.getAktualniOdkaz() != null) {
+                return "Postava.fxml";
+            } else return "NovaPostava.fxml";
         }
+
         if (tabulka.equals(TabulkaDB.NESTVURA.getTabNazev())) {
             return "Nestvura.fxml";
         }
+
         if (tabulka.equals(TabulkaDB.ZBRAN_TVT.getTabNazev())) {
             return "ZbranTVT.fxml";
         }
+
         if (tabulka.equals(TabulkaDB.ZBRAN_SAV.getTabNazev())) {
             return "ZbranSAV.fxml";
         }
+
         if (tabulka.equals(TabulkaDB.ZBROJ.getTabNazev())) {
             return "Zbroj.fxml";
         }
+
         if (tabulka.equals(TabulkaDB.VYBAVA.getTabNazev())) {
             return "Vybava.fxml";
         }
 
-        System.err.println("MainLogika.getNazevSouboruFxmlPodleOdkazu():" +
+        System.err.println("MainLogika.getNazevSouboruFxmlPodleOdkazu:" +
                 " Chybí implementace pro tuto tabulku");
         return null;
+    }
+
+    /** Ověří, zda se jedná o přidání nové postavy */
+    public boolean jeNovaPostava() {
+        return PostavaLogika.getNovaPostava() != null;
     }
 
     /** Vrátí název objektu z emun TabulkaDB odpovídající předané tabulce
@@ -150,7 +165,7 @@ public class MainLogika {
         if (t.getTabNazev().equals(tabulka)) return t.getNazev();
         }
 
-        System.err.println("MainLogika.getNazevZTabulkaDB(): Chybný název tabulky");
+        System.err.println("MainLogika.getNazevZTabulkaDB: Chybný název tabulky");
         return null;
     }
 
@@ -169,7 +184,7 @@ public class MainLogika {
 
     /** získá podrobný popis upravovane položky */
     public String ziskejPodrobnyPopis() {
-        Odkaz odkaz = SeznamOdkazu.getUpravit();
+        Odkaz odkaz = SeznamOdkazu.getAktualniOdkaz();
         if (odkaz != null) return ziskejOdkaz(odkaz).getPodrobnyPopis();
         else {
             System.err.println("MainLogika.ziskejPodrobnyPopis: Chyba, odkaz == null");

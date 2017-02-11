@@ -12,6 +12,7 @@ import drdhelp.model.Zbroj;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 
 
 /*******************************************************************************
@@ -57,7 +58,6 @@ public class SetData extends Data {
 
 //********************************* INSERT *************************************
 
-
     /**
      * Vloží novou nestvůru do databáze drddesk_db.
      *
@@ -67,41 +67,49 @@ public class SetData extends Data {
     public boolean vlozNestvura(Nestvura nestvura) {
         try {
             db = DriverManager.getConnection(URL, USER, HESLO);
-            String sql = "INSERT INTO nestvura (nazev, zivotaschopnost, utok," +
-                    " obrana, sila, obratnost, odolnost, inteligence, charisma," +
+            String sql = "INSERT INTO nestvura (nazev, zivotaschopnost, konstanta_zvt," +
+                    " utok, obrana, sila, obratnost, odolnost, inteligence, charisma," +
                     " velikost, bojovnost, zranitelnost, skupiny_zranitelnost," +
                     " pohyblivost, skupiny_pohyblivost, vytrvalost, skupiny_vytrvalost," +
                     " manevr_schopnost, zakl_sila_mysli, ochoceni, presvedceni," +
                     " poklady, zkusenost, poznamka) VALUES (?, ?, ?, ?, ?, ?, ?," +
-                    " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement dotaz = db.prepareStatement(sql);
 
             dotaz.setString(1, nestvura.getNazev());
             dotaz.setInt(2, nestvura.getZivotaschopnost());
-            dotaz.setString(3, nestvura.getUtok());
-            dotaz.setInt(4, nestvura.getObrana());
-            dotaz.setInt(5, nestvura.getVlastnosti().getVlastnost(0).getHodnota());
-            dotaz.setInt(6, nestvura.getVlastnosti().getVlastnost(1).getHodnota());
-            dotaz.setInt(7, nestvura.getVlastnosti().getVlastnost(2).getHodnota());
-            dotaz.setInt(8, nestvura.getVlastnosti().getVlastnost(3).getHodnota());
-            dotaz.setInt(9, nestvura.getVlastnosti().getVlastnost(4).getHodnota());
-            dotaz.setString(10, nestvura.getZranitelnost());
-            dotaz.setString(11, nestvura.getSkupinaZranitelnost());
-            dotaz.setInt(12, nestvura.getPohyblivost().getHodnota());
-            dotaz.setString(13, nestvura.getSkupinaPohyblivost());
-            dotaz.setInt(14, nestvura.getVytrvalost().getHodnota());
-            dotaz.setString(15, nestvura.getSkupinaVytrvalost());
-            dotaz.setInt(16, nestvura.getManevrSchopnost());
-            dotaz.setInt(17, nestvura.getZaklSilaMysli());
-            dotaz.setString(18, nestvura.getPresvedceni());
-            dotaz.setString(19, nestvura.getPoklady());
-            dotaz.setInt(20, nestvura.getZkusenost());
-            dotaz.setInt(21, nestvura.getOchoceni());
-            dotaz.setString(22, nestvura.getPoznamka());
+            vlozIntNeboNull(dotaz, 3,nestvura.getKonstantaZvt());
+            dotaz.setString(4, nestvura.getUtok());
+            dotaz.setInt(5, nestvura.getObrana());
+            vlozIntNeboNull(dotaz, 6,
+                    nestvura.getVlastnosti().getVlastnost(0).getHodnota());
+            vlozIntNeboNull(dotaz, 7,
+                    nestvura.getVlastnosti().getVlastnost(1).getHodnota());
+            vlozIntNeboNull(dotaz, 8,
+                    nestvura.getVlastnosti().getVlastnost(2).getHodnota());
+            vlozIntNeboNull(dotaz, 9,
+                    nestvura.getVlastnosti().getVlastnost(3).getHodnota());
+            vlozIntNeboNull(dotaz, 10,
+                    nestvura.getVlastnosti().getVlastnost(4).getHodnota());
+            dotaz.setString(11, nestvura.getVelikost());
+            vlozIntNeboNull(dotaz, 12, nestvura.getBojovnost());
+            dotaz.setString(13, nestvura.getZranitelnost());
+            dotaz.setString(14, nestvura.getSkupinaZranitelnost());
+            dotaz.setInt(15, nestvura.getPohyblivost().getHodnota());
+            dotaz.setString(16, nestvura.getSkupinaPohyblivost());
+            dotaz.setInt(17, nestvura.getVytrvalost().getHodnota());
+            dotaz.setString(18, nestvura.getSkupinaVytrvalost());
+            vlozIntNeboNull(dotaz, 19, nestvura.getManevrSchopnost());
+            vlozIntNeboNull(dotaz, 20, nestvura.getZaklSilaMysli());
+            vlozIntNeboNull(dotaz, 21, nestvura.getOchoceni());
+            dotaz.setString(22, nestvura.getPresvedceni());
+            dotaz.setString(23, nestvura.getPoklady());
+            dotaz.setInt(24, nestvura.getZkusenost());
+            dotaz.setString(25, nestvura.getPoznamka());
             dotaz.executeUpdate();
             return true;
-        } catch (SQLException ex) {
-        System.err.println(CHYBA + ex);
+        } catch (SQLException | NullPointerException ex) {
+        System.err.println("SetData.vlozNestvura: " + CHYBA + ex);
         return false;
         }
     }
@@ -120,21 +128,21 @@ public class SetData extends Data {
                     " poznamka) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement dotaz = db.prepareStatement(sql);
             dotaz.setString(1, zbranTvT.getNazev());
-            dotaz.setString(2, zbranTvT.getDrzeni());
-            dotaz.setString(3, zbranTvT.getDruh());
+            dotaz.setString(2, zbranTvT.getDruh());
+            dotaz.setString(3, zbranTvT.getDrzeni());
             dotaz.setInt(4, zbranTvT.getSila());
             dotaz.setInt(5, zbranTvT.getUtocnost());
             dotaz.setInt(6, zbranTvT.getObrana());
             dotaz.setString(7, zbranTvT.getDelka());
             dotaz.setInt(8, zbranTvT.getVaha());
-            dotaz.setInt(9, zbranTvT.getZlataky());
-            dotaz.setInt(10, zbranTvT.getStribrnaky());
-            dotaz.setInt(11, zbranTvT.getMedaky());
+            vlozIntNeboNull(dotaz, 9, zbranTvT.getZlataky());
+            vlozIntNeboNull(dotaz, 10, zbranTvT.getStribrnaky());
+            vlozIntNeboNull(dotaz, 11, zbranTvT.getMedaky());
             dotaz.setString(12, zbranTvT.getPopis());
             dotaz.executeUpdate();
             return true;
         } catch (SQLException ex) {
-        System.err.println(CHYBA + ex);
+        System.err.println("SetData.vlozZbranTVT(): " + CHYBA + ex);
         return false;
         }
     }
@@ -158,14 +166,14 @@ public class SetData extends Data {
             dotaz.setInt(4, zbranSaV.getUtocnost());
             dotaz.setString(5, zbranSaV.getDostrel());
             dotaz.setInt(6, zbranSaV.getVaha());
-            dotaz.setInt(7, zbranSaV.getZlataky());
-            dotaz.setInt(8, zbranSaV.getStribrnaky());
-            dotaz.setInt(9, zbranSaV.getMedaky());
+            vlozIntNeboNull(dotaz, 7, zbranSaV.getZlataky());
+            vlozIntNeboNull(dotaz, 8, zbranSaV.getStribrnaky());
+            vlozIntNeboNull(dotaz, 9, zbranSaV.getMedaky());
             dotaz.setString(10, zbranSaV.getPopis());
             dotaz.executeUpdate();
             return true;
-        } catch (SQLException ex) {
-        System.err.println(CHYBA + ex);
+        } catch (SQLException | NullPointerException ex) {
+        System.err.println("SetData.vlozZbranSAV(): " + CHYBA + ex);
         return false;
         }
     }
@@ -176,7 +184,7 @@ public class SetData extends Data {
      * @param vybava
      * @return boolean
      */
-    public boolean vlozVybavu(Vybava vybava) {
+    public boolean vlozVybava(Vybava vybava) {
         try {
             db = DriverManager.getConnection(URL, USER, HESLO);
             String sql = "INSERT INTO vybava (nazev, druh, vaha, cena," +
@@ -185,14 +193,14 @@ public class SetData extends Data {
             dotaz.setString(1, vybava.getNazev());
             dotaz.setString(2, vybava.getDruh());
             dotaz.setInt(3, vybava.getVaha());
-            dotaz.setInt(4, vybava.getZlataky());
-            dotaz.setInt(5, vybava.getStribrnaky());
-            dotaz.setInt(6, vybava.getMedaky());
+            vlozIntNeboNull(dotaz, 4, vybava.getZlataky());
+            vlozIntNeboNull(dotaz, 5, vybava.getStribrnaky());
+            vlozIntNeboNull(dotaz, 6, vybava.getMedaky());
             dotaz.setString(7, vybava.getPopis());
             dotaz.executeUpdate();
             return true;
-        } catch (SQLException ex) {
-        System.err.println(CHYBA + ex);
+        } catch (SQLException | NullPointerException ex) {
+        System.err.println("SetData.vlozVybavu(): " + CHYBA + ex);
         return false;
         }
     }
@@ -219,8 +227,8 @@ public class SetData extends Data {
             dotaz.setInt(11, zbroj.getId());
             dotaz.executeUpdate();
             return true;
-        } catch (SQLException ex) {
-        System.err.println(CHYBA + ex);
+        } catch (SQLException | NullPointerException ex) {
+        System.err.println("SetData.vlozZbroj(): " + CHYBA + ex);
         return false;
         }
     }
@@ -235,44 +243,48 @@ public class SetData extends Data {
      */
     public boolean zmenNestvura(Nestvura nestvura) {
         try {
+
             db = DriverManager.getConnection(URL, USER, HESLO);
-            String sql = "UPDATE nestvura SET nazev=?, zivotaschopnost=?, utok=?," +
-                    " obrana=?, sila=?, obratnost=?, odolnost=?, inteligence=?, charisma=?," +
-                    " velikost=?, bojovnost=?, zranitelnost=?, skupiny_zranitelnost=?," +
-                    " pohyblivost=?, skupiny_pohyblivost=?, vytrvalost=?, skupiny_vytrvalost=?," +
-                    " manevr_schopnost=?, zakl_sila_mysli=?, ochoceni=?, presvedceni=?," +
-                    " poklady=?, zkusenost=?, poznamka=? WHERE id=?";
+            String sql = "UPDATE nestvura SET nazev=?, zivotaschopnost=?," +
+                    " konstanta_zvt=?, utok=?, obrana=?, sila=?, obratnost=?," +
+                    " odolnost=?, inteligence=?, charisma=?, velikost=?, bojovnost=?," +
+                    " zranitelnost=?, skupiny_zranitelnost=?, pohyblivost=?," +
+                    " skupiny_pohyblivost=?, vytrvalost=?, skupiny_vytrvalost=?," +
+                    " manevr_schopnost=?, zakl_sila_mysli=?, ochoceni=?," +
+                    " presvedceni=?, poklady=?, zkusenost=?, poznamka=? WHERE id=?";
+
             PreparedStatement dotaz = db.prepareStatement(sql);
 
             dotaz.setString(1, nestvura.getNazev());
             dotaz.setInt(2, nestvura.getZivotaschopnost());
-            dotaz.setString(3, nestvura.getUtok());
-            dotaz.setInt(4, nestvura.getObrana());
-            dotaz.setInt(5, nestvura.getSila());
-            dotaz.setInt(6, nestvura.getObratnost());
-            dotaz.setInt(7, nestvura.getOdolnost());
-            dotaz.setInt(8, nestvura.getInteligence());
-            dotaz.setInt(9, nestvura.getCharisma());
-            dotaz.setString(10, nestvura.getVelikost());
-            dotaz.setInt(11, nestvura.getBojovnost());
-            dotaz.setString(12, nestvura.getZranitelnost());
-            dotaz.setString(13, nestvura.getSkupinaZranitelnost());
-            dotaz.setInt(14, nestvura.getPohyblivost().getHodnota());
-            dotaz.setString(15, nestvura.getSkupinaPohyblivost());
-            dotaz.setInt(16, nestvura.getVytrvalost().getHodnota());
-            dotaz.setString(17, nestvura.getSkupinaVytrvalost());
-            dotaz.setInt(18, nestvura.getManevrSchopnost());
-            dotaz.setInt(19, nestvura.getZaklSilaMysli());
-            dotaz.setInt(20, nestvura.getOchoceni());
-            dotaz.setString(21, nestvura.getPresvedceni());
-            dotaz.setString(22, nestvura.getPoklady());
-            dotaz.setInt(23, nestvura.getZkusenost());
-            dotaz.setString(24, nestvura.getPoznamka());
-            dotaz.setInt(25, nestvura.getId());
+            vlozIntNeboNull(dotaz, 3, nestvura.getKonstantaZvt());
+            dotaz.setString(4, nestvura.getUtok());
+            dotaz.setInt(5, nestvura.getObrana());
+            vlozIntNeboNull(dotaz, 6, nestvura.getSila());
+            vlozIntNeboNull(dotaz, 7, nestvura.getObratnost());
+            vlozIntNeboNull(dotaz, 8, nestvura.getOdolnost());
+            vlozIntNeboNull(dotaz, 9, nestvura.getInteligence());
+            vlozIntNeboNull(dotaz, 10, nestvura.getCharisma());
+            dotaz.setString(11, nestvura.getVelikost());
+            vlozIntNeboNull(dotaz, 12, nestvura.getBojovnost());
+            dotaz.setString(13, nestvura.getZranitelnost());
+            dotaz.setString(14, nestvura.getSkupinaZranitelnost());
+            dotaz.setInt(15, nestvura.getPohyblivost().getHodnota());
+            dotaz.setString(16, nestvura.getSkupinaPohyblivost());
+            dotaz.setInt(17, nestvura.getVytrvalost().getHodnota());
+            dotaz.setString(18, nestvura.getSkupinaVytrvalost());
+            vlozIntNeboNull(dotaz, 19, nestvura.getManevrSchopnost());
+            vlozIntNeboNull(dotaz, 20, nestvura.getZaklSilaMysli());
+            vlozIntNeboNull(dotaz, 21, nestvura.getOchoceni());
+            dotaz.setString(22, nestvura.getPresvedceni());
+            dotaz.setString(23, nestvura.getPoklady());
+            dotaz.setInt(24, nestvura.getZkusenost());
+            dotaz.setString(25, nestvura.getPoznamka());
+            dotaz.setInt(26, nestvura.getId());
             dotaz.executeUpdate();
             return true;
-        } catch (SQLException ex) {
-        System.err.println(CHYBA + ex);
+        } catch (SQLException | NullPointerException ex) {
+        System.err.println("SetData.zmenNestvura(): " + CHYBA + ex);
         return false;
         }
     }
@@ -285,6 +297,8 @@ public class SetData extends Data {
      */
     public boolean zmenZbranTVT(ZbranTVT zbranTVT) {
 
+        System.out.println(zbranTVT.getDruh() + zbranTVT.getDrzeni());
+
         try {
             db = DriverManager.getConnection(URL, USER, HESLO);
             String sql = "UPDATE zbran_tvt SET nazev=?, druh=?, drzeni=?," +
@@ -292,22 +306,22 @@ public class SetData extends Data {
                      "zlataky=?, stribrnaky=?, medaky=?, poznamka=? WHERE id=?";
             PreparedStatement dotaz = db.prepareStatement(sql);
             dotaz.setString(1, zbranTVT.getNazev());
-            dotaz.setString(2, zbranTVT.getDrzeni());
-            dotaz.setString(3, zbranTVT.getDruh());
+            dotaz.setString(2, zbranTVT.getDruh());
+            dotaz.setString(3, zbranTVT.getDrzeni());
             dotaz.setInt(4, zbranTVT.getSila());
             dotaz.setInt(5, zbranTVT.getUtocnost());
             dotaz.setInt(6, zbranTVT.getObrana());
             dotaz.setString(7, zbranTVT.getDelka());
             dotaz.setInt(8, zbranTVT.getVaha());
-            dotaz.setInt(9, zbranTVT.getZlataky());
-            dotaz.setInt(10, zbranTVT.getStribrnaky());
-            dotaz.setInt(11, zbranTVT.getMedaky());
+            vlozIntNeboNull(dotaz, 9, zbranTVT.getZlataky());
+            vlozIntNeboNull(dotaz, 10, zbranTVT.getStribrnaky());
+            vlozIntNeboNull(dotaz, 11, zbranTVT.getMedaky());
             dotaz.setString(12, zbranTVT.getPopis());
             dotaz.setInt(13, zbranTVT.getId());
             dotaz.executeUpdate();
             return true;
         } catch (SQLException ex) {
-        System.err.println(CHYBA + ex);
+        System.err.println("SetData.zmenZbranTVT(): " + CHYBA + ex);
         return false;
         }
     }
@@ -327,16 +341,15 @@ public class SetData extends Data {
             PreparedStatement dotaz = db.prepareStatement(sql);
             dotaz.setString(1, vybava.getNazev());
             dotaz.setString(2, vybava.getDruh());
-            dotaz.setInt(3, vybava.getVaha());
-            dotaz.setInt(4, vybava.getZlataky());
-            dotaz.setInt(5, vybava.getStribrnaky());
-            dotaz.setInt(6, vybava.getMedaky());
+            vlozIntNeboNull(dotaz, 3, vybava.getZlataky());
+            vlozIntNeboNull(dotaz, 4, vybava.getStribrnaky());
+            vlozIntNeboNull(dotaz, 5, vybava.getMedaky());
             dotaz.setString(7, vybava.getPopis());
             dotaz.setInt(9, vybava.getId());
             dotaz.executeUpdate();
             return true;
         } catch (SQLException ex) {
-        System.err.println(CHYBA + ex);
+        System.err.println("SetData.zmenVybava(): " + CHYBA + ex);
         return false;
         }
     }
@@ -369,7 +382,7 @@ public class SetData extends Data {
             dotaz.executeUpdate();
             return true;
         } catch (SQLException ex) {
-        System.err.println(CHYBA + ex);
+        System.err.println("SetData.zmenZbroj(): " + CHYBA + ex);
         return false;
         }
     }
@@ -397,7 +410,9 @@ public class SetData extends Data {
             dotaz.setInt(7, zbranSAV.getStredniDostrel());
             dotaz.setInt(8, zbranSAV.getVelkyDostrel());
             dotaz.setInt(9, zbranSAV.getVaha());
-            dotaz.setInt(10, zbranSAV.getZlataky());
+            vlozIntNeboNull(dotaz, 10, zbranSAV.getZlataky());
+            vlozIntNeboNull(dotaz, 11, zbranSAV.getStribrnaky());
+            vlozIntNeboNull(dotaz, 12, zbranSAV.getMedaky());
             dotaz.setInt(11, zbranSAV.getStribrnaky());
             dotaz.setInt(12, zbranSAV.getMedaky());
             dotaz.setString(13, zbranSAV.getPopis());
@@ -405,7 +420,7 @@ public class SetData extends Data {
             dotaz.executeUpdate();
             return true;
         } catch (SQLException ex) {
-        System.err.println(CHYBA + ex);
+        System.err.println("SetData.zmenZbranSAV(): " + CHYBA + ex);
         return false;
         }
     }
@@ -429,7 +444,7 @@ public class SetData extends Data {
                 dotaz.executeUpdate();
                 return true;
             } catch (SQLException ex) {
-            System.err.println(CHYBA + ex);
+            System.err.println("SetData.smazPolozkuDleOdkazu(): " + CHYBA + ex);
             return false;
             }
         } else {
@@ -443,7 +458,14 @@ public class SetData extends Data {
 
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================
 
-
+    /**
+     * Otestuje hodnotu Integer. Pokud není null, vloží do sql dotazu hodnotu int,
+     * pokud je vloží null.
+     */
+    private void vlozIntNeboNull(PreparedStatement dotaz, int index, Integer hodnota) throws SQLException {
+        if (hodnota != null || hodnota != 0) dotaz.setInt(index, hodnota);
+        else dotaz.setNull(index, Types.INTEGER);
+    }
 
 //##############################################################################
 //== NESTED DATA TYPES =========================================================

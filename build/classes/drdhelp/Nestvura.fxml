@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,302 +20,303 @@
         <URL value="@DrDhelp.css" />
     </stylesheets>
    <children>
-      <VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-         <children>
-            <VBox prefWidth="410.0" VBox.vgrow="SOMETIMES">
+      <ScrollPane fitToWidth="true" minViewportHeight="800.0" minViewportWidth="400.0" prefHeight="820.0" prefWidth="460.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <VBox alignment="CENTER" spacing="10.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
                <children>
-                  <Label text="detail nestvůry">
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </Label>
-                  <GridPane style="-fx-border-color: Silver;" VBox.vgrow="SOMETIMES">
-                    <columnConstraints>
-                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="120.0" minWidth="100.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="280.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="15.0" prefHeight="25.0" valignment="TOP" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="15.0" prefHeight="25.0" valignment="TOP" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="15.0" prefHeight="25.0" valignment="TOP" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="45.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="45.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="15.0" prefHeight="25.0" valignment="TOP" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="30.0" prefHeight="32.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                  <VBox prefWidth="410.0" VBox.vgrow="SOMETIMES">
                      <children>
-                        <Label text="nazev" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <TextField fx:id="nazevTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets right="10.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <Label fx:id="nazevChybaLabel" style="-fx-text-fill: red;" text="Zadejte 1 až 50 znaků!" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-                        <Label text="životaschop." GridPane.rowIndex="3">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <children>
-                              <TextField fx:id="zivotaschopnostTextField" alignment="CENTER" maxWidth="40.0" />
-                              <Label fx:id="zivotaschopnostChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo od 1 do 100!">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <Label text="útok" GridPane.rowIndex="5">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <TextField fx:id="utokTextField" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                           <GridPane.margin>
-                              <Insets right="10.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <Label fx:id="utokChybaLabel" style="-fx-text-fill: red;" text="Zadejte 1 až 50 znaků!" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label text="obrana" GridPane.rowIndex="7">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <TextField fx:id="obranaTextField" maxWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                           <GridPane.margin>
-                              <Insets right="10.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <Label fx:id="obranaChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo -2 až 100!" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <Label text="vlastnosti" GridPane.rowIndex="9">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="9" GridPane.vgrow="SOMETIMES">
-                           <children>
-                              <VBox alignment="CENTER">
-                                 <children>
-                                    <Label text="Síla" />
-                                    <ComboBox fx:id="silaComboBox" prefHeight="30.0" prefWidth="65.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER">
-                                 <children>
-                                    <Label text="Obratnost" />
-                                    <ComboBox fx:id="obratnostComboBox" prefHeight="30.0" prefWidth="65.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER">
-                                 <children>
-                                    <Label text="Odolnost" />
-                                    <ComboBox fx:id="odolnostComboBox" prefHeight="30.0" prefWidth="65.0" />
-                                 </children>
-                              </VBox>
-                           </children>
+                        <Label text="detail nestvůry">
                            <padding>
-                              <Insets right="10.0" />
+                              <Insets left="5.0" />
                            </padding>
-                        </HBox>
-                        <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="10" GridPane.vgrow="SOMETIMES">
+                        </Label>
+                        <GridPane style="-fx-border-color: Silver;" VBox.vgrow="SOMETIMES">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="120.0" minWidth="100.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="280.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="15.0" prefHeight="25.0" valignment="TOP" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="15.0" prefHeight="25.0" valignment="TOP" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="15.0" prefHeight="25.0" valignment="TOP" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="45.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="45.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="15.0" prefHeight="25.0" valignment="TOP" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="30.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="30.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
                            <children>
-                              <VBox alignment="CENTER">
-                                 <children>
-                                    <Label text="Inteligence" />
-                                    <ComboBox fx:id="inteligenceComboBox" prefHeight="30.0" prefWidth="65.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER">
-                                 <children>
-                                    <Label text="Charisma" />
-                                    <ComboBox fx:id="charismaComboBox" prefHeight="30.0" prefWidth="65.0" />
-                                 </children>
-                              </VBox>
-                           </children>
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </HBox>
-                        <Label text="velikost" GridPane.rowIndex="12">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <ComboBox fx:id="velikostComboBox" prefHeight="30.0" prefWidth="90.0" promptText="zvolte ..." GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                        <Label text="bojovnost" GridPane.rowIndex="14">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <ComboBox fx:id="bojovnostComboBox" prefHeight="30.0" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-                        <Label text="zranitelnost" GridPane.rowIndex="16" GridPane.valignment="CENTER">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <ComboBox fx:id="zranitelnostComboBox" prefHeight="30.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="16" />
-                        <HBox alignment="CENTER_RIGHT" prefWidth="100.0" spacing="7.0" GridPane.columnIndex="1" GridPane.rowIndex="16">
-                           <children>
-                              <Button fx:id="polovinaButton" focusTraversable="false" mnemonicParsing="false" onAction="#handlePolovina" prefHeight="30.0" prefWidth="30.0" text="½" />
-                              <Button fx:id="ctvrtinaButton" focusTraversable="false" mnemonicParsing="false" onAction="#handleCtvrtina" prefHeight="30.0" prefWidth="30.0" text="¼" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets left="130.0" right="10.0" />
-                           </GridPane.margin>
-                        </HBox>
-                        <Label text="- výpis skupin" GridPane.rowIndex="17">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <TextField fx:id="skupinyZranitelnostTextField" onKeyReleased="#poziceKurzoruKey" onMouseClicked="#poziceKurzoruMouse" GridPane.columnIndex="1" GridPane.rowIndex="17">
-                           <GridPane.margin>
-                              <Insets right="10.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <Label fx:id="skupinyZranitelnostChybaLabel" style="-fx-text-fill: red;" text="Zadejte 1 až 200 znaků!" GridPane.columnIndex="1" GridPane.rowIndex="18" />
-                        <Label text="pohyblivost" GridPane.rowIndex="19" GridPane.valignment="CENTER">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <HBox alignment="CENTER_LEFT" spacing="13.0" GridPane.columnIndex="1" GridPane.rowIndex="19">
-                           <children>
-                              <ComboBox fx:id="hodnotyPohyblivostComboBox" prefHeight="30.0" prefWidth="90.0" promptText="zvolte ..." HBox.hgrow="SOMETIMES" />
-                              <ComboBox fx:id="pohyblivostComboBox" prefHeight="30.0" prefWidth="120.0" promptText="zvolte ..." HBox.hgrow="SOMETIMES" />
-                           </children>
-                        </HBox>
-                        <Label text="vytrvalost" GridPane.rowIndex="21">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <HBox alignment="CENTER_LEFT" spacing="13.0" GridPane.columnIndex="1" GridPane.rowIndex="21">
-                           <children>
-                              <ComboBox fx:id="hodnotyVytrvalosttComboBox" prefHeight="30.0" prefWidth="90.0" promptText="zvolte ..." HBox.hgrow="SOMETIMES" />
-                              <ComboBox fx:id="vytrvalostComboBox" prefHeight="30.0" prefWidth="120.0" promptText="zvolte ..." HBox.hgrow="SOMETIMES" />
-                           </children>
-                        </HBox>
-                        <Label text="manevr. schop." GridPane.rowIndex="23">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <ComboBox fx:id="manevrSchopnostComboBox" prefHeight="30.0" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="23" />
-                        <Label text="zákl. síla mysli" GridPane.rowIndex="25">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="25">
-                           <children>
-                              <TextField fx:id="zaklSilaMysliTextField" alignment="CENTER" maxWidth="50.0" />
-                              <Label fx:id="zaklSilaMysliChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo 0 až 200!">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
+                              <Label text="nazev" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
                               </Label>
-                           </children>
-                        </HBox>
-                        <Label text="ochočení" GridPane.rowIndex="27">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <ComboBox fx:id="ochoceniComboBox" prefHeight="30.0" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="27" />
-                        <Label text="přesvědčení" GridPane.rowIndex="29">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <ComboBox fx:id="presvedceniComboBox" prefHeight="30.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="29" />
-                        <Label text="poklady" GridPane.rowIndex="31">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <TextField fx:id="pokladyTextField" GridPane.columnIndex="1" GridPane.rowIndex="31">
-                           <GridPane.margin>
-                              <Insets right="10.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <Label text="zkušenosti" GridPane.rowIndex="33">
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="33">
-                           <GridPane.margin>
-                              <Insets right="10.0" />
-                           </GridPane.margin>
-                           <children>
-                              <TextField fx:id="zkusenostiTextField" alignment="CENTER" maxWidth="70.0" />
-                              <Label fx:id="zkusenostiChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo 0 až 900 000!">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
+                              <TextField fx:id="nazevTextField" promptText="zvolte ..." GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label fx:id="nazevChybaLabel" style="-fx-text-fill: red;" text="Zadejte 1 až 50 znaků!" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                              <Label text="životaschop." GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
                               </Label>
+                              <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <ComboBox fx:id="zivotaschopnostComboBox" prefHeight="30.0" prefWidth="120.0" promptText="zvolte ..." HBox.hgrow="SOMETIMES" />
+                                    <Label text="+" />
+                                    <ComboBox fx:id="konstantaZvtComboBox" prefHeight="30.0" prefWidth="85.0" HBox.hgrow="SOMETIMES" />
+                                 </children>
+                              </HBox>
+                              <Label text="útok" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="utokTextField" promptText="zvolte ..." GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label fx:id="utokChybaLabel" style="-fx-text-fill: red;" text="Zadejte 1 až 50 znaků!" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Label text="obrana" GridPane.rowIndex="7">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="obranaTextField" maxWidth="180.0" promptText="zvolte ..." GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label fx:id="obranaChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo -2 až 100!" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                              <Label text="vlastnosti" GridPane.rowIndex="9">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="9" GridPane.vgrow="SOMETIMES">
+                                 <children>
+                                    <VBox alignment="CENTER">
+                                       <children>
+                                          <Label text="Síla" />
+                                          <ComboBox fx:id="silaComboBox" prefHeight="30.0" prefWidth="65.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER">
+                                       <children>
+                                          <Label text="Obratnost" />
+                                          <ComboBox fx:id="obratnostComboBox" prefHeight="30.0" prefWidth="65.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER">
+                                       <children>
+                                          <Label text="Odolnost" />
+                                          <ComboBox fx:id="odolnostComboBox" prefHeight="30.0" prefWidth="65.0" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="10" GridPane.vgrow="SOMETIMES">
+                                 <children>
+                                    <VBox alignment="CENTER">
+                                       <children>
+                                          <Label text="Inteligence" />
+                                          <ComboBox fx:id="inteligenceComboBox" prefHeight="30.0" prefWidth="65.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER">
+                                       <children>
+                                          <Label text="Charisma" />
+                                          <ComboBox fx:id="charismaComboBox" prefHeight="30.0" prefWidth="65.0" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <Label text="velikost" GridPane.rowIndex="12">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <ComboBox fx:id="velikostComboBox" prefHeight="30.0" prefWidth="90.0" promptText="zvolte ..." GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                              <Label text="bojovnost" GridPane.rowIndex="14">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <ComboBox fx:id="bojovnostComboBox" prefHeight="30.0" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                              <Label text="zranitelnost" GridPane.rowIndex="16" GridPane.valignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <ComboBox fx:id="zranitelnostComboBox" prefHeight="30.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+                              <HBox alignment="CENTER_RIGHT" prefWidth="100.0" spacing="7.0" GridPane.columnIndex="1" GridPane.rowIndex="16">
+                                 <children>
+                                    <Button fx:id="polovinaButton" focusTraversable="false" mnemonicParsing="false" onAction="#handlePolovina" prefHeight="30.0" prefWidth="30.0" text="½" />
+                                    <Button fx:id="ctvrtinaButton" focusTraversable="false" mnemonicParsing="false" onAction="#handleCtvrtina" prefHeight="30.0" prefWidth="30.0" text="¼" />
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets left="130.0" right="10.0" />
+                                 </GridPane.margin>
+                              </HBox>
+                              <Label text="- výpis skupin" GridPane.rowIndex="17">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="skupinyZranitelnostTextField" onKeyReleased="#poziceKurzoruKey" onMouseClicked="#poziceKurzoruMouse" promptText="zvolte ..." GridPane.columnIndex="1" GridPane.rowIndex="17">
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label fx:id="skupinyZranitelnostChybaLabel" style="-fx-text-fill: red;" text="Zadejte 1 až 200 znaků!" GridPane.columnIndex="1" GridPane.rowIndex="18" />
+                              <Label text="pohyblivost" GridPane.rowIndex="19" GridPane.valignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" spacing="13.0" GridPane.columnIndex="1" GridPane.rowIndex="19">
+                                 <children>
+                                    <ComboBox fx:id="hodnotyPohyblivostComboBox" prefHeight="30.0" prefWidth="90.0" promptText="zvolte ..." HBox.hgrow="SOMETIMES" />
+                                    <ComboBox fx:id="pohyblivostComboBox" prefHeight="30.0" prefWidth="120.0" promptText="zvolte ..." HBox.hgrow="SOMETIMES" />
+                                 </children>
+                              </HBox>
+                              <Label text="vytrvalost" GridPane.rowIndex="21">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" spacing="13.0" GridPane.columnIndex="1" GridPane.rowIndex="21">
+                                 <children>
+                                    <ComboBox fx:id="hodnotyVytrvalosttComboBox" prefHeight="30.0" prefWidth="90.0" promptText="zvolte ..." HBox.hgrow="SOMETIMES" />
+                                    <ComboBox fx:id="vytrvalostComboBox" prefHeight="30.0" prefWidth="120.0" promptText="zvolte ..." HBox.hgrow="SOMETIMES" />
+                                 </children>
+                              </HBox>
+                              <Label text="manevr. schop." GridPane.rowIndex="23">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <ComboBox fx:id="manevrSchopnostComboBox" prefHeight="30.0" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="23" />
+                              <Label text="zákl. síla mysli" GridPane.rowIndex="25">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="25">
+                                 <children>
+                                    <TextField fx:id="zaklSilaMysliTextField" alignment="CENTER" maxWidth="50.0" />
+                                    <Label fx:id="zaklSilaMysliChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo 0 až 200!">
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <Label text="ochočení" GridPane.rowIndex="27">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <ComboBox fx:id="ochoceniComboBox" prefHeight="30.0" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="27" />
+                              <Label text="přesvědčení" GridPane.rowIndex="29">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <ComboBox fx:id="presvedceniComboBox" prefHeight="30.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="29" />
+                              <Label text="poklady" GridPane.rowIndex="31">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="pokladyTextField" GridPane.columnIndex="1" GridPane.rowIndex="31">
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label text="zkušenosti" GridPane.rowIndex="33">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="33">
+                                 <GridPane.margin>
+                                    <Insets right="10.0" />
+                                 </GridPane.margin>
+                                 <children>
+                                    <TextField fx:id="zkusenostiTextField" alignment="CENTER" maxWidth="70.0" promptText="zvolte ..." />
+                                    <Label fx:id="zkusenostiChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo 0 až 900 000!">
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
                            </children>
-                        </HBox>
+                        </GridPane>
+                        <Label text="Popis">
+                           <VBox.margin>
+                              <Insets left="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextArea fx:id="popisTextArea" prefHeight="130.0" VBox.vgrow="SOMETIMES" />
                      </children>
-                  </GridPane>
-                  <Label text="Popis">
+                  </VBox>
+                  <HBox alignment="CENTER" maxHeight="42.0" spacing="50.0" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <Button fx:id="odejitButton" mnemonicParsing="false" onAction="#handleOdejit" prefHeight="42.0" prefWidth="70.0" text="Odejít" />
+                        <Button fx:id="vlozitButton" mnemonicParsing="false" onAction="#handleVlozit" prefHeight="42.0" prefWidth="70.0" text="Vložit" />
+                     </children>
                      <VBox.margin>
-                        <Insets left="5.0" top="5.0" />
+                        <Insets bottom="10.0" top="15.0" />
                      </VBox.margin>
-                  </Label>
-                  <TextArea fx:id="popisTextArea" prefHeight="130.0" VBox.vgrow="SOMETIMES" />
+                  </HBox>
                </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </VBox>
-            <HBox alignment="CENTER" maxHeight="42.0" spacing="50.0" VBox.vgrow="SOMETIMES">
-               <children>
-                  <Button fx:id="odejitButton" mnemonicParsing="false" onAction="#handleOdejit" prefHeight="42.0" prefWidth="70.0" text="Odejít" />
-                  <Button fx:id="vlozitButton" mnemonicParsing="false" onAction="#handleVlozit" prefHeight="42.0" prefWidth="70.0" text="Vložit" />
-               </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" top="15.0" />
-               </VBox.margin>
-            </HBox>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </VBox>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

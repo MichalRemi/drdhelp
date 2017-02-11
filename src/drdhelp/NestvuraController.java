@@ -42,9 +42,9 @@ public class NestvuraController implements Initializable {
     @FXML
     private Label nazevChybaLabel;
     @FXML
-    private TextField zivotaschopnostTextField;
+    private ComboBox<String> zivotaschopnostComboBox;
     @FXML
-    private Label zivotaschopnostChybaLabel;
+    private ComboBox<String> konstantaZvtComboBox;
     @FXML
     private TextField utokTextField;
     @FXML
@@ -111,6 +111,8 @@ public class NestvuraController implements Initializable {
     ObservableList<String> bojovnost = FXCollections.observableArrayList();
     ObservableList<String> hodnoty = FXCollections.observableArrayList();
     ObservableList<String> hodnotyNA = FXCollections.observableArrayList();
+    ObservableList<String> hodnotyZvt = FXCollections.observableArrayList();
+
     NestvuraLogika logika = new NestvuraLogika();
     SeznamOdkazu seznamOdkazu = new SeznamOdkazu();
 
@@ -126,9 +128,13 @@ public class NestvuraController implements Initializable {
         logika.naplnFormular();
 
         // naplnění comboboxů
-        bojovnost.addAll(Nestvura.BOJOVNOST);
-        hodnoty.addAll(Tvor.HODNOTY);
-        hodnotyNA.addAll(Tvor.HODNOTY_NA);
+        bojovnost.addAll(Nestvura.bojovnostArray);
+        hodnotyZvt.addAll(Nestvura.hodnotyZvtArray);
+        hodnoty.addAll(Tvor.hodnotyArray);
+        hodnotyNA.addAll(Tvor.hodnotyNAArray);
+
+        zivotaschopnostComboBox.setItems(hodnotyZvt);
+        konstantaZvtComboBox.setItems(hodnotyNA);
 
         silaComboBox.setItems(hodnotyNA);
         obratnostComboBox.setItems(hodnotyNA);
@@ -161,7 +167,8 @@ public class NestvuraController implements Initializable {
 
         // nastavení obousměrného bindingu
         Bindings.bindBidirectional(nazevTextField.textProperty(), logika.nazevProperty());
-        Bindings.bindBidirectional(zivotaschopnostTextField.textProperty(), logika.zivotaschopnostProperty());
+        Bindings.bindBidirectional(zivotaschopnostComboBox.valueProperty(), logika.zivotaschopnostProperty());
+        Bindings.bindBidirectional(konstantaZvtComboBox.valueProperty(), logika.konstantaZvtProperty());
         Bindings.bindBidirectional(utokTextField.textProperty(), logika.utokProperty());
         Bindings.bindBidirectional(obranaTextField.textProperty(), logika.obranaProperty());
         Bindings.bindBidirectional(silaComboBox.valueProperty(), logika.silaProperty());
@@ -186,7 +193,6 @@ public class NestvuraController implements Initializable {
         Bindings.bindBidirectional(popisTextArea.textProperty(), logika.popisProperty());
 
         Bindings.bindBidirectional(nazevChybaLabel.visibleProperty(), logika.nazevChybaVisibleProperty());
-        Bindings.bindBidirectional(zivotaschopnostChybaLabel.visibleProperty(), logika.zivotaschopnostChybaVisibleProperty());
         Bindings.bindBidirectional(utokChybaLabel.visibleProperty(), logika.utokChybaVisibleProperty());
         Bindings.bindBidirectional(obranaChybaLabel.visibleProperty(), logika.obranaChybaVisibleProperty());
         Bindings.bindBidirectional(skupinyZranitelnostChybaLabel.visibleProperty(), logika.skupinyZranitelnostChybaVisibleProperty());
@@ -216,7 +222,7 @@ public class NestvuraController implements Initializable {
     private void zavriScenu() {
         Stage stage = (Stage) odejitButton.getScene().getWindow();
         stage.close();
-        seznamOdkazu.nactiOdkazy(TabulkaDB.NESTVURA.getNazev());
+        // seznamOdkazu.nactiOdkazy(TabulkaDB.NESTVURA.getNazev());
     }
 
     /** Obsluha tlačítka polovina */

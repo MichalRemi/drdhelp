@@ -80,13 +80,14 @@ public class MainController implements Initializable {
     // implementace logiky
     private final MainLogika logika = new MainLogika();
 
+    // logika pro seznam odkazů ve formuláři Main - seznamListView pro snadný
+    // přístup z ostatních formulářů
     private final SeznamOdkazu seznamOdkazu = new SeznamOdkazu();
 
     // skupina tlačítek v menu
     final ToggleGroup menu = new ToggleGroup();
 
     SetData setData = new SetData();
-
 
     /**
      * Initializes the controller class.
@@ -133,7 +134,6 @@ public class MainController implements Initializable {
             String popis = "";
             if (newValue != null) {
                 popis = logika.ziskejOdkaz(newValue).getPodrobnyPopis();
-
             }
             detailTextArea.setText(popis);
         });
@@ -175,9 +175,18 @@ public class MainController implements Initializable {
         // z vybraného Odkazu v seznamListView určí tabulku z databáze drddesk_db
         String tabulka = seznamOdkazu.getTabName(toggleButton);
         // nastavení vyskakovacího okna, "null" zobrazí prázdný formulář
-        SeznamOdkazu.setUpravit(null);
+        SeznamOdkazu.setAktualniOdkaz(null);
         // vyskakovací okno pro přidání nové položky
         otevriOkno(tabulka, "Přidat novou položku ");
+        // Přidání nové postavy probíhá ve dvou fázích a také ve dvou formulářích.
+        // V první fází - do formuláře NovaPostava.fxml vloží uživatel hodnoty,
+        // které se už nemění, jako je jméno postavy, vlastnosti, atd.
+        // Ve druhé fázi se tato nová postava, pouze částečně zadaná, otevře
+        // ve formuláři Postava.fxml, tj. jako při editaci již existující postavy
+        // a chybějící údaje může uživatel doplnit.
+        if (logika.jeNovaPostava()) {
+            otevriOkno(tabulka, "Upravit položku");
+        }
         // obnovení seznamu Odkazů v seznamListView po vložení nové položky
         seznamOdkazu.nactiOdkazy(toggleButton);
     }
@@ -189,9 +198,13 @@ public class MainController implements Initializable {
         Odkaz odkaz = getOdkazZeSeznamListView();
         String tabulka = odkaz.getTabulka();
         // nastavení vyskakovacího okna, "odkaz" načte položku do formuláře pro úpravu
-        SeznamOdkazu.setUpravit(odkaz);
+        SeznamOdkazu.setAktualniOdkaz(odkaz);
         // vyskakovací okno pro úpravu položky
         otevriOkno(tabulka, "Upravit položku ");
+        // název zvoleného tlačítka z ToggleGroup menu
+        String toggleButton = urciToggleButton();
+        // obnovení seznamu Odkazů v seznamListView po vložení nové položky
+        seznamOdkazu.nactiOdkazy(toggleButton);
         // obnovení podrobného popisu upravené položky v detailTextArea
         detailTextArea.setText(logika.ziskejPodrobnyPopis());
     }

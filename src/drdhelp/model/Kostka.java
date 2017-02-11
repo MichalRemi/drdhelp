@@ -32,7 +32,7 @@ public class Kostka {
 //##############################################################################
 //== CONSTANT INSTANCE ATTRIBUTES ==============================================
 
-    private final Random RANDOM;
+    private final Random random;
 
     private final int POCET_STEN;
 
@@ -50,7 +50,7 @@ public class Kostka {
      */
     public Kostka(int PocetSten) {
         this.POCET_STEN = PocetSten;
-        RANDOM = new Random();
+        random = new Random();
     }
 
 
@@ -74,7 +74,7 @@ public class Kostka {
     * @return Číslo od 1 do počtu stěn
     */
     public int hod() {
-        return RANDOM.nextInt(POCET_STEN) + 1;
+        return random.nextInt(POCET_STEN) + 1;
     }
 
     /**

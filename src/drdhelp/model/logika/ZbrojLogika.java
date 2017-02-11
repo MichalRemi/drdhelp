@@ -80,7 +80,6 @@ public class ZbrojLogika extends VybaveniLogika
     }
 
 
-
 //== ABSTRACT METHODS ==========================================================
 //== INSTANCE GETTERS AND SETTERS ==============================================
 
@@ -153,8 +152,11 @@ public class ZbrojLogika extends VybaveniLogika
                && jeVahaBValidni()&& jeVahaCValidni();
     }
 
-
-
+    /**
+     * Dotáže se, zda se položka upravuje, nebo vkládá nová a podle toho buď nechá
+     * formulář prázdný, nebo se dotáže na příslušnou položku z databáze a vloží
+     * ji do formuláře
+     */
     public void naplnFormular() {
         Zbroj zbroj = pridatNeboUpravit();
         if (zbroj != null) {
@@ -171,6 +173,11 @@ public class ZbrojLogika extends VybaveniLogika
         }
     }
 
+    /**
+     * Logika tlačítka Vložit. Podle odkazu ve statické proměnné SeznamOdkazu.upravit určí, zda se vkládá
+     * nová položka (null), nebo upravuje (odkaz je na ní). Zalová příslušnou
+     * metodu a předá ji obsah formuláře.
+     */
     public void pridejZbroj() {
         Integer id = vratIdOdkazu();
         if (id != null) {
@@ -179,9 +186,6 @@ public class ZbrojLogika extends VybaveniLogika
             setData.vlozZbroj(nactiZFormulare(0));
         }
     }
-
-
-
 
 
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================
@@ -236,7 +240,6 @@ public class ZbrojLogika extends VybaveniLogika
             cenaCChybaVisibleProperty.set(!jeCenaValidni(newValue));
             validProperty().set(jeFormularValidni());
         });
-
     }
 
     private Zbroj nactiZFormulare(int id) {

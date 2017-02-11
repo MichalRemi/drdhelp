@@ -23,7 +23,7 @@ public class SeznamOdkazu {
 //== CONSTANT CLASS ATTRIBUTES =================================================
 //== VARIABLE CLASS ATTRIBUTES =================================================
 
-    private static Odkaz upravit = null;
+    private static Odkaz aktualniOdkaz = null;
 
     private final GetData getData = new GetData();
 
@@ -38,8 +38,8 @@ public class SeznamOdkazu {
      * do přislušného formuláře (vyskakovací okna). Pokud se jedná o přidání
      * nové položky, má hodnotu null.
      */
-    public static Odkaz getUpravit() {
-        return upravit;
+    public static Odkaz getAktualniOdkaz() {
+        return aktualniOdkaz;
     }
 
     /**
@@ -47,8 +47,8 @@ public class SeznamOdkazu {
      * do přislušného formuláře (vyskakovací okna). Pokud se jedná o přidání
      * nové položky, má hodnotu null.
      */
-    public static void setUpravit(Odkaz odkaz) {
-        upravit = odkaz;
+    public static void setAktualniOdkaz(Odkaz odkaz) {
+        aktualniOdkaz = odkaz;
     }
 
 //== OTHER NON-PRIVATE CLASS METHODS ===========================================
@@ -137,7 +137,7 @@ public class SeznamOdkazu {
             if (t.getNazev().equals(buttonName)) return t.getTabNazev();
             }
         } catch (Exception e) {
-        System.out.println("Chybné jméno tlačítka!\n" + e);
+        System.err.println("Chybné jméno tlačítka!\n" + e);
         }
         return null;
     }

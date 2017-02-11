@@ -22,7 +22,7 @@ public class Vlastnost {
      * je zároveň index pole příslušného bonusu.
      */
     private static final int[] BONUSY = {-100, -5, -4, -4, -3, -3, -2, -2, -1, -1,
-    //                              indexy: 0   1   2   3   4   5   6   7   8   9
+    //                             indexy:  0   1   2   3   4   5   6   7   8   9
             0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10,
         // 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30  31  32
            11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19};
@@ -35,6 +35,21 @@ public class Vlastnost {
 //##############################################################################
 //== STATIC INITIALIZER (CLASS CONSTRUCTOR) ====================================
 //== CLASS GETTERS AND SETTERS =================================================
+
+    /**
+     * Vrátí bonus včetně znaménka.
+     *
+     * @param vlastnost hodnota 1 - 50, nebo null.
+     */
+    public static String getBonus(Integer vlastnost) {
+        if (vlastnost != null && vlastnost >= 1 && vlastnost <= 50) {
+            int bonus = BONUSY[vlastnost];
+            if (bonus == 0) return "+0";
+            else return String.format("%+d",bonus);
+        }
+        return null;
+    }
+
 //== OTHER NON-PRIVATE CLASS METHODS ===========================================
 
     /**
@@ -86,20 +101,19 @@ public class Vlastnost {
     /**
      * Bonus vlastnosti.
      */
-    private Integer BONUS;
+    private Integer bonus;
 
     /**
      * Hodnota vlastnosti.
      */
-    private Integer HODNOTA;
+    private Integer hodnota;
 
 //##############################################################################
 //== CONSTUCTORS AND FACTORY METHODS ===========================================
 
     /**
-     * Konstruktor. Hodnota vlastnosti musí být z intervalu <1-50>, jinak bude
-     * hodnota vlastnosti 0 a bonus -100.
-     *
+     * Konstruktor. Hodnota vlastnosti musí být z intervalu 1 - 50 včetně
+     * nebo null, jinak bude hodnota vlastnosti a bonus null.
      * @param nazev Název vlastnosti.
      * @param hodnota
      */
@@ -107,18 +121,19 @@ public class Vlastnost {
         this.NAZEV = nazev;
         if (hodnota != null) {
             if ((hodnota >= 1) && (hodnota <= 50)) {
-                this.BONUS = BONUSY[hodnota];
-                this.HODNOTA = hodnota;
+                this.bonus = BONUSY[hodnota];
+                this.hodnota = hodnota;
             }
             else {
-                this.BONUS = -100;
-                this.HODNOTA = 0;
+                this.hodnota = hodnota;
+                this.bonus = null;
                 System.err.println("Chybný parametr hodnota v konstruktoru" +
                     " Vlastnost(), hodnota musí být z intervalu <1-50> nebo null");
             }
+        } else {
+        this.hodnota = null;
+        this.bonus = null;
         }
-        this.HODNOTA = null;
-        this.BONUS = null;
     }
 
 
@@ -137,41 +152,40 @@ public class Vlastnost {
      * @return hodnota
      */
     public Integer getHodnota() {
-        return HODNOTA;
+        return hodnota;
     }
 
     /**
      * @return bonus
      */
     public Integer getBonus() {
-        return BONUS;
+        return bonus;
     }
 
     /**
      * @return bonus typu String včetně kladného znaménka
      */
     public String getBonusString() {
-        if (BONUS != null) {
-            if (BONUS == 0) return "+0";
-            else return String.format("%+d",BONUS);
+        if (bonus != null) {
+            if (bonus == 0) return "+0";
+            else return String.format("%+d",bonus);
         }
-        else return "-100";
+        return null;
     }
 
     /**
      * @return hodnota
      */
     public String getHodnotaString() {
-        return String.valueOf(HODNOTA);
+        if (hodnota != null) {
+            return String.valueOf(hodnota);
+        }
+        return null;
     }
 
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
 
-    /**
-     * Vrátí celočíselný podíl dělence a dělitele zaokrouhlený nahoru.
-     *
-     * @return String aktuální magy/maximální magy.
-     */
+    /** Vrátí celočíselný podíl dělence a dělitele zaokrouhlený nahoru. */
     public int deleniNahoru(int delenec, int delitel) {
         if (delenec % delitel > 0) return (delenec / delitel + 1);
         else return (delenec / delitel);
@@ -183,9 +197,10 @@ public class Vlastnost {
      */
     @Override
     public String toString() {
-        return String.format("%-10s %6d %s", getNazev(), getHodnota(),
-                             getBonusString());
-
+        if (hodnota != null || bonus != null) {
+        return getNazev() + ":   " + getHodnota() + " " + getBonusString();
+        }
+        return null;
     }
 
 

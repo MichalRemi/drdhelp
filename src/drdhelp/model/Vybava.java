@@ -69,13 +69,13 @@ public class Vybava implements IPopis {
     private final int VAHA;
 
     /** Cena výbavy - zlaťáky */
-    private final int ZLATAKY;
+    private final Integer ZLATAKY;
 
     /** Cena výbavy - stříbrňáky */
-    private final int STRIBRNAKY;
+    private final Integer STRIBRNAKY;
 
     /** Cena výbavy - měďáky */
-    private final int MEDAKY;
+    private final Integer MEDAKY;
 
     /** Popis výbavy */
     private String popis;
@@ -121,11 +121,12 @@ public class Vybava implements IPopis {
     @Override
     public String getPodrobnyPopis() {
         return "Název:   " + getNazev() + "\n" +
-               "Druh:   " + getDruh() + "\n" +
-               "Cena:   " + getCenaVypis() + "\n" +
-               "Vaha:   " + getVaha() + "\n" +
-               nactiPopis();
-    }
+                "Druh:   " + getDruh() + "\n" +
+                "Cena:   " + getCenaVypis() + "\n" +
+                "Vaha:   " + getVaha() +
+                vratPopis();
+
+        }
 
 //== INSTANCE GETTERS AND SETTERS ==============================================
 
@@ -189,20 +190,28 @@ public class Vybava implements IPopis {
         return "název: \t" + getNazev() + "\n" +
                "druh: \t" + getDruh() + "\n" +
                "cena: \t" + getCenaVypis()+ "\n" +
-               "vaha: \t" + getVaha() + "\n" +
-               nactiPopis();
+               "vaha: \t" + getVaha() +
+               vratPopis();
+    }
+
+    /** Vrátí číslo se znaménkem i pro kladná čísla a 0 ve String */
+    public String getStringSeZnamenkem(int hodnota) {
+        return String.format("%+d",hodnota);
     }
 
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================
 
-/** Ošetřuje situaci, kdy není poznámka zadaná v db(null), jinak ji vrátí ve String */
-    protected String nactiPopis() {
-        String popis = "";
-        if (this.popis != null) {
-            popis = "\nPoznámka:\n" + this.popis;
+    /**
+     * Vrátí popis ve travru "Popis:   " + popis. Pokud je popis nevyplněný (""),
+     * vrátí prázdný řetezec "".
+     */
+    protected String vratPopis() {
+        if (!this.popis.equals("") && this.popis != null) {
+            return "\n\nPoznámka:\n" + this.popis;
         }
-        return popis;
+        return "";
     }
+
 
 //##############################################################################
 //== NESTED DATA TYPES =========================================================

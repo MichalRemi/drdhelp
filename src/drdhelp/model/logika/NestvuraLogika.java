@@ -35,10 +35,6 @@ public class NestvuraLogika extends Logika {
 
 
 //== CONSTANT CLASS ATTRIBUTES =================================================
-
-
-
-
 //== VARIABLE CLASS ATTRIBUTES =================================================
 
 
@@ -54,37 +50,92 @@ public class NestvuraLogika extends Logika {
 //== CONSTANT INSTANCE ATTRIBUTES ==============================================
 
     private final StringProperty nazevProperty = new SimpleStringProperty();
-    private final StringProperty zivotaschopnostProperty = new SimpleStringProperty();
+
+    private final ObjectProperty<String> zivotaschopnostProperty =
+            new SimpleObjectProperty<>();
+
+    private final ObjectProperty<String> konstantaZvtProperty =
+            new SimpleObjectProperty<>();
+
     private final StringProperty utokProperty = new SimpleStringProperty();
+
     private final StringProperty obranaProperty = new SimpleStringProperty();
+
     private final ObjectProperty<String> silaProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<String> obratnostProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<String> odolnostProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<String> inteligenceProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<String> charismaProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<Nestvura.VelikostNestvura> velikostProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<String> bojovnostObjectProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<Nestvura.Zranitelnost> zranitelnostObjectProperty = new SimpleObjectProperty<>();
-    private final StringProperty skupinyZranitelnostProperty = new SimpleStringProperty();
-    private final ObjectProperty<String> hodnotyPohyblivostObjectProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<Nestvura.Pohyblivost> pohyblivostObjectProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<String> hodnotyVytrvalostObjectProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<Nestvura.Pohyblivost> vytrvalostObjectProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<String> manevrSchopnostProperty = new SimpleObjectProperty<>();
-    private final StringProperty zaklSilaMysliProperty = new SimpleStringProperty();
+
+    private final ObjectProperty<String> obratnostProperty =
+            new SimpleObjectProperty<>();
+
+    private final ObjectProperty<String> odolnostProperty =
+            new SimpleObjectProperty<>();
+
+    private final ObjectProperty<String> inteligenceProperty =
+            new SimpleObjectProperty<>();
+
+    private final ObjectProperty<String> charismaProperty =
+            new SimpleObjectProperty<>();
+
+    private final ObjectProperty<Nestvura.VelikostNestvura> velikostProperty =
+            new SimpleObjectProperty<>();
+
+    private final ObjectProperty<String> bojovnostObjectProperty =
+            new SimpleObjectProperty<>();
+
+    private final ObjectProperty<Nestvura.Zranitelnost> zranitelnostObjectProperty =
+            new SimpleObjectProperty<>();
+
+    private final StringProperty skupinyZranitelnostProperty =
+            new SimpleStringProperty();
+
+    private final ObjectProperty<String> hodnotyPohyblivostObjectProperty =
+            new SimpleObjectProperty<>();
+
+    private final ObjectProperty<Nestvura.Pohyblivost> pohyblivostObjectProperty =
+            new SimpleObjectProperty<>();
+
+    private final ObjectProperty<String> hodnotyVytrvalostObjectProperty =
+            new SimpleObjectProperty<>();
+
+    private final ObjectProperty<Nestvura.Pohyblivost> vytrvalostObjectProperty =
+            new SimpleObjectProperty<>();
+
+    private final ObjectProperty<String> manevrSchopnostProperty =
+            new SimpleObjectProperty<>();
+
+    private final StringProperty zaklSilaMysliProperty =  new SimpleStringProperty();
+
     private final ObjectProperty<String> ochoceniProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<Tvor.Presvedceni> presvedceniObjectProperty = new SimpleObjectProperty<>();
+
+    private final ObjectProperty<Tvor.Presvedceni> presvedceniObjectProperty =
+            new SimpleObjectProperty<>();
+
     private final StringProperty pokladyProperty = new SimpleStringProperty();
+
     private final StringProperty zkusenostiProperty = new SimpleStringProperty();
+
     private final StringProperty popisProperty = new SimpleStringProperty();
 
-    private final BooleanProperty nazevChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty zivotaschopnostChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty utokChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty obranaChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty skupinyZranitelnostChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty zaklSilaMysliChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty zkusenostiChybaVisibleProperty = new SimpleBooleanProperty();
+
+    private final BooleanProperty nazevChybaVisibleProperty =
+            new SimpleBooleanProperty();
+
+    private final BooleanProperty zivotaschopnostChybaVisibleProperty =
+            new SimpleBooleanProperty();
+
+    private final BooleanProperty utokChybaVisibleProperty =
+            new SimpleBooleanProperty();
+
+    private final BooleanProperty obranaChybaVisibleProperty =
+            new SimpleBooleanProperty();
+
+    private final BooleanProperty skupinyZranitelnostChybaVisibleProperty =
+            new SimpleBooleanProperty();
+
+    private final BooleanProperty zaklSilaMysliChybaVisibleProperty =
+            new SimpleBooleanProperty();
+
+    private final BooleanProperty zkusenostiChybaVisibleProperty =
+            new SimpleBooleanProperty();
 
     private final BooleanProperty valid = new SimpleBooleanProperty(false);
 
@@ -92,7 +143,9 @@ public class NestvuraLogika extends Logika {
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
 
     private int poziceKurzoru;
+
     GetData getData = new GetData();
+
     SetData setData = new SetData();
 
 //##############################################################################
@@ -112,103 +165,140 @@ public class NestvuraLogika extends Logika {
     public ObjectProperty<String> bojovnostObjectProperty() {
         return bojovnostObjectProperty;
     }
+
     public ObjectProperty<String> charismaProperty() {
         return charismaProperty;
     }
+
     public ObjectProperty<String> inteligenceProperty() {
         return inteligenceProperty;
     }
+
     public BooleanProperty obranaChybaVisibleProperty() {
         return obranaChybaVisibleProperty;
     }
+
     public ObjectProperty<String> obratnostProperty() {
         return obratnostProperty;
     }
+
     public ObjectProperty<String> ochoceniProperty() {
         return ochoceniProperty;
     }
+
     public ObjectProperty<String> odolnostProperty() {
         return odolnostProperty;
     }
+
     public ObjectProperty<String> silaProperty() {
         return silaProperty;
     }
+
     public BooleanProperty skupinyZranitelnostChybaVisibleProperty() {
         return skupinyZranitelnostChybaVisibleProperty;
     }
+
     public BooleanProperty utokChybaVisibleProperty() {
         return utokChybaVisibleProperty;
     }
+
     public StringProperty utokProperty() {
         return utokProperty;
     }
+
     public ObjectProperty<Nestvura.VelikostNestvura> velikostProperty() {
         return velikostProperty;
     }
+
     public StringProperty zaklSilaMysliProperty() {
         return zaklSilaMysliProperty;
     }
+
     public BooleanProperty zaklSilaMysliChybaVisibleProperty() {
         return zaklSilaMysliChybaVisibleProperty;
     }
+
     public BooleanProperty zivotaschopnostChybaVisibleProperty() {
         return zivotaschopnostChybaVisibleProperty;
     }
+
     public BooleanProperty zkusenostiChybaVisibleProperty() {
         return zkusenostiChybaVisibleProperty;
     }
+
     public ObjectProperty<String> hodnotyPohyblivostObjectProperty() {
         return hodnotyPohyblivostObjectProperty;
     }
+
     public ObjectProperty<String> hodnotyVytrvalostObjectProperty() {
         return hodnotyVytrvalostObjectProperty;
     }
+
     public ObjectProperty<String> manevrSchopnostProperty() {
         return manevrSchopnostProperty;
     }
+
     public BooleanProperty nazevChybaVisibleProperty() {
         return nazevChybaVisibleProperty;
     }
+
     public StringProperty nazevProperty() {
         return nazevProperty;
     }
+
     public StringProperty obranaProperty() {
         return obranaProperty;
     }
+
     public ObjectProperty<Nestvura.Pohyblivost> pohyblivostObjectProperty() {
         return pohyblivostObjectProperty;
     }
+
     public StringProperty pokladyProperty() {
         return pokladyProperty;
     }
+
     public ObjectProperty<Tvor.Presvedceni> presvedceniObjectProperty() {
         return presvedceniObjectProperty;
     }
+
     public StringProperty skupinyZranitelnostProperty() {
         return skupinyZranitelnostProperty;
     }
+
     public ObjectProperty<Nestvura.Pohyblivost> VytrvalostObjectProperty() {
         return vytrvalostObjectProperty;
     }
-    public StringProperty zivotaschopnostProperty() {
+
+    public ObjectProperty<String> zivotaschopnostProperty() {
         return zivotaschopnostProperty;
     }
+
+    public ObjectProperty<String> konstantaZvtProperty() {
+        return konstantaZvtProperty;
+    }
+
     public StringProperty zkusenostiProperty() {
         return zkusenostiProperty;
     }
+
     public StringProperty popisProperty() {
         return popisProperty;
     }
+
     public ObjectProperty<Nestvura.Zranitelnost> zranitelnostObjectProperty() {
         return zranitelnostObjectProperty;
     }
+
     public BooleanProperty validProperty() {
         return valid;
     }
 
+
     public int getPoziceKurzoru() {
         return poziceKurzoru;
     }
+
     public void setPoziceKurzoru(int poziceKurzoru) {
         this.poziceKurzoru = poziceKurzoru;
     }
@@ -226,20 +316,19 @@ public class NestvuraLogika extends Logika {
                 && jeVytrvalostValidni() && jeZkusenostiValidni();
     }
 
-    /** Vloží do formuláře upravovanou nestvůru */
+    /**
+     * Dotáže se, zda se položka upravuje, nebo vkládá nová a podle toho buď nechá
+     * formulář prázdný, nebo se dotáže na příslušnou položku z databáze a vloží
+     * ji do formuláře
+     */
     public void naplnFormular() {
         Nestvura nestvura = pridatNeboUpravit();
         if (nestvura != null) {
-
             Vlastnosti vlastnosti = nestvura.getVlastnosti();
-            for (int i = 0; i < 5; i++) {
-                System.out.println(vlastnosti.getVlastnost(i));
-            }
-
             nazevProperty.set(nestvura.getNazev());
-            zivotaschopnostProperty.set(String.valueOf(nestvura.getZivotaschopnost()));
+            zivotaschopnostProperty.set(nestvura.getZivotaschopnostString());
+            konstantaZvtProperty.set(vyhodnotAVratString(nestvura.getKonstantaZvt()));
             utokProperty.set(nestvura.getUtok());
-            System.out.println("Obrana nestvůry je : " + nestvura.getObranaString());
             obranaProperty.set(nestvura.getObranaString());
             silaProperty.set(vyhodnotAVratString(nestvura.getSila()));
             obratnostProperty.set(vyhodnotAVratString(nestvura.getObratnost()));
@@ -260,15 +349,16 @@ public class NestvuraLogika extends Logika {
             zaklSilaMysliProperty.set(urciZaklSiluMysli(nestvura));
             ochoceniProperty.set(vyhodnotAVratString(nestvura.getOchoceni()));
             nastavPresvedceni(nestvura);
-            pokladyProperty.set(nestvura.getPoklady());
+            pokladyProperty.set(urciPoklady(nestvura.getPoklady()));
             zkusenostiProperty.set(String.valueOf(nestvura.getZkusenost()));
             popisProperty.set(nestvura.getPoznamka());
         }
     }
 
     /**
-     * Logika tlačítka Vložit. Určí, zda jde o úpravu nebo vloženíé nové nestvůra
-     * a zavolá příslušnou metodu, které nestvůru předá.
+     * Logika tlačítka Vložit. Podle odkazu ve statické proměnné SeznamOdkazu.upravit
+     * určí, zda se vkládá nová položka (null), nebo upravuje (odkaz je na ní).
+     * Zalová příslušnou metodu a předá ji obsah formuláře.
      */
     public void pridejNestvuru() {
         Integer id = vratIdOdkazu();
@@ -283,29 +373,6 @@ public class NestvuraLogika extends Logika {
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================
 
 //************* logika pro vložení upravované nestvůry do formuláře ************
-
-//    private void nastavHodnotyNA(Nestvura nestvura) {
-//        String sila = vyhodnotAVratString(nestvura.getSila());
-//        String obratnost = vyhodnotAVratString(nestvura.getObratnost());
-//        String odolnost = vyhodnotAVratString(nestvura.getOdolnost()))
-//        for (String s : Tvor.HODNOTY_NA)
-//
-//
-//
-//            silaProperty.set(vyhodnotAVratString(nestvura.getSila()));
-//            obratnostProperty.set(vyhodnotAVratString(nestvura.getObratnost()));
-//            odolnostProperty.set(vyhodnotAVratString(nestvura.getOdolnost()));
-//            inteligenceProperty.set(vyhodnotAVratString(nestvura.getInteligence()));
-//            charismaProperty.set(vyhodnotAVratString(nestvura.getCharisma()));
-//    }
-
-
-    /** Nastaví sílu, pro null */
-    private void urciSilu(Nestvura nestvura) {
-        String sila = vyhodnotAVratString(nestvura.getSila());
-        if (sila != null) silaProperty.set(sila);
-        else silaProperty.set(Tvor.HODNOTY_NA[0]);
-    }
 
     /**
      * V případě, že je hodnota v nestvura.velikost z enum VelikostNestvura,
@@ -322,7 +389,7 @@ public class NestvuraLogika extends Logika {
      * @return
      */
     public String urciBojovnost(Nestvura nestvura) {
-        return vyhodnotAVratString(nestvura.getBojovnost(), BOJOVNOST);
+        return vyhodnotAVratString(nestvura.getBojovnost(), bojovnostArray);
     }
 
     /**
@@ -332,6 +399,7 @@ public class NestvuraLogika extends Logika {
     private void nastavZranitelnost(Nestvura nestvura) {
         Zranitelnost zranitelnost = nestvura.urciZranitelnost();
         if (zranitelnost != null) zranitelnostObjectProperty.set(zranitelnost);
+        else zranitelnostObjectProperty.set(Nestvura.Zranitelnost.values()[0]);
     }
 
     /**
@@ -366,6 +434,22 @@ public class NestvuraLogika extends Logika {
     private void nastavPresvedceni(Nestvura nestvura) {
         Presvedceni presvedceni = nestvura.urciPresvedceni();
         if (presvedceni != null) presvedceniObjectProperty.set(presvedceni);
+    }
+
+    /** Určí životaschopnost. V případě čísla převede na String */
+    private String urciZvt(Integer zivotaschopnost) {
+        if (zivotaschopnost != null) {
+            String zvt = String.valueOf(zivotaschopnost);
+            // zvláštní případ - hodnota -2 odpovídá "½ (1-4 životy)"
+            if (zvt.equals("-2")) return Nestvura.hodnotyZvtArray[0];
+            // zvláštní případ - hodnota -1 odpovídá "1-2 životy"
+            if (zvt.equals("-1")) return Nestvura.hodnotyZvtArray[1];
+            // ostatní platné hodnoty z Nestvura.hodnotyZvtArray
+            for (String s : Nestvura.hodnotyZvtArray) {
+                if (s.equals(zvt)) return zvt;
+            }
+        }
+        return null;
     }
 
 //******* konec logiky pro vložení upravované nestvůry do formuláře ************
@@ -411,6 +495,10 @@ public class NestvuraLogika extends Logika {
         });
 
         skupinyZranitelnostProperty.addListener((observable, oldValue, newValue) -> {
+            // pokud se změní skupiny zranitelnosti (A, B, C, ...), tak
+            // vyhodnotí, zda odpovídají nějaké zranitelnosti (zvíře, humanoid, ...).
+            // Pokud ne, nastaví pole na hodnotu "N/A".
+            zranitelnostPodleSkupinZranitelnost(newValue);
             skupinyZranitelnostChybaVisibleProperty.set(!jeSkupinyZranitelnostValidni(newValue));
             validProperty().set(jeFormularValidni());
         });
@@ -450,11 +538,24 @@ public class NestvuraLogika extends Logika {
         });
     }
 
+    /** Pokud parametr skupinyZranitelnost odpovídá zranitelnosti, nastaví
+     * jí v zranitelnostCombobox, jinak nastaví "N/A"*/
+    private boolean zranitelnostPodleSkupinZranitelnost(String skupinyZranitelnost) {
+        Zranitelnost[] skupinyZranitelnostArray = Nestvura.Zranitelnost.values();
+        for (int i = 1; i < skupinyZranitelnostArray.length; i++) {
+            if (skupinyZranitelnostArray[i].getSkupinyZranitelnost()
+                        .equals(skupinyZranitelnost)) {
+                zranitelnostObjectProperty.set(skupinyZranitelnostArray[i]);
+                return true;
+            }
+        }
+        zranitelnostObjectProperty.set(skupinyZranitelnostArray[0]);
+        return false;
+    }
+
 
     /** Načte hodnoty z formuláře a vrátí je v instanci Nestvura */
     private Nestvura nactiZFormulare(int id) {
-        String popis = popisProperty.get();
-        if (popis == null) popis = "";
 
         Integer[] hodnotyVlastnosti = {vyhodnotAVratInt(silaProperty.get()),
                                     vyhodnotAVratInt(obratnostProperty.get()),
@@ -468,13 +569,14 @@ public class NestvuraLogika extends Logika {
 
         return new Nestvura(id,
                 nazevProperty.get(),
-                vyhodnotAVratInt(zivotaschopnostProperty.get()),
+                vyhodnotZvtAVratInteger(zivotaschopnostProperty.get()),
+                vyhodnotAVratInt(konstantaZvtProperty.get()),
                 utokProperty.get(),
                 nactiObranu(),
                 hodnotyVlastnosti,
                 velikostProperty.get().toString(),
                 vyhodnotAVratInt(bojovnostObjectProperty.get()),
-                zranitelnostObjectProperty.get().toString(),
+                nactiZranitelnost(),
                 skupinyZranitelnostProperty.get(),
                 pohyblivost,
                 pohyblivostObjectProperty.get().toString(),
@@ -482,11 +584,43 @@ public class NestvuraLogika extends Logika {
                 vytrvalostObjectProperty.get().toString(),
                 vyhodnotAVratInt(manevrSchopnostProperty.get()),
                 vyhodnotAVratInt(zaklSilaMysliProperty.get()),
-                presvedceniObjectProperty.get().toString(),
-                pokladyProperty.get(),
+                vratPresvedceni(),
+                vyhodnotAVratString(pokladyProperty.get()),
                 vyhodnotAVratInt(zkusenostiProperty.get()),
                 vyhodnotAVratInt(ochoceniProperty.get()),
-                popis);
+                popisProperty.get());
+    }
+
+    /**
+     * Vyhodnotí, zda je hodnota v poli. Pokud ano, vrátí ho
+     * v int. Pokud ne, vrátí 0.
+     * @param hodnota libovolný String
+     * @return String
+     */
+    private Integer vyhodnotZvtAVratInteger(String hodnota) {
+        if (hodnota != null) {
+            for (String s : Nestvura.hodnotyZvtArray) {
+                if (hodnota.equals(s)) {
+                    if (s.equals(Nestvura.hodnotyZvtArray[0])) return -2;
+                    if (s.equals(Nestvura.hodnotyZvtArray[1])) return -1;
+                    else return Integer.parseInt(s);
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Vrátí název zranitelnosti z Enum Zranitelnost, pokud je nějaká vybraná
+     * v zranitelnostCombobox, jinak vrátí null.
+     */
+    private String nactiZranitelnost() {
+        Zranitelnost zranitelnost = zranitelnostObjectProperty.get();
+        if (zranitelnost != null)
+            if (!zranitelnost.equals(Nestvura.Zranitelnost.NA)) {
+            return zranitelnost.toString();
+        }
+        return null;
     }
 
     /**
@@ -494,7 +628,7 @@ public class NestvuraLogika extends Logika {
      * za Obratnost + kvalita zbroje, případně ještě + štít. Pro Obr
      * + kvalita zbroje zrátí -1, pro Obr + kvalita zbroje + štít vrátí -2
      */
-    private Integer nactiObranu(){
+    private Integer nactiObranu() {
         String obrana = obranaProperty.get();
         if (obrana.contains("kvalita zbroje")) {
             if (obrana.contains("štít")) {
@@ -507,10 +641,27 @@ public class NestvuraLogika extends Logika {
     private Nestvura pridatNeboUpravit() {
         Integer id = vratIdOdkazu();
         if (id != null) {
-            Nestvura nestvura = getData.getNestvura(id);
-            return nestvura;
+            return getData.getNestvura(id);
         } else return null;
     }
+
+    /** Vrátí přesvědčení zvolené ve formuláři. Pokud žádné není, vrátí null */
+    private String vratPresvedceni() {
+        if (presvedceniObjectProperty.isNotNull().get()) {
+            Presvedceni presvedceni = presvedceniObjectProperty.get();
+            if (!presvedceni.equals(Tvor.Presvedceni.values()[0])) {
+                return presvedceni.toString();
+            }
+        }
+        return null;
+    }
+
+    /** Ošetřuje situaci při nezadání pokladu (null), vrátí "nic" */
+    private String urciPoklady(String text) {
+        if (text == null) return "nic";
+        return text;
+    }
+
 
     /** Předá obsah nazevTextField metodě, která ověří platnost názvu
         (je vložen text od 1 do 50 znaků) */
@@ -518,9 +669,12 @@ public class NestvuraLogika extends Logika {
         return jeStringValidni(nazevProperty.get(), 1, 50);
     }
 
-    /** předá k validaci hodnotu životaschopnosti z formuláře */
+    /**
+     * Předá k validaci hodnotu životaschopnosti a konstavty životaschopnosti
+     * z formuláře.
+     */
     private boolean jeZivotaschopnostValidni() {
-        return jeZivotaschopnostValidni(zivotaschopnostProperty.get());
+        return (zivotaschopnostProperty.isNotNull().get());
     }
 
     /** Ověří platnost životaschopnosti, zda je to číslo v rozsahu 1 - 100 */
@@ -588,7 +742,10 @@ public class NestvuraLogika extends Logika {
 
     /** Ověří platnost základní síly mysli, zda je to číslo v rozsahu 0 - 200 */
     protected boolean jeZaklSilaMysliValidni(String zaklSilaMysli) {
-        if (zaklSilaMysli.equals("N/A")) return true;
+        if (zaklSilaMysli.equals("N/A")
+            || (zaklSilaMysli.equals(""))
+            || (zaklSilaMysli == null)
+                ) return true;
         return zvalidujStringCislo(zaklSilaMysli, 0, 200);
     }
 

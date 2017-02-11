@@ -19,15 +19,16 @@ public abstract class Tvor {
 
 //== CONSTANT CLASS ATTRIBUTES =================================================
 
-    public final static String[] HODNOTY = {"1", "2", "3", "4", "5", "6",
+    public final static String[] hodnotyArray = {"1", "2", "3", "4", "5", "6",
             "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18",
             "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
             "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"};
 
-    public final static String[] HODNOTY_NA = {"N/A", "1", "2", "3", "4", "5", "6",
+    public final static String[] hodnotyNAArray = {"N/A", "1", "2", "3", "4", "5", "6",
             "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18",
             "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
             "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"};
+
 
 //== VARIABLE CLASS ATTRIBUTES =================================================
 
@@ -77,8 +78,8 @@ public abstract class Tvor {
      * @param velikost Velikost tvora
      * @param poznamka popis, zvláštnosti, atd.
      */
-    public Tvor(int id, String nazev, Integer[] hodnotyVlastnosti, Vlastnost pohyblivost,
-                String velikost, String poznamka) {
+    public Tvor(int id, String nazev, Integer[] hodnotyVlastnosti,
+            Vlastnost pohyblivost, String velikost, String poznamka) {
 
         this.ID = id;
         this.nazev = nazev;
@@ -224,6 +225,7 @@ public abstract class Tvor {
 
     /** Ošetřuje situaci, kdy není poznámka zadaná v db(null), jinak ji vrátí ve String */
     protected String nactiPoznamku() {
+
         String poznamka = "";
         if (this.poznamka != null) {
             poznamka = "\nPoznámka:\n" + getPoznamka();
@@ -236,6 +238,7 @@ public abstract class Tvor {
 //== NESTED DATA TYPES =========================================================
 
 public enum Presvedceni {
+        NA("N/A"),
         ZKD("ZkD"),
         ZMD("ZmD"),
         N("N"),

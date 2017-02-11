@@ -7,12 +7,10 @@ package drdhelp;
 
 import drdhelp.model.SeznamOdkazu;
 import drdhelp.model.TabulkaDB;
-import drdhelp.model.logika.ZbranSAVLogika;
 import drdhelp.model.logika.ZbranTVTLogika;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

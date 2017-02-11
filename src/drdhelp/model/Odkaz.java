@@ -32,7 +32,6 @@ public class Odkaz implements Comparable<Odkaz>{
 //== CONSTANT INSTANCE ATTRIBUTES ==============================================
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
 
-    private final int poradi;
     private final int id;
     protected String nazev;
     private final String tabulka;
@@ -45,13 +44,11 @@ public class Odkaz implements Comparable<Odkaz>{
     /**
      * Konstruktor
      *
-     * @param poradi - Pořadové číslo v kolekci instancí Nazev.
      * @param id - Jedinečné id v tabulce.
      * @param nazev - Název položky v tabulce.
      * @param tabulka - název tabulky, ze které jsou id a nazev.
      */
-    public Odkaz(int poradi, int id, String nazev, String tabulka) {
-        this.poradi = poradi;
+    public Odkaz(int id, String nazev, String tabulka) {
         this.id = id;
         this.nazev = nazev;
         this.tabulka = tabulka;
@@ -61,10 +58,6 @@ public class Odkaz implements Comparable<Odkaz>{
 
 //== ABSTRACT METHODS ==========================================================
 //== INSTANCE GETTERS AND SETTERS ==============================================
-
-    public int getPoradi() {
-        return poradi;
-    }
 
     public int getId() {
         return id;
@@ -91,17 +84,6 @@ public class Odkaz implements Comparable<Odkaz>{
 		return getNazev().compareTo(o.getNazev());
 	}
 
-//    /**
-//     * Vrátí ArrayList-String názvů.
-//     *
-//     * @param nazvy Kolekce Odkaz.
-//     * @return ArrayList String
-//     */
-//    public ArrayList<String> nazvyListString(ArrayList<Odkaz> nazvy) {
-//        ArrayList<String> nazvyString = new ArrayList<>();
-//        for (Odkaz n : nazvy) nazvyString.add(n.toString());
-//        return nazvyString;
-//    }
 
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================
 

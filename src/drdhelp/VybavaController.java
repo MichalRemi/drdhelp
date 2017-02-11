@@ -62,8 +62,6 @@ public class VybavaController implements Initializable {
     private Button vlozitButton;
 
 
-
-
     // logika formuláře - třída VybavaLogika
     private final VybavaLogika logika = new VybavaLogika();
 
@@ -100,7 +98,6 @@ public class VybavaController implements Initializable {
 
         // nabindování vlastnosti Disable na validitu formuláře
         vlozitButton.disableProperty().bind(logika.validProperty().not());
-
     }
 
     /** Obsluha tlačítka Vložit - aktualizuje údaje a zavře okna Výbava. */
@@ -120,7 +117,7 @@ public class VybavaController implements Initializable {
     private void zavriScenu() {
         Stage stage = (Stage) odejitButton.getScene().getWindow();
         stage.close();
-        seznamOdkazu.nactiOdkazy(TabulkaDB.VYBAVA.getNazev());
+        // seznamOdkazu.nactiOdkazy(TabulkaDB.VYBAVA.getNazev());
     }
 
 }

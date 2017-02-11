@@ -18,6 +18,11 @@ import java.util.ArrayList;
 public class Postava extends Tvor implements IPopis {
 
 //== CONSTANT CLASS ATTRIBUTES =================================================
+
+    public final static int[] UROVEN = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+            13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+            30, 31, 32, 33, 34, 35, 36};
+
 //== VARIABLE CLASS ATTRIBUTES =================================================
 
 
@@ -39,6 +44,7 @@ public class Postava extends Tvor implements IPopis {
 
     /** Povolání postavy. */
     private final String POVOLANI;
+    private String poznamka;
 
     /** Aktuální životy postavy. */
     private int zivoty;
@@ -118,60 +124,63 @@ public class Postava extends Tvor implements IPopis {
      * @param poznamka Zde může být cokoliv
      */
     public Postava(int id, String nazev, String rasa, String povolani, int zivoty,
-                   int zivotyMax, int magy, int magyMax, int uroven, int zkusenosti,
-                   int zkusenostiDalsiUroven, Integer[] hodnotyVlastnosti,
-                   Vlastnost pohyblivost, int vyska, int vaha, String zbranTVT,
-                   String zbranSAV, String zbroj, String vybaveni, String rodovaZbran,
-                   String velikost, String zvlastniSchopnosti, String poznamka) {
+            int zivotyMax, int magy, int magyMax, int uroven, int zkusenosti,
+            int zkusenostiDalsiUroven, Integer[] hodnotyVlastnosti,
+            Vlastnost pohyblivost, int vyska, int vaha, String zbranTVT,
+            String zbranSAV, String zbroj, String vybaveni, String rodovaZbran,
+            String velikost, String zvlastniSchopnosti, String poznamka) {
 
-        super(id, nazev, hodnotyVlastnosti, pohyblivost, velikost, poznamka);
-        this.RASA = rasa;
-        this.POVOLANI = povolani;
+        this(id, nazev, rasa, povolani, vyska, vaha, hodnotyVlastnosti, pohyblivost,
+            velikost, rodovaZbran);
         this.zivoty = zivoty;
         this.zivotyMax = zivotyMax;
         this.magy = magy;
         this.magyMax = magyMax;
         this.uroven = uroven;
         this.zkusenostiDalsiUroven = zkusenostiDalsiUroven;
-        this.VYSKA = vyska;
-        this.VAHA = vaha;
         this.zbranTVT = zbranTVT;
         this.zbranSAV = zbranSAV;
         this.zbroj = zbroj;
         this.vybaveni = vybaveni;
-        this.RODOVA_ZBRAN = rodovaZbran;
         this.zvlastniSchopnosti = zvlastniSchopnosti;
     }
+
+    private Postava(int id, String nazev, String rasa, String povolani, int vyska,
+            int vaha, Integer[] hodnotyVlastnosti, Vlastnost pohyblivost,
+            String velikost, String rodovaZbran) {
+
+        super(id, nazev, hodnotyVlastnosti, pohyblivost, velikost, null);
+        this.RASA = rasa;
+        this.POVOLANI = povolani;
+        this.VYSKA = vyska;
+        this.VAHA = vaha;
+        this.RODOVA_ZBRAN = rodovaZbran;
+    }
+
+    /** Konstruktor pro tvobu nové postavy */
+    public Postava(String nazev, String rasa, String povolani, int vyska,
+            int vaha, Integer[] hodnotyVlastnosti, Vlastnost pohyblivost,
+            String velikost, String rodovaZbran) {
+
+        this(0, nazev, rasa, povolani, vyska, vaha, hodnotyVlastnosti, pohyblivost,
+                velikost, rodovaZbran);
+        this.zivoty = 0;
+        this.zivotyMax = 0;
+        this.magy = 0;
+        this.magyMax = 0;
+        this.uroven = 0;
+        this.zkusenostiDalsiUroven = 0;
+        this.zbranTVT = null;
+        this.zbranSAV = null;
+        this.zbroj = null;
+        this.vybaveni = null;
+        this.zvlastniSchopnosti = null;
+}
 
 
 
 //== ABSTRACT METHODS ==========================================================
 
-    @Override
-    public String getPodrobnyPopis() {
-        String popis =    "Jméno:   " + super.getNazev() + "\n"
-                        + "Rasa:   " + RASA + "\n"
-                        + "Povolání:   " + POVOLANI + "\n"
-                        + "Životy:   " + zivoty + "\n"
-                        + "Úroveň:   " + uroven + "\n";
-        if (magy != 0) popis += "Magy:   " + magy + "\n";
-        popis += "\n";
-
-        // přidá zbraně, zbroj a štít
-        popis += arrayListdoRadku(getBojArrayList());
-        popis += "\n";
-
-        // přidá vlastnosti, pohyblivost a nosnost
-        popis += arrayListdoRadku(getAtributyArrayList());
-
-        // přidá zvláštní schopnosti
-        popis += "\nZvláštní schopnosti:\n"
-                + arrayListdoRadku(stringToArrayList(zvlastniSchopnosti));
-
-        popis += nactiPoznamku();
-
-        return popis;
-    }
 
 //== INSTANCE GETTERS AND SETTERS ==============================================
 
@@ -284,6 +293,31 @@ public class Postava extends Tvor implements IPopis {
 
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
 
+    @Override
+    public String getPodrobnyPopis() {
+        String popis =    "Jméno:   " + super.getNazev() + "\n"
+                        + "Rasa:   " + RASA + "\n"
+                        + "Povolání:   " + POVOLANI + "\n"
+                        + "Životy:   " + zivoty + "\n"
+                        + "Úroveň:   " + uroven + "\n";
+        if (magy != 0) popis += "Magy:   " + magy + "\n";
+        popis += "\n";
+
+        // přidá zbraně, zbroj a štít
+        popis += arrayListdoRadku(getBojArrayList());
+        popis += "\n";
+
+        // přidá vlastnosti, pohyblivost a nosnost
+        popis += arrayListdoRadku(getAtributyArrayList());
+
+        // přidá zvláštní schopnosti
+        popis += "\nZvláštní schopnosti:\n"
+                + arrayListdoRadku(stringToArrayList(zvlastniSchopnosti));
+
+        popis += nactiPoznamku();
+
+        return popis;
+    }
 
     /**
      * Vrátí String s aktuálním počtem životů/maximálním počtem životů
@@ -326,7 +360,7 @@ public class Postava extends Tvor implements IPopis {
     /**
      * Vrátí String s aktuálním počtem zkušeností.
      *
-     * @return String aktuální magy/maximální magy.
+     * @return String aktuální zkušenosti/zkušenosti na další úroveň.
      */
     public String getZkusenostiString() {
         return String.format("%d/%d",getZkusenosti(),getZkusenostiDalsiUroven());
@@ -476,4 +510,7 @@ public class Postava extends Tvor implements IPopis {
 
 //##############################################################################
 //== NESTED DATA TYPES =========================================================
+
+
+
 }

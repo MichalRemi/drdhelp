@@ -108,7 +108,7 @@ public class ZbranSAV extends Vybava implements IPopis {
                 + "Dostřel:   " + getDostrel() + "\n"
                 + "Váha:   " + super.getVaha() + " mn\n"
                 + "Cena:   " + super.getCenaVypis()
-                + super.nactiPopis();
+                + super.vratPopis();
 
     }
 

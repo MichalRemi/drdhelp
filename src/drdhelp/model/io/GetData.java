@@ -93,10 +93,8 @@ public class GetData extends Data {
                 PreparedStatement dotaz = db.prepareStatement(sql);
                 ResultSet data = dotaz.executeQuery();
                 ArrayList<Odkaz> vystup = new ArrayList<>();
-                int i = 0;
                 while (data.next()) {
-                    i++;
-                    Odkaz nazezv = new Odkaz(i, data.getInt("id"),
+                    Odkaz nazezv = new Odkaz(data.getInt("id"),
                                             data.getString("nazev"), tabulka);
                     vystup.add(nazezv);
                 }
@@ -106,26 +104,11 @@ public class GetData extends Data {
             return null;
             }
         } else {
-            System.err.println("Chybný název tabulky v parametru tabulka:" +
-                " GetData.getNazvy(String tabulka)");
+            System.err.println("GetData.nactiOdkazy(): Chybný název tabulky" +
+                    " v parametru tabulka!");
             return null;
         }
     }
-
-
-
-//    /**
-//     * Vrátí všechny názvy z tabulky zadané v parametru z databáze drddesk_db.
-//     * Seznam platných tabulek = "nestvura", "postava", "povolani", "rasa",
-//            "zbrane_sav", "zbrane_tvt", "zbroje", "vybava", "uzivatel".
-//     *
-//     * @param tabulka String
-//     * @return ArrayList String
-//     */
-//    public ArrayList<String> getNazvyString(String tabulka) {
-//
-//        return getNazvy(getIdANazvy(tabulka));
-//    }
 
     /**
      * Vrátí všechny názvy ze zadaného ArrayListu String, který je výstupem
@@ -173,15 +156,15 @@ public class GetData extends Data {
      * Načte vlastnosti instance Rasa z databáze drddesk_db dle názvu rasy
      * a vrátí instanci Rasa.
      *
-     * @param rasa Název rasy.
+     * @param id Id v databazi drddesk_db.
      * @return Instance třídy Rasa.
      */
-    public Rasa getRasa(String rasa) {
+    public Rasa getRasa(int id) {
         try {
             db = DriverManager.getConnection(URL, USER, HESLO);
-            String sql = "SELECT * FROM rasa WHERE nazev=?";
+            String sql = "SELECT * FROM rasa WHERE id=?";
             PreparedStatement dotaz = db.prepareStatement(sql);
-            dotaz.setString(1, rasa);
+            dotaz.setInt(1, id);
             try (ResultSet vysledky = dotaz.executeQuery()) {
                 vysledky.next();
 
@@ -208,7 +191,9 @@ public class GetData extends Data {
                 int[] vaha = {vysledky.getInt("vaha_min"),
                               vysledky.getInt("vaha_max")};
 
-                Rasa rasaPomocna = new Rasa(rasa, vlastnosti, opravy, vyska, vaha,
+                Rasa rasaPomocna = new Rasa(
+                        vysledky.getString("nazev"),
+                        vlastnosti, opravy, vyska, vaha,
                         vysledky.getInt("pohyblivost"),
                         vysledky.getString("zvlastni_schopnosti"),
                         vysledky.getString("rodova_zbran"),
@@ -227,33 +212,35 @@ public class GetData extends Data {
      * Načte vlastnosti instance Povolání z databáze drddesk_db dle názvu
      * povolání a vrátí instanci Rasa.
      *
-     * @param povolani Název povolání.
+     * @param id Id v databazi drddesk_db
      * @return Instance třídy Povolani.
      */
-    public Povolani getPovolani(String povolani) {
+    public Povolani getPovolani(int id) {
         try {
             db = DriverManager.getConnection(URL, USER, HESLO);
-            String sql = "SELECT * FROM heros_character WHERE name=?";
+            String sql = "SELECT * FROM povolani WHERE id=?";
             PreparedStatement dotaz = db.prepareStatement(sql);
-            dotaz.setString(1, povolani);
+            dotaz.setInt(1, id);
             try (ResultSet vysledky = dotaz.executeQuery()) {
                 vysledky.next();
 
-                int[][] vlastnosti = {{vysledky.getInt("strengthMin"),
-                                       vysledky.getInt("dexterityMin"),
-                                       vysledky.getInt("enduranceMin"),
-                                       vysledky.getInt("intelligenceMin"),
-                                       vysledky.getInt("charismaMin")},
-                                      {vysledky.getInt("strengthMax"),
-                                       vysledky.getInt("dexterityMax"),
-                                       vysledky.getInt("enduranceMax"),
-                                       vysledky.getInt("intelligenceMax"),
-                                       vysledky.getInt("charismaMax")}};
+                int[][] vlastnosti = {{vysledky.getInt("sila_min"),
+                                       vysledky.getInt("obratnost_min"),
+                                       vysledky.getInt("odolnost_min"),
+                                       vysledky.getInt("inteligence_min"),
+                                       vysledky.getInt("charisma_min")},
+                                      {vysledky.getInt("sila_max"),
+                                       vysledky.getInt("obratnost_max"),
+                                       vysledky.getInt("odolnost_max"),
+                                       vysledky.getInt("inteligence_max"),
+                                       vysledky.getInt("charisma_max")}};
 
-                Povolani povolaniPomocne = new Povolani(povolani, vlastnosti,
-                        vysledky.getInt("health"),
-                        vysledky.getString("specialAbilities"),
-                        vysledky.getString("description"));
+                Povolani povolaniPomocne = new Povolani(
+                        vysledky.getString("nazev"),
+                        vlastnosti,
+                        vysledky.getInt("zivoty"),
+                        vysledky.getString("zvlastni_schopnosti"),
+                        vysledky.getString("popis"));
 
                 return povolaniPomocne;
             }
@@ -320,6 +307,16 @@ public class GetData extends Data {
         }
     }
 
+    private Integer getInteger(ResultSet vysledky, String sloupecVDB) {
+        try {
+            int hodnotaInt = vysledky.getInt(sloupecVDB);
+            if (hodnotaInt != 0) return hodnotaInt;
+        } catch (SQLException ex) {
+            System.err.println("GetData.getInteger(): " + CHYBA + ex);
+        }
+        return null;
+    }
+
     /**
      * Načte všechny údaje o nestvůře do instance Nestvůra z databáze drddesk_db
      * dle id.
@@ -336,40 +333,42 @@ public class GetData extends Data {
             try (ResultSet vysledky = dotaz.executeQuery()) {
                 vysledky.next();
 
-                Integer[] hodnotyVlastnosti = {vysledky.getInt("sila"),
-                                                vysledky.getInt("obratnost"),
-                                                vysledky.getInt("odolnost"),
-                                                vysledky.getInt("inteligence"),
-                                                vysledky.getInt("charisma")};
-                Vlastnost pohyblivost = new Vlastnost("Pohyblivost", vysledky.
-                                                        getInt("pohyblivost"));
-                Vlastnost vytrvalost = new Vlastnost("Vytrvalost", vysledky.
-                                                        getInt("vytrvalost"));
+                Integer[] hodnotyVlastnosti = {
+                        getInteger(vysledky, "sila"),
+                        getInteger(vysledky, "obratnost"),
+                        getInteger(vysledky, "odolnost"),
+                        getInteger(vysledky, "inteligence"),
+                        getInteger(vysledky, "charisma")};
 
+                Vlastnost pohyblivost = new Vlastnost(
+                        "Pohyblivost", vysledky.getInt("pohyblivost"));
+
+                Vlastnost vytrvalost = new Vlastnost(
+                        "Vytrvalost", vysledky.getInt("vytrvalost"));
 
                 Nestvura nestvuraPomocna = new Nestvura(
-                    vysledky.getInt("id"),
-                    vysledky.getString("nazev"),
-                    vysledky.getInt("zivotaschopnost"),
-                    vysledky.getString("utok"),
-                    vysledky.getInt("obrana"),
-                    hodnotyVlastnosti,
-                    vysledky.getString("velikost"),
-                    vysledky.getInt("bojovnost"),
-                    vysledky.getString("zranitelnost"),
-                    vysledky.getString("skupiny_zranitelnost"),
-                    pohyblivost,
-                    vysledky.getString("skupiny_pohyblivost"),
-                    vytrvalost,
-                    vysledky.getString("skupiny_vytrvalost"),
-                    vysledky.getInt("manevr_schopnost"),
-                    vysledky.getInt("zakl_sila_mysli"),
-                    vysledky.getString("presvedceni"),
-                    vysledky.getString("poklady"),
-                    vysledky.getInt("zkusenost"),
-                    vysledky.getInt("ochoceni"),
-                    vysledky.getString("poznamka"));
-
+                        vysledky.getInt("id"),
+                        vysledky.getString("nazev"),
+                        vysledky.getInt("zivotaschopnost"),
+                        getInteger(vysledky, "konstanta_zvt"),
+                        vysledky.getString("utok"),
+                        vysledky.getInt("obrana"),
+                        hodnotyVlastnosti,
+                        vysledky.getString("velikost"),
+                        getInteger(vysledky, "bojovnost"),
+                        vysledky.getString("zranitelnost"),
+                        vysledky.getString("skupiny_zranitelnost"),
+                        pohyblivost,
+                        vysledky.getString("skupiny_pohyblivost"),
+                        vytrvalost,
+                        vysledky.getString("skupiny_vytrvalost"),
+                        getInteger(vysledky, "manevr_schopnost"),
+                        getInteger(vysledky, "zakl_sila_mysli"),
+                        vysledky.getString("presvedceni"),
+                        vysledky.getString("poklady"),
+                        vysledky.getInt("zkusenost"),
+                        getInteger(vysledky, "ochoceni"),
+                        vysledky.getString("poznamka"));
                 return nestvuraPomocna;
             }
         } catch (SQLException ex) {

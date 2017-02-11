@@ -61,7 +61,7 @@ public class Zbroj implements IPopis {
     private final int CENA_C;
 
     /** Popis výbavy */
-    private String POPIS;
+    private String popis;
 
 //##############################################################################
 //== CONSTUCTORS AND FACTORY METHODS ===========================================
@@ -93,7 +93,7 @@ public class Zbroj implements IPopis {
         this.CENA_A = cenaA;
         this.CENA_B = cenaB;
         this.CENA_C = cenaC;
-        this.POPIS = poznamka;
+        this.popis = poznamka;
     }
 
 
@@ -106,8 +106,8 @@ public class Zbroj implements IPopis {
                "Druh: " + getDruh() + "\n" +
                "Kvalita zbroje:   " + getKvalita() + "\n" +
                "Cena(A/B/C):   " + cenaVypisABC() + "\n" +
-               "Vaha(A/B/C:   " + vahaVypisABC() + "\n" +
-               vypisPopis();
+               "Vaha(A/B/C:   " + vahaVypisABC() +
+               vratPopis();
     }
 
 //== INSTANCE GETTERS AND SETTERS ==============================================
@@ -129,7 +129,7 @@ public class Zbroj implements IPopis {
     }
 
     public String getPopis() {
-        return POPIS;
+        return popis;
     }
 
     public int getVahaA() {
@@ -170,15 +170,16 @@ private String vahaVypisABC() {
     return VAHA_A + "/" + VAHA_B + "/" + VAHA_C;
 }
 
-/** Ošetřuje situaci, kdy není poznámka zadaná v db(null), jinak ji vrátí ve String */
-    private String vypisPopis() {
-        String popis = "";
-        if (POPIS != null) {
-            popis = "\nPoznámka:\n" + POPIS;
+    /**
+     * Vrátí popis ve travru "Popis:   " + popis. Pokud je popis nevyplněný (""),
+     * vrátí prázdný řetezec "".
+     */
+    protected String vratPopis() {
+        if (!this.popis.equals("") && this.popis != null) {
+            return "\n\nPoznámka:\n" + this.popis;
         }
-        return popis;
+        return "";
     }
-
 
 //##############################################################################
 //== NESTED DATA TYPES =========================================================

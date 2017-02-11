@@ -159,10 +159,14 @@ public class ZbranTVTLogika extends VybaveniLogika
     public boolean jeFormularValidni() {
         return jeNazevValidni() && jeDruhValidni() && jeDrzeniValidni()
                && jeSilaValidni() && jeUtocnostValidni() && jeObranaValidni()
-               && jeDelkaValidni() && jeVahaValidni() && jeZlatakyValidni()
-               && jeStribrnakyValidni() && jeMedakyValidni();
+               && jeDelkaValidni() && jeVahaValidni() && jeCenaValidni();
     }
 
+    /**
+     * Dotáže se, zda se položka upravuje, nebo vkládá nová a podle toho buď nechá
+     * formulář prázdný, nebo se dotáže na příslušnou položku z databáze a vloží
+     * ji do formuláře
+     */
     public void naplnFormular() {
         ZbranTVT zbranTVT = pridatNeboUpravit();
         if (zbranTVT != null) {
@@ -179,9 +183,13 @@ public class ZbranTVTLogika extends VybaveniLogika
             medakyProperty.set(String.valueOf(zbranTVT.getMedaky()));
             popisProperty.set(zbranTVT.getPopis());
         }
-
     }
 
+    /**
+     * Logika tlačítka Vložit. Podle odkazu ve statické proměnné SeznamOdkazu.upravit
+     * určí, zda se vkládá nová položka (null), nebo upravuje (odkaz je na ní).
+     * Zalová příslušnou metodu a předá ji obsah formuláře.
+     */
     public void pridejZbranTVT() {
         Integer id = vratIdOdkazu();
         if (id != null) {
@@ -193,6 +201,51 @@ public class ZbranTVTLogika extends VybaveniLogika
 
 
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================
+
+    /**
+     * Nastaví druh předané zbraně TvT v druhCombobox, pokud hodnota odpovídá
+     * enum Druh
+     */
+    private void nastavDruh(ZbranTVT zbranTVT) {
+        String druh = zbranTVT.getDruh();
+        if (druh != null) {
+            for (Druh d : Druh.values()) {
+                if (druh.equals(d.toString())) {
+                    druhObjectProperty.set(d);
+                }
+            }
+        }
+    }
+
+    /**
+     * Nastaví drzeni předané zbraně TvT v typCombobox, pokud hodnota odpovídá
+     * enum Drzeni.
+     */
+    private void nastavDrzeni(ZbranTVT zbranTVT) {
+        String typ = zbranTVT.getDrzeni();
+        if (typ != null) {
+            for (Drzeni d : Drzeni.values()) {
+                if (typ.equals(d.toString())) {
+                    drzeniObjectProperty.set(d);
+                }
+            }
+        }
+    }
+
+    /**
+     * Nastaví delku předané zbraně TvT v delkaCombobox, pokud hodnota odpovídá
+     * enum Delka.
+     */
+    private void nastavDelku(ZbranTVT zbranTVT) {
+        String typ = zbranTVT.getDelka();
+        if (typ != null) {
+            for (Delka t : Delka.values()) {
+                if (typ.equals(t.toString())) {
+                    delkaObjectProperty.set(t);
+                }
+            }
+        }
+    }
 
     private void init() {
 
@@ -254,7 +307,6 @@ public class ZbranTVTLogika extends VybaveniLogika
             medakyChybaVisibleProperty.set(!jeMedakyValidni(newValue));
             validProperty().set(jeFormularValidni());
         });
-
     }
 
     /** Načte hodnoty z formuláře a vrátí je v instanci ZbranTVT */
@@ -276,43 +328,7 @@ public class ZbranTVTLogika extends VybaveniLogika
             popis);
     }
 
-    /** Nastaví druh předané zbraně TvT v druhCombobox, pokud hodnota odpovídá enum Druh */
-    private void nastavDruh(ZbranTVT zbranTVT) {
-        String druh = zbranTVT.getDruh();
-        if (druh != null) {
-            for (Druh d : Druh.values()) {
-                if (druh.equals(d.toString())) {
-                    druhObjectProperty.set(d);
-                }
-            }
-        }
-    }
-
-    /** Nastaví drzeni předané zbraně TvT v typCombobox, pokud hodnota odpovídá enum Drzeni */
-    private void nastavDrzeni(ZbranTVT zbranTVT) {
-        String typ = zbranTVT.getDrzeni();
-        if (typ != null) {
-            for (Drzeni t : Drzeni.values()) {
-                if (typ.equals(t.toString())) {
-                    drzeniObjectProperty.set(t);
-                }
-            }
-        }
-    }
-
-    /** Nastaví delku předané zbraně TvT v delkaCombobox, pokud hodnota odpovídá enum Delka */
-    private void nastavDelku(ZbranTVT zbranTVT) {
-        String typ = zbranTVT.getDelka();
-        if (typ != null) {
-            for (Delka t : Delka.values()) {
-                if (typ.equals(t.toString())) {
-                    delkaObjectProperty.set(t);
-                }
-            }
-        }
-    }
-
-    /** Vrátí instanci upravované výbavy, v případě přidání nové vrátí null */
+        /** Vrátí instanci upravované výbavy, v případě přidání nové vrátí null */
     private ZbranTVT pridatNeboUpravit() {
         Integer id = vratIdOdkazu();
         if (id != null) {
@@ -379,6 +395,11 @@ public class ZbranTVTLogika extends VybaveniLogika
         tj. zda je to číslo v rozsahu 0 - 90 000 */
     private boolean jeVahaValidni() {
         return jeVahaValidni(vahaProperty.get());
+    }
+
+    /** Vrátí true, pokud jsou správně zadané zlaťáky, stříbrňáky nebo měďáky */
+    private boolean jeCenaValidni() {
+        return (jeZlatakyValidni() || jeStribrnakyValidni() || jeMedakyValidni());
     }
 
      /** Předá obsah zlatakyTextField stejnojmené metodě, která ověří, zda je to
