@@ -36,7 +36,6 @@
                         <ToggleButton fx:id="zbranSAVToggleButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="(Zbraň střel. a vrhací)" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" VBox.vgrow="NEVER" />
                         <ToggleButton fx:id="zbrojToggleButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="(Zbroj)" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" VBox.vgrow="NEVER" />
                         <ToggleButton fx:id="vybavaToggleButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="(Výbava)" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" VBox.vgrow="NEVER" />
-                        <Button fx:id="soubojButton" alignment="CENTER" cancelButton="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="Souboj" textAlignment="CENTER" wrapText="true" VBox.vgrow="NEVER" />
                      </children>
                   </VBox>
                   <VBox alignment="BOTTOM_LEFT" onKeyPressed="#handleHledani" onKeyReleased="#handleHledani" VBox.vgrow="SOMETIMES">

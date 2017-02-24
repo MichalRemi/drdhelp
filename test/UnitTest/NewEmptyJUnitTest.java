@@ -7,7 +7,7 @@ package UnitTest;
 
 import drdhelp.model.Postava;
 import drdhelp.model.ZbranSAV;
-import drdhelp.model.io.GetData;
+import drdhelp.model.io.DataOut;
 import drdhelp.model.Odkaz;
 import java.util.ArrayList;
 import org.junit.After;
@@ -153,7 +153,7 @@ public class NewEmptyJUnitTest {
 
 //    @Test
 //    public void testPostavaList() {
-//        GetData data = new GetData();
+//        DataOut data = new DataOut();
 //        ArrayList<String> postavy = new ArrayList<>();
 //        postavy = data.getNazvyAID("postava");
 //        for (String s : postavy) System.out.println(s);
@@ -161,7 +161,7 @@ public class NewEmptyJUnitTest {
 
         @Test
     public void testGetNazvyAId() {
-        GetData data = new GetData();
+        DataOut data = new DataOut();
         ArrayList<Odkaz> postavy = new ArrayList<>();
         postavy = data.nactiOdkazy("postava");
         for (Odkaz n : postavy) System.out.println(n.toString());
@@ -170,7 +170,7 @@ public class NewEmptyJUnitTest {
 
     @Test
     public void testGetPostava() {
-        GetData data = new GetData();
+        DataOut data = new DataOut();
         Postava postava = data.getPostava(1);
         System.out.println(postava);
         ArrayList<String> seznam = postava.getVlastnosti().getVlastnostiArrayList();
@@ -182,15 +182,15 @@ public class NewEmptyJUnitTest {
 
     }
 
-    @Test
-    public void TestCteniId() {
-        GetData id = new GetData();
-        System.out.println(id.getIdPosledniPostavy());
-    }
+//    @Test
+//    public void TestCteniId() {
+//        DataOut id = new DataOut();
+//        System.out.println(id.getIdPosledniPostavy());
+//    }
 
     @Test
     public void TestVypis() {
-        GetData data = new GetData();
+        DataOut data = new DataOut();
         ZbranSAV z = data.getZbranSAV(1);
         System.out.println(z.toString());
     }

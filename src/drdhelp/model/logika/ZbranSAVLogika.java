@@ -4,8 +4,8 @@
 package drdhelp.model.logika;
 
 import drdhelp.model.ZbranSAV;
-import drdhelp.model.io.GetData;
-import drdhelp.model.io.SetData;
+import drdhelp.model.io.DataOut;
+import drdhelp.model.io.DataIn;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -69,8 +69,8 @@ public class ZbranSAVLogika extends VybaveniLogika {
 
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
 
-    GetData getData = new GetData();
-    SetData setData = new SetData();
+    DataOut dataOut = new DataOut();
+    DataIn dataIn = new DataIn();
     // aktuální pozice kurzoru
     int poziceKurzoru;
 
@@ -214,9 +214,9 @@ public class ZbranSAVLogika extends VybaveniLogika {
     public void pridejZbranSAV() {
         Integer id = vratIdOdkazu();
         if (id != null) {
-            setData.zmenZbranSAV(nactiZFormulare(id));
+            dataIn.zmenZbranSAV(nactiZFormulare(id));
         } else {
-            setData.vlozZbranSAV(nactiZFormulare(0));
+            dataIn.vlozZbranSAV(nactiZFormulare(0));
         }
     }
 
@@ -340,7 +340,7 @@ public class ZbranSAVLogika extends VybaveniLogika {
     private ZbranSAV pridatNeboUpravit() {
         Integer id = vratIdOdkazu();
         if (id != null) {
-            ZbranSAV zbranSAV = getData.getZbranSAV(id);
+            ZbranSAV zbranSAV = dataOut.getZbranSAV(id);
             return zbranSAV;
         } else return null;
     }

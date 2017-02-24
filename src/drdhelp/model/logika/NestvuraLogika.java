@@ -10,8 +10,8 @@ import drdhelp.model.Tvor;
 import drdhelp.model.Tvor.Presvedceni;
 import drdhelp.model.Vlastnost;
 import drdhelp.model.Vlastnosti;
-import drdhelp.model.io.GetData;
-import drdhelp.model.io.SetData;
+import drdhelp.model.io.DataOut;
+import drdhelp.model.io.DataIn;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -144,9 +144,9 @@ public class NestvuraLogika extends Logika {
 
     private int poziceKurzoru;
 
-    GetData getData = new GetData();
+    DataOut dataOut = new DataOut();
 
-    SetData setData = new SetData();
+    DataIn setData = new DataIn();
 
 //##############################################################################
 //== CONSTUCTORS AND FACTORY METHODS ===========================================
@@ -641,7 +641,7 @@ public class NestvuraLogika extends Logika {
     private Nestvura pridatNeboUpravit() {
         Integer id = vratIdOdkazu();
         if (id != null) {
-            return getData.getNestvura(id);
+            return dataOut.getNestvura(id);
         } else return null;
     }
 
@@ -679,7 +679,9 @@ public class NestvuraLogika extends Logika {
 
     /** Ověří platnost životaschopnosti, zda je to číslo v rozsahu 1 - 100 */
     private boolean jeZivotaschopnostValidni(String zivotaschopnost) {
-        return zvalidujStringCislo(zivotaschopnost, 1, 100);
+        if (zivotaschopnost.equals("1-2 životy")) zivotaschopnost = "-2";
+        if (zivotaschopnost.equals("½ (1-4 životy)")) zivotaschopnost = "-1";
+        return zvalidujStringCislo(zivotaschopnost, -2, 100);
     }
 
     /** Předá obsah utokTextField metodě, která ověří platnost útoku
@@ -697,8 +699,8 @@ public class NestvuraLogika extends Logika {
     /** Ověří platnost obrany, zda je to číslo v rozsahu -1 - 100 */
     private boolean jeObranaValidni(String obrana) {
         if (obrana != null) {
-            return zvalidujStringCislo(obrana, -2, 100) ||
-                                           obrana.contains("kvalita zbroje");
+            if (obrana.contains("kvalita zbroje")) return true;
+            return zvalidujStringCislo(obrana, 1, 100);
         }
         return false;
     }
@@ -752,7 +754,10 @@ public class NestvuraLogika extends Logika {
     /** Předá obsah zkusenostiTextField metodě, která ověří platnost
         tj. zda je to číslo 0 - 900 000 */
     private boolean jeZkusenostiValidni() {
-        return jeZkusenostiValidni(zkusenostiProperty.get());
+        if (zkusenostiProperty.isNotNull().get()) {
+            return jeZkusenostiValidni(zkusenostiProperty.get());
+        }
+        return false;
     }
 
     /** Ověří platnost zkušenosti, zda je to číslo v rozsahu 0 - 900 000 */

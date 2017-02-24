@@ -4,8 +4,8 @@
 package drdhelp.model.logika;
 
 import drdhelp.model.Zbroj;
-import drdhelp.model.io.GetData;
-import drdhelp.model.io.SetData;
+import drdhelp.model.io.DataOut;
+import drdhelp.model.io.DataIn;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -65,8 +65,8 @@ public class ZbrojLogika extends VybaveniLogika
 
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
 
-    GetData getData = new GetData();
-    SetData setData = new SetData();
+    DataOut dataOut = new DataOut();
+    DataIn dataIn = new DataIn();
 
 
 //##############################################################################
@@ -181,9 +181,9 @@ public class ZbrojLogika extends VybaveniLogika
     public void pridejZbroj() {
         Integer id = vratIdOdkazu();
         if (id != null) {
-            setData.zmenZbroj(nactiZFormulare(id));
+            dataIn.zmenZbroj(nactiZFormulare(id));
         } else {
-            setData.vlozZbroj(nactiZFormulare(0));
+            dataIn.vlozZbroj(nactiZFormulare(0));
         }
     }
 
@@ -274,7 +274,7 @@ public class ZbrojLogika extends VybaveniLogika
     private Zbroj pridatNeboUpravit() {
         Integer id = vratIdOdkazu();
         if (id != null) {
-            Zbroj zbroj = getData.getZbroj(id);
+            Zbroj zbroj = dataOut.getZbroj(id);
             return zbroj;
         } else return null;
     }

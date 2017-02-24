@@ -4,7 +4,6 @@
 package drdhelp.model.io;
 
 import drdhelp.model.TabulkaDB;
-import java.sql.Connection;
 
 
 
@@ -19,12 +18,12 @@ public abstract class Data
 //== CONSTANT CLASS ATTRIBUTES =================================================
 
 
-    protected static final String HESLO = "onIeawubX7mrKQKc";
+    protected static final String HESLO = "michal";
     protected static final String USER = "root";
     protected static final String URL = "jdbc:mysql://localhost/drddesk_db" +
                                     "?useUnicode=true&characterEncoding=UTF-8";
-    protected static Connection db;
     protected static final String CHYBA = "Chyba při komunikaci s databází!\n";
+    protected static final String CHYBA_DB = "Chyba spojení s databází!\n";
 
 //== VARIABLE CLASS ATTRIBUTES =================================================
 
@@ -47,13 +46,6 @@ public abstract class Data
 //##############################################################################
 //== CONSTUCTORS AND FACTORY METHODS ===========================================
 
-    /***************************************************************************
-     *
-     */
-    public Data() {
-    }
-
-
 
 //== ABSTRACT METHODS ==========================================================
 //== INSTANCE GETTERS AND SETTERS ==============================================
@@ -72,7 +64,7 @@ public abstract class Data
         }
         return false;
     }
-    
+
 
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================
 

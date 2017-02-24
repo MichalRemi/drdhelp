@@ -7,7 +7,7 @@ package drdhelp;
 
 import drdhelp.model.Odkaz;
 import drdhelp.model.TabulkaDB;
-import drdhelp.model.io.GetData;
+import drdhelp.model.io.DataOut;
 import drdhelp.model.logika.NovaPostavaLogika;
 import java.net.URL;
 import java.util.ArrayList;
@@ -89,7 +89,7 @@ public class NovaPostavaController implements Initializable {
 
 
     // načítání dat z databáze
-    GetData getData = new GetData();
+    DataOut getData = new DataOut();
 
     // logika formuláře
     NovaPostavaLogika logika = new NovaPostavaLogika();

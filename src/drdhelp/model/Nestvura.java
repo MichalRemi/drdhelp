@@ -496,7 +496,6 @@ public class Nestvura extends Tvor implements IPopis{
         }
     }
 
-
     public enum Pohyblivost {
         HUMANOID("humanoid"),
         ZVER("zvíře"),

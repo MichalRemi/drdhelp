@@ -3,9 +3,6 @@
  */
 package drdhelp.model;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 
 
 
@@ -80,10 +77,10 @@ public class Vybava implements IPopis {
     /** Popis výbavy */
     private String popis;
 
-    //***********BINDING**************
-
-    // String property pro název
-    private final StringProperty nazev = new SimpleStringProperty();
+//    //***********BINDING**************
+//
+//    // String property pro název
+//    private final StringProperty nazev = new SimpleStringProperty();
 
 
 
@@ -135,9 +132,9 @@ public class Vybava implements IPopis {
         return ID;
     }
 
-    public StringProperty nazevProperty() {
-        return nazev;
-    }
+//    public StringProperty nazevProperty() {
+//        return nazev;
+//    }
 
     public String getNazev() {
         return NAZEV;

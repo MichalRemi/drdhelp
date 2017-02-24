@@ -3,7 +3,7 @@
  */
 package drdhelp.model;
 
-import drdhelp.model.io.GetData;
+import drdhelp.model.io.DataOut;
 import java.util.ArrayList;
 import java.util.Collections;
 import javafx.collections.FXCollections;
@@ -25,7 +25,7 @@ public class SeznamOdkazu {
 
     private static Odkaz aktualniOdkaz = null;
 
-    private final GetData getData = new GetData();
+    private final DataOut dataOut = new DataOut();
 
 
 
@@ -100,7 +100,7 @@ public class SeznamOdkazu {
     /** načte odkazy do kolekce odkazy(nabindovaná se seznamlistView v main.fxml) */
     public void nactiOdkazy(String nazevTlacitka){
         if (nazevTlacitka != null) {
-            puvodniOdkazy = getData.nactiOdkazy(getTabName(nazevTlacitka));
+            puvodniOdkazy = dataOut.nactiOdkazy(getTabName(nazevTlacitka));
             serad(puvodniOdkazy);
             odkazy.clear();
             if (!odkazy.addAll(puvodniOdkazy))

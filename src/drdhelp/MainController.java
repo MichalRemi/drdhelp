@@ -9,7 +9,7 @@ import drdhelp.model.logika.MainLogika;
 import drdhelp.model.Odkaz;
 import drdhelp.model.SeznamOdkazu;
 import drdhelp.model.TabulkaDB;
-import drdhelp.model.io.SetData;
+import drdhelp.model.io.DataIn;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -58,8 +58,6 @@ public class MainController implements Initializable {
     @FXML
     private ToggleButton vybavaToggleButton;
     @FXML
-    private Button soubojButton;
-    @FXML
     private Button konecButton;
 
     // tělo aplikace
@@ -87,7 +85,7 @@ public class MainController implements Initializable {
     // skupina tlačítek v menu
     final ToggleGroup menu = new ToggleGroup();
 
-    SetData setData = new SetData();
+    DataIn dataIn = new DataIn();
 
     /**
      * Initializes the controller class.
@@ -212,7 +210,7 @@ public class MainController implements Initializable {
     /** Obsluha tlačítka Smazat - smaže položku z databáze drddesk_db dle Odkazu */
     @FXML
     private void handleSmazat(ActionEvent event) {
-        setData.smazPolozkuDleOdkazu(getOdkazZeSeznamListView());
+        dataIn.smazPolozkuDleOdkazu(getOdkazZeSeznamListView());
         // obnovení seznamu Odkazů v seznamListView po smazání položky
         seznamOdkazu.nactiOdkazy(urciToggleButton());
     }

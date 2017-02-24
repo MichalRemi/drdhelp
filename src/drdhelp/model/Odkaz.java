@@ -33,9 +33,9 @@ public class Odkaz implements Comparable<Odkaz>{
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
 
     private final int id;
-    protected String nazev;
+    private final String nazev;
     private final String tabulka;
-
+    private int pocet = 1;
 
 
 //##############################################################################
@@ -45,7 +45,7 @@ public class Odkaz implements Comparable<Odkaz>{
      * Konstruktor
      *
      * @param id - Jedinečné id v tabulce.
-     * @param nazev - Název položky v tabulce.
+     * @param nazev - Řádkový popis položky z tabulce začínající názvem.
      * @param tabulka - název tabulky, ze které jsou id a nazev.
      */
     public Odkaz(int id, String nazev, String tabulka) {
@@ -70,6 +70,16 @@ public class Odkaz implements Comparable<Odkaz>{
     public String getTabulka() {
         return tabulka;
     }
+
+    public int getPocet() {
+        return pocet;
+    }
+
+    public void setPocet(int pocet) {
+        this.pocet = pocet;
+    }
+
+
 
 
 

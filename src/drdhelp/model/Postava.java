@@ -74,22 +74,28 @@ public class Postava extends Tvor implements IPopis {
     private final int VAHA;
 
     /** Zbraně pro boj tváří v tvář */
-    private String zbranTVT;
+    private ArrayList<Odkaz> zbranTVT;
 
     /** Zbraně střelné a vrhací */
-    private String zbranSAV;
+    private ArrayList<Odkaz> zbranSAV;
 
     /** Zbroj a štít */
-    private String zbroj;
+    private ArrayList<Odkaz> zbroj;
 
     /** Vybavení tvora */
-    private String vybaveni;
+    private ArrayList<Odkaz> vybava;
 
     /** Rodová zbraň podle rasy postavy. */
     private final String RODOVA_ZBRAN;
 
      /** Zvláštní schopnosti podle rasy a podle povolání. */
-    private String zvlastniSchopnosti;
+    private ArrayList<Odkaz> zvlastniSchopnosti;
+
+    /** Kouzelnická kouzla postavy. */
+    private ArrayList<Odkaz> kouzla;
+
+    /** Přírodní kouzla postavy. */
+    private ArrayList<Odkaz> prirodniKouzla;
 
 
 
@@ -117,18 +123,22 @@ public class Postava extends Tvor implements IPopis {
      * @param zbranTVT Zbraně pro boj tváří v tvář
      * @param zbranSAV Zbraně střelné a vrhací
      * @param zbroj Zbroj a štít
-     * @param vybaveni Vybavení postavy
+     * @param vybava Vybavení postavy
      * @param rodovaZbran Rodová zbraň podle rasy postavy
      * @param velikost Velikost postavy
      * @param zvlastniSchopnosti Zvláštní schopnosti podle rasy a podle povolání
+     * @param kouzla Kouzelnická kouzla postavy
+     * @param prirodniKouzla Hraničářská kouzla postavy
      * @param poznamka Zde může být cokoliv
      */
     public Postava(int id, String nazev, String rasa, String povolani, int zivoty,
             int zivotyMax, int magy, int magyMax, int uroven, int zkusenosti,
             int zkusenostiDalsiUroven, Integer[] hodnotyVlastnosti,
-            Vlastnost pohyblivost, int vyska, int vaha, String zbranTVT,
-            String zbranSAV, String zbroj, String vybaveni, String rodovaZbran,
-            String velikost, String zvlastniSchopnosti, String poznamka) {
+            Vlastnost pohyblivost, int vyska, int vaha, ArrayList<Odkaz> zbranTVT,
+            ArrayList<Odkaz> zbranSAV, ArrayList<Odkaz> zbroj,
+            ArrayList<Odkaz> vybava, String rodovaZbran, String velikost,
+            ArrayList<Odkaz> zvlastniSchopnosti, ArrayList<Odkaz> kouzla,
+            ArrayList<Odkaz> prirodniKouzla, String poznamka) {
 
         this(id, nazev, rasa, povolani, vyska, vaha, hodnotyVlastnosti, pohyblivost,
             velikost, rodovaZbran);
@@ -141,8 +151,10 @@ public class Postava extends Tvor implements IPopis {
         this.zbranTVT = zbranTVT;
         this.zbranSAV = zbranSAV;
         this.zbroj = zbroj;
-        this.vybaveni = vybaveni;
+        this.vybava = vybava;
         this.zvlastniSchopnosti = zvlastniSchopnosti;
+        this.kouzla = kouzla;
+        this.prirodniKouzla = prirodniKouzla;
     }
 
     private Postava(int id, String nazev, String rasa, String povolani, int vyska,
@@ -168,13 +180,16 @@ public class Postava extends Tvor implements IPopis {
         this.zivotyMax = 0;
         this.magy = 0;
         this.magyMax = 0;
-        this.uroven = 0;
+        this.uroven = 1;
+        this.zkusenosti = 0;
         this.zkusenostiDalsiUroven = 0;
         this.zbranTVT = null;
         this.zbranSAV = null;
         this.zbroj = null;
-        this.vybaveni = null;
+        this.vybava = null;
         this.zvlastniSchopnosti = null;
+        this.kouzla = null;
+        this.prirodniKouzla = null;
 }
 
 
@@ -201,20 +216,20 @@ public class Postava extends Tvor implements IPopis {
         return VAHA;
     }
 
-    public String getZbranSAV() {
+    public ArrayList<Odkaz> getZbranSAV() {
         return zbranSAV;
     }
 
-    public String getZbranTVT() {
+    public ArrayList<Odkaz> getZbranTVT() {
         return zbranTVT;
     }
 
-    public String getZbroj() {
+    public ArrayList<Odkaz> getZbroj() {
         return zbroj;
     }
 
-    public String getVybaveni() {
-        return vybaveni;
+    public ArrayList<Odkaz> getVybava() {
+        return vybava;
     }
 
     public String getRasa() {
@@ -257,12 +272,28 @@ public class Postava extends Tvor implements IPopis {
         this.zkusenosti = zkusenosti;
     }
 
-        public String getZvlastniSchopnosti() {
+    public ArrayList<Odkaz> getZvlastniSchopnosti() {
         return zvlastniSchopnosti;
     }
 
-    public void setZvlastniSchopnosti(String zvlastniSchopnosti) {
+    public void setZvlastniSchopnosti(ArrayList<Odkaz> zvlastniSchopnosti) {
         this.zvlastniSchopnosti = zvlastniSchopnosti;
+    }
+
+    public ArrayList<Odkaz> getKouzla() {
+        return kouzla;
+    }
+
+    public void setKouzla(ArrayList<Odkaz> kouzla) {
+        this.kouzla = kouzla;
+    }
+
+    public ArrayList<Odkaz> getPrirodniKouzla() {
+        return prirodniKouzla;
+    }
+
+    public void setPrirodniKouzla(ArrayList<Odkaz> prirodniKouzla) {
+        this.prirodniKouzla = prirodniKouzla;
     }
 
     public int getZkusenostiDalsiUroven() {
@@ -273,19 +304,19 @@ public class Postava extends Tvor implements IPopis {
         this.zkusenostiDalsiUroven = zkusenostiDalsiUroven;
     }
 
-    public void setVybaveni(String vybaveni) {
-        this.vybaveni = vybaveni;
+    public void setVybava(ArrayList<Odkaz> vybava) {
+        this.vybava = vybava;
     }
 
-    public void setZbranTVT(String zbranTVT) {
+    public void setZbranTVT(ArrayList<Odkaz> zbranTVT) {
         this.zbranTVT = zbranTVT;
     }
 
-    public void setZbranSAV(String zbranSAV) {
+    public void setZbranSAV(ArrayList<Odkaz> zbranSAV) {
         this.zbranSAV = zbranSAV;
     }
 
-    public void setZbroj(String zbroj) {
+    public void setZbroj(ArrayList<Odkaz> zbroj) {
         this.zbroj = zbroj;
     }
 
@@ -310,61 +341,63 @@ public class Postava extends Tvor implements IPopis {
         // přidá vlastnosti, pohyblivost a nosnost
         popis += arrayListdoRadku(getAtributyArrayList());
 
-        // přidá zvláštní schopnosti
-        popis += "\nZvláštní schopnosti:\n"
-                + arrayListdoRadku(stringToArrayList(zvlastniSchopnosti));
+//        // přidá zvláštní schopnosti
+//        popis += "\nZvláštní schopnosti:\n"
+//                + arrayListdoRadku(zvlastniSchopnosti);
 
         popis += nactiPoznamku();
 
         return popis;
     }
 
-    /**
-     * Vrátí String s aktuálním počtem životů/maximálním počtem životů
-     *
-     * @return String aktuální životy/maximální životy.
-     */
+    /** Vrátí String s počtem životů */
     public String getZivotyString() {
-        return String.format("%d/%d",getZivoty(),getZivotyMax());
+        return String.valueOf(getZivoty());
     }
 
-    /**
-     * Kouzlí postava? ano/ne - true/false.
-     *
-     * @return Boolean kouzlí/nekouzlí
-     */
+    /** Kouzlí postava? ano/ne - true/false. */
     public Boolean postavaKouzli() {
-        if (getMagyMax() == 0) return false;
-        else return true;
+        if (getMagy() != 0) {
+            return true;
+        } else return false;
     }
 
-    /**
-     * Vrátí String s aktuálním počtem magů/maximálním počtem magů.
-     *
-     * @return String aktuální magy/maximální magy.
-     */
+    /** Pokud postava kouzlí, vrátí String s počtem magů, jinak null. */
     public String getMagyString() {
-        if (getMagyMax() != 0) return String.format("%d/%d",getMagy(),getMagyMax());
+        if (postavaKouzli()) return String.valueOf(getMagy());
         else return null;
     }
 
-    /**
-     * Vrátí String s aktuální úrovní.
-     *
-     * @return String aktuální úroveň.
-     */
+    /** Vrátí String s úrovní postavy. */
     public String getUrovenString() {
         return String.valueOf(getUroven());
     }
 
-    /**
-     * Vrátí String s aktuálním počtem zkušeností.
-     *
-     * @return String aktuální zkušenosti/zkušenosti na další úroveň.
-     */
-    public String getZkusenostiString() {
+    /** Vrátí String s aktuálním počtem zkušeností. */
+    public String getVypisZkusenostiString() {
         return String.format("%d/%d",getZkusenosti(),getZkusenostiDalsiUroven());
     }
+
+    /** Vrátí String se zkušenostmi postavy. */
+    public String getZkusenostiString() {
+        return String.valueOf(getZkusenosti());
+    }
+
+    /** Vrátí String se zkušenostmi postavy. */
+    public String getZkusenostiDalsiUrovenString() {
+        return String.valueOf(getZkusenostiDalsiUroven());
+    }
+
+    /** Vrátí String s výškou postavy. */
+    public String getVyskaString() {
+        return String.valueOf(getVyska());
+    }
+
+    /** Vrátí String s váhou postavy. */
+    public String getVahaString() {
+        return String.valueOf(getVaha());
+    }
+
 
     /**
      * Vrátí ArrayList pro Naložení žádné, mírné, střední a velké.
@@ -475,22 +508,24 @@ public class Postava extends Tvor implements IPopis {
         // Zbraně tváří v tvář
         if (!getZbranTVT().equals("null")) {
             boj.add("Zbraně tváří v tvář");
-            boj.addAll(stringToArrayList(getZbranTVT()));
+            for (Odkaz o : getZbranTVT()) boj.add(o.getNazev());
             boj.add("");
         }
         // Zbraně střelné a vrhací
         if (!getZbranSAV().equals("null")) {
             boj.add("Zbraně střelné a vrhací");
-            boj.addAll(stringToArrayList(getZbranSAV()));
+            for (Odkaz o : getZbranSAV()) boj.add(o.getNazev());
             boj.add("");
         }
         // Zbroj a štít
         if (!getZbranSAV().equals("null")) {
             boj.add("Zbroj");
-            boj.addAll(stringToArrayList(getZbroj()));
+            for (Odkaz o : getZbroj()) boj.add(o.getNazev());
         }
       return boj;
     }
+
+
 
     /**
     * Vrací textovou reprezentaci postavy - vypíše jméno, rasu, povolání

@@ -6,32 +6,13 @@ package drdhelp.model;
 
 
 /*******************************************************************************
- * Instance výčtového typu {@code TabulkaDB} reprezentují Název tabulky v
- * databázi drddesk_db a příslušný název s diakritikou.
+ * Instance třídy {@code Kouzlo} představují kouzelnická kouzla z Dračího Doupěte.
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-12-19
+ * @version 0.01.0000 — 2017-02-13
  */
-public enum TabulkaDB {
-//== VALUES OF THE ENUMERATION TYPE ============================================
-//
+public class Kouzlo {
 
-    POSTAVA("postava", "Postava"),
-    NESTVURA("nestvura", "Nestvůra"),
-    ZBRAN_TVT("zbran_tvt", "Zbraň tváří v tvář"),
-    ZBRAN_SAV("zbran_sav", "Zbraň střel. a vrhací"),
-    ZBROJ("zbroj", "Zbroj"),
-    VYBAVA("vybava", "Výbava"),
-    KOUZLO("kouzlo", "kouzlo"),
-    PRIRODNI_KOUZLO("prirodni_kouzlo", "přírodní kouzlo"),
-    POVOLANI("povolani", "Povolání"),
-    RASA("rasa", "Rasa"),
-    ZVL_SCHOPNOSTI("zvl_schopnost","zvláštní schopnost"),
-    UZIVATEL("uzivatel", "Uživatel");
-
-
-
-//##############################################################################
 //== CONSTANT CLASS ATTRIBUTES =================================================
 //== VARIABLE CLASS ATTRIBUTES =================================================
 
@@ -46,12 +27,11 @@ public enum TabulkaDB {
 
 
 //##############################################################################
-//== CONSTANT INSTANCE ATTRIBUTES ==============================================
-//== VARIABLE INSTANCE ATTRIBUTES ==============================================
+//== CONSTANT AND VARIABLE INSTANCE ATTRIBUTES =================================
 
-    private final String tabulka;
+    private final int id;
     private final String nazev;
-
+    private final String magy;
 
 
 //##############################################################################
@@ -60,22 +40,22 @@ public enum TabulkaDB {
     /***************************************************************************
      *
      */
-    private TabulkaDB(String tabulka, String nazev) {
-        this.tabulka = tabulka;
+    public Kouzlo(int id, String nazev, String magy) {
+        this.id = id;
         this.nazev = nazev;
+        this.magy = magy;
     }
-
 
 
 //== ABSTRACT METHODS ==========================================================
 //== INSTANCE GETTERS AND SETTERS ==============================================
 
     public String getNazev() {
-        return this.nazev;
+        return nazev;
     }
 
-    public String getTabNazev() {
-        return this.tabulka;
+    public String getMagy() {
+        return magy;
     }
 
 
@@ -83,7 +63,7 @@ public enum TabulkaDB {
 
     @Override
     public String toString() {
-        return tabulka;
+        return nazev + " " + magy;
     }
 
 
@@ -93,4 +73,5 @@ public enum TabulkaDB {
 
 //##############################################################################
 //== NESTED DATA TYPES =========================================================
+
 }

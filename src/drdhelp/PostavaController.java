@@ -5,21 +5,30 @@
  */
 package drdhelp;
 
+import drdhelp.model.Kouzlo;
 import drdhelp.model.Odkaz;
 import drdhelp.model.SeznamOdkazu;
-import drdhelp.model.io.GetData;
+import drdhelp.model.io.DataOut;
 import drdhelp.model.logika.PostavaLogika;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
@@ -112,6 +121,10 @@ public class PostavaController implements Initializable {
     @FXML
     private Button odeberKouzloVButton;
     @FXML
+    private VBox magyVBox;
+    @FXML
+    private HBox kouzlaHBox;
+    @FXML
     private ListView<Odkaz> vybavaListView;
     @FXML
     private Button pridejVybavaButton;
@@ -126,7 +139,7 @@ public class PostavaController implements Initializable {
     private Button vlozitButton;
 
 
-    GetData getData = new GetData();
+    DataOut dataOut = new DataOut();
     SeznamOdkazu seznamOdkazu = new SeznamOdkazu();
     PostavaLogika logika = new PostavaLogika();
 
@@ -136,6 +149,56 @@ public class PostavaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        // nastavení disable magů a kouzel, pro nekouzlící postavy true
+        boolean postavaKouzli = logika.postavaKouzli();
+        magyVBox.setDisable(!postavaKouzli);
+        kouzlaListView.setDisable(!postavaKouzli);
+        kouzlaHBox.setDisable(!postavaKouzli);
+
+        // bindování disable tlačítek "-"
+        odeberZbranTVTButton.disableProperty().bind(zbranTVTListView
+                .getSelectionModel().selectedItemProperty().isNull());
+        odeberZbranSAVButton.disableProperty().bind(zbranSAVListView
+                .getSelectionModel().selectedItemProperty().isNull());
+        odeberZbrojButton.disableProperty().bind(zbrojListView
+                .getSelectionModel().selectedItemProperty().isNull());
+        odeberZvlButton.disableProperty().bind(zvlListView
+                .getSelectionModel().selectedItemProperty().isNull());
+        if (postavaKouzli) {
+            odeberKouzloVButton.disableProperty().bind(kouzlaListView
+                    .getSelectionModel().selectedItemProperty().isNull());
+        }
+        odeberVybavaButton.disableProperty().bind(vybavaListView
+                .getSelectionModel().selectedItemProperty().isNull());
+
+        // zrušení výběru po opuštění listView
+        zbranTVTListView.focusedProperty().addListener((ObservableValue<? extends
+                Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if (!newValue) zbranTVTListView.getSelectionModel().select(null);
+        });
+        zbranSAVListView.focusedProperty().addListener((ObservableValue<? extends
+                Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if (!newValue) zbranSAVListView.getSelectionModel().select(null);
+        });
+        zbrojListView.focusedProperty().addListener((ObservableValue<? extends
+                Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if (!newValue) zbrojListView.getSelectionModel().select(null);
+        });
+        zvlListView.focusedProperty().addListener((ObservableValue<? extends
+                Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if (!newValue) zvlListView.getSelectionModel().select(null);
+        });
+        if (postavaKouzli) {
+            kouzlaListView.focusedProperty().addListener((ObservableValue<? extends
+                    Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+                if (!newValue) kouzlaListView.getSelectionModel().select(null);
+            });
+        }
+        vybavaListView.focusedProperty().addListener((ObservableValue<? extends
+                Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if (!newValue) vybavaListView.getSelectionModel().select(null);
+        });
+
         // naplnění ComboBoxu - propojení s kolekcí z PostavaLogika
         urovenComboBox.setItems(logika.getUrovenList());
 
@@ -144,7 +207,7 @@ public class PostavaController implements Initializable {
         zbranSAVListView.setItems(logika.getZbranSAVList());
         zbrojListView.setItems(logika.getZbrojList());
         zvlListView.setItems(logika.getZvlSchList());
-        kouzlaListView.setItems(logika.getKouzlaList());
+        if (postavaKouzli) kouzlaListView.setItems(logika.getKouzlaList());
         vybavaListView.setItems(logika.getVybavaList());
 
         // nastavení obousměrného bindingu
@@ -163,14 +226,23 @@ public class PostavaController implements Initializable {
         Bindings.bindBidirectional(zkusenostiTextField.textProperty(),
                 logika.zkusenostiProperty());
 
+        Bindings.bindBidirectional(zkusenostiTextField.styleProperty(),
+                logika.zkusenostiStyleProperty());
+
         Bindings.bindBidirectional(zkusenostiDalsiUrovenTField.textProperty(),
                 logika.zkusenostiNaDalsiUrovenProperty());
 
         Bindings.bindBidirectional(zivotyTextField.textProperty(),
                 logika.zivotyProperty());
 
+        Bindings.bindBidirectional(zivotyTextField.styleProperty(),
+                logika.zivotyStyleProperty());
+
         Bindings.bindBidirectional(magyTextField.textProperty(),
                 logika.magyProperty());
+
+        Bindings.bindBidirectional(magyTextField.styleProperty(),
+                logika.magyStyleProperty());
 
         Bindings.bindBidirectional(vyskaTextField.textProperty(),
                 logika.vyskaProperty());
@@ -191,13 +263,13 @@ public class PostavaController implements Initializable {
                 logika.obratnostBonusProperty());
 
         Bindings.bindBidirectional(odolnostTextField.textProperty(),
-                logika.odolnostBonusProperty());
+                logika.odolnostProperty());
 
         Bindings.bindBidirectional(odolnostbonusTextField.textProperty(),
                 logika.odolnostBonusProperty());
 
         Bindings.bindBidirectional(inteligenceTextField.textProperty(),
-                logika.inteligenceBonusProperty());
+                logika.inteligenceProperty());
 
         Bindings.bindBidirectional(inteligenceBonusTextField.textProperty(),
                 logika.inteligenceBonusProperty());
@@ -218,30 +290,87 @@ public class PostavaController implements Initializable {
                 logika.velikostProperty());
 
         logika.naplnFormular();
-
-
-
-
     }
 
-    /** Obsluha tlačítka Vložit - aktualizuje údaje a zavře okna Výbava. */
+    /** Obsluha tlačítka Vložit - aktualizuje údaje a zavře okna Postava. */
     @FXML
     private void handleVlozit(ActionEvent event) {
-        // logika.pridejNestvuru();
+        // TODO logika.pridejPostavu();
         zavriScenu();
     }
 
-    /** Obsluha tlačítka Odejít - zavření dialogového okna Výbava. */
+    /** Obsluha tlačítka Odejít - zavření dialogového okna Postava. */
     @FXML
     private void handleOdejit(ActionEvent event) {
         zavriScenu();
     }
 
-    /** Zavře okno a obnoví seznam odkazů u seznamListView pomocí metody nactiOdkazy()*/
+    /** Obsluha tlačítka "+" - přidej zbraň tvt*/
+    @FXML
+    private void handlePridejZbranTVT(ActionEvent event) {
+        logika.nastavPridejZbranTVT();
+        otevriOknoPridej();
+
+    }
+
+    /** Obsluha tlačítka "+" - přidej zbraň sav*/
+    @FXML
+    private void handlePridejZbranSAV(ActionEvent event) {
+        logika.nastavPridejZbranSAV();
+        otevriOknoPridej();
+    }
+
+    /** Obsluha tlačítka "+" - přidej zbroj*/
+    @FXML
+    private void handlePridejZbroj(ActionEvent event) {
+        logika.nastavPridejZbroj();
+        otevriOknoPridej();
+    }
+
+    /** Obsluha tlačítka "+" - přidej zvláštní schopnost*/
+    @FXML
+    private void handlePridejZvlSchopnost(ActionEvent event) {
+        logika.nastavPridejZvlSchopnost();
+        otevriOknoPridej();
+    }
+
+    /** Obsluha tlačítka "+" - přidej zbraň tvt*/
+    @FXML
+    private void handlePridejKouzlo(ActionEvent event) {
+        logika.nastavPridejKouzlo();
+        otevriOknoPridej();
+    }
+
+    /** Obsluha tlačítka "+" - přidej zbraň tvt*/
+    @FXML
+    private void handlePridejVybava(ActionEvent event) {
+        logika.nastavPridejVybava();
+        otevriOknoPridej();
+    }
+
+    /** Zavře okno a obnoví seznam odkazů u seznamListView pomocí metody
+        nactiOdkazy(). */
     private void zavriScenu() {
         Stage stage = (Stage) odejitButton.getScene().getWindow();
         stage.close();
         // seznamOdkazu.nactiOdkazy(TabulkaDB.POSTAVA.getNazev());
+    }
+
+    private void otevriOknoPridej() {
+        Stage stage;
+        Parent root;
+        stage = new Stage();
+        try {
+            root = FXMLLoader.load(getClass().getResource("Pridej.fxml"));
+            stage.setScene(new Scene(root));
+            stage.setTitle("Přidej");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(vlozitButton.getScene().getWindow());
+            stage.showAndWait();
+            logika.zrusOdkazNaObservableList();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
 

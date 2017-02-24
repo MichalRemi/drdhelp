@@ -5,12 +5,17 @@ package drdhelp.model.logika;
 
 import drdhelp.model.Odkaz;
 import drdhelp.model.Postava;
+import drdhelp.model.TabulkaDB;
 import drdhelp.model.Vlastnost;
-import drdhelp.model.io.GetData;
+import drdhelp.model.io.DataOut;
+import java.util.ArrayList;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -31,6 +36,16 @@ public class PostavaLogika extends Logika {
 
     private static Postava novaPostava = null;
 
+    private final static String STYL_CHYBA = "-fx-effect: dropshadow(three-pass-box," +
+            " red, 2, 1, 0, 0)";
+
+    private static ArrayList<Odkaz> polozkyPostavy = new ArrayList<>();
+    private static ArrayList<Odkaz> seznamPolozek = new ArrayList<>();
+    private static FormularPridej textyFormulare;
+    // private static boolean pridanePolozky = false;
+    private static ObservableList<Odkaz> pridanyObservableList =
+            FXCollections.observableArrayList();
+
 
 
 //##############################################################################
@@ -46,12 +61,45 @@ public class PostavaLogika extends Logika {
         PostavaLogika.novaPostava = novaPostava;
     }
 
+    public static ArrayList<Odkaz> getPolozkyPostavy() {
+        return polozkyPostavy;
+    }
+
+    public static void setPolozkyPostavy(ArrayList<Odkaz> list) {
+        PostavaLogika.polozkyPostavy.clear();
+        PostavaLogika.polozkyPostavy.addAll(list);
+    }
+
+    public static ArrayList<Odkaz> getSeznamPolozek() {
+        return seznamPolozek;
+    }
+
+//    public static boolean isPridanePolozky() {
+//        return pridanePolozky;
+//    }
+//
+//    public static void setPridanePolozky(boolean pridanePolozky) {
+//        PostavaLogika.pridanePolozky = pridanePolozky;
+//    }
+
+    public static ObservableList<Odkaz> getPridanyObservableList() {
+        return pridanyObservableList;
+    }
+
+    protected static void setPridanyObservableList(ObservableList<Odkaz>
+                                                   pridanyList) {
+        pridanyObservableList.setAll(pridanyList);
+    }
+
+    public static FormularPridej getTextyFormulare() {
+        return textyFormulare;
+    }
+
 
 //== OTHER NON-PRIVATE CLASS METHODS ===========================================
 //== PRIVATE AND AUXILIARY CLASS METHODS =======================================
 
-
-
+    
 //##############################################################################
 //== CONSTANT INSTANCE ATTRIBUTES ==============================================
 
@@ -66,12 +114,18 @@ public class PostavaLogika extends Logika {
 
     private final StringProperty zkusenostiProperty = new SimpleStringProperty();
 
+    private final StringProperty zkusenostiStyleProperty = new SimpleStringProperty();
+
     private final StringProperty zkusenostiNaDalsiUrovenProperty =
             new SimpleStringProperty();
 
     private final StringProperty zivotyProperty = new SimpleStringProperty();
 
+    private final StringProperty zivotyStyleProperty = new SimpleStringProperty();
+
     private final StringProperty magyProperty = new SimpleStringProperty();
+
+    private final StringProperty magyStyleProperty = new SimpleStringProperty();
 
     private final StringProperty vyskaProperty = new SimpleStringProperty();
 
@@ -114,7 +168,7 @@ public class PostavaLogika extends Logika {
     // zvláštní schopnosti, kouzla, výbava, poznámka
     // private final ObjectProperty<Odkaz> zvlProperty = new SimpleObjectProperty<>();
 
-    private final ObservableList<Odkaz> zvlProperty =
+    private final ObservableList<String> zvlProperty =
             FXCollections.observableArrayList();
 
     private final ObjectProperty<Odkaz> kouzlaProperty = new SimpleObjectProperty<>();
@@ -122,6 +176,8 @@ public class PostavaLogika extends Logika {
     private final ObjectProperty<Odkaz> vybavaProperty = new SimpleObjectProperty<>();
 
     private final StringProperty popisProperty = new SimpleStringProperty();
+
+    private final BooleanProperty kouzlaDisableProperty = new SimpleBooleanProperty();
 
 
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
@@ -149,12 +205,7 @@ public class PostavaLogika extends Logika {
     FXCollections.observableArrayList();
 
 
-
-
-
-
-
-    GetData getData = new GetData();
+    DataOut dataOut = new DataOut();
 
 
 
@@ -190,6 +241,10 @@ public class PostavaLogika extends Logika {
         return zkusenostiProperty;
     }
 
+    public StringProperty zkusenostiStyleProperty() {
+        return zkusenostiStyleProperty;
+    }
+
     public StringProperty zkusenostiNaDalsiUrovenProperty() {
         return zkusenostiNaDalsiUrovenProperty;
     }
@@ -198,8 +253,16 @@ public class PostavaLogika extends Logika {
         return zivotyProperty;
     }
 
+    public StringProperty zivotyStyleProperty() {
+        return zivotyStyleProperty;
+    }
+
     public StringProperty magyProperty() {
         return magyProperty;
+    }
+
+    public StringProperty magyStyleProperty() {
+        return magyStyleProperty;
     }
 
     public StringProperty vyskaProperty() {
@@ -262,34 +325,6 @@ public class PostavaLogika extends Logika {
         return velikostProperty;
     }
 
-//    public ObjectProperty<ObservableList<Odkaz>> zbranTVTProperty() {
-//        return zbranTVTProperty;
-//    }
-//
-//    public ObjectProperty<Odkaz> zbranSAVProperty() {
-//        return zbranSAVProperty;
-//    }
-//
-//    public ObjectProperty<Odkaz> zbrojProperty() {
-//        return zbrojProperty;
-//    }
-//
-//    public ObservableList<Odkaz> zvlProperty() {
-//        return zvlProperty;
-//    }
-//
-//    public ObjectProperty<String> kouzlaProperty() {
-//        return kouzlaProperty;
-//    }
-//
-//    public ObjectProperty<Odkaz> vybavaProperty() {
-//        return vybavaProperty;
-//    }
-
-    public StringProperty popisProperty() {
-        return popisProperty;
-    }
-
     public ObservableList<Integer> getUrovenList() {
         return urovenObservableList;
     }
@@ -314,18 +349,24 @@ public class PostavaLogika extends Logika {
         return kouzlaObservableList;
     }
 
+    public BooleanProperty kouzlaDisableProperty() {
+        return kouzlaDisableProperty;
+    }
+
     public ObservableList<Odkaz> getVybavaList() {
         return vybavaObservableList;
     }
 
-
-
-
-
-
+    public StringProperty popisProperty() {
+        return popisProperty;
+    }
 
 
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
+
+    public boolean jeFormularValidni() {
+        return jeZkusenostiValidni() && jeZivotyValidni() && jeMagyValidni();
+    }
 
     /**
      * Dotáže se, zda se položka upravuje, nebo vkládá nová a podle toho buď nechá
@@ -335,17 +376,16 @@ public class PostavaLogika extends Logika {
     public void naplnFormular() {
         Postava postava = pridatNeboUpravit();
         if (postava != null) {
-
             nazevProperty.set(postava.getNazev());
             rasaProperty.set(postava.getRasa());
             povolaniProperty.set(postava.getPovolani());
             urovenProperty.set(postava.getUroven());
             zkusenostiProperty.set(postava.getZkusenostiString());
-            // TODO zkusenostiNaDalsiUrovenProperty.set(value);
+            zkusenostiNaDalsiUrovenProperty.set(postava.getZkusenostiDalsiUrovenString());
             zivotyProperty.set(postava.getZivotyString());
             magyProperty.set(postava.getMagyString());
-            // TODO vyskaProperty.set(postava.getVyskaString());
-            // TODO vahaProperty.set(postava.getVahaString());
+            vyskaProperty.set(postava.getVyskaString());
+            vahaProperty.set(postava.getVahaString());
             silaProperty.set(postava.getSilaString());
             silaBonusProperty.set(urciBonus(postava.getSila()));
             obratnostProperty.set(postava.getObratnostString());
@@ -358,39 +398,136 @@ public class PostavaLogika extends Logika {
             charismaBonusProperty.set(urciBonus(postava.getCharisma()));
             pohyblivostProperty.set(postava.getPohyblivost().getHodnotaString());
             pohyblivostBonusProperty.set(postava.getPohyblivost().getBonusString());
+            velikostProperty.set(postava.getVelikost());
 
+            if (postava.getZbranTVT() != null) {
+                zbranTVTObservableList.setAll(postava.getZbranTVT());
+            }
 
+            if (postava.getZbranSAV() != null) {
+                zbranSAVObservableList.setAll(postava.getZbranSAV());
+            }
 
+            if (postava.getZbroj() != null) {
+                zbrojObservableList.setAll(postava.getZbroj());
+            }
 
-//            Vlastnosti vlastnosti = nestvura.getVlastnosti();
-//            nazevProperty.set(nestvura.getNazev());
-//            zivotaschopnostProperty.set(nestvura.getZivotaschopnostString());
-//            konstantaZvtProperty.set(vyhodnotAVratString(nestvura.getKonstantaZvt()));
-//            utokProperty.set(nestvura.getUtok());
-//            obranaProperty.set(nestvura.getObranaString());
-//            silaProperty.set(vyhodnotAVratString(nestvura.getSila()));
-//            obratnostProperty.set(vyhodnotAVratString(nestvura.getObratnost()));
-//            odolnostProperty.set(vyhodnotAVratString(nestvura.getOdolnost()));
-//            inteligenceProperty.set(vyhodnotAVratString(nestvura.getInteligence()));
-//            charismaProperty.set(vyhodnotAVratString(nestvura.getCharisma()));
-//            nastavVelikost(nestvura);
-//            bojovnostObjectProperty.set(urciBojovnost(nestvura));
-//            nastavZranitelnost(nestvura);
-//            skupinyZranitelnostProperty.set(nestvura.getSkupinaZranitelnost());
-//            hodnotyPohyblivostObjectProperty.set(vyhodnotAVratString(nestvura
-//                                                .getPohyblivost().getHodnota()));
-//            nastavSkupinuPohyblivost(nestvura);
-//            hodnotyVytrvalostObjectProperty.set(vyhodnotAVratString(nestvura
-//                                                .getVytrvalost().getHodnota()));
-//            nastavSkupinuVytrvalost(nestvura);
-//            manevrSchopnostProperty.set(vyhodnotAVratString(nestvura.getManevrSchopnost()));
-//            zaklSilaMysliProperty.set(urciZaklSiluMysli(nestvura));
-//            ochoceniProperty.set(vyhodnotAVratString(nestvura.getOchoceni()));
-//            nastavPresvedceni(nestvura);
-//            pokladyProperty.set(urciPoklady(nestvura.getPoklady()));
-//            zkusenostiProperty.set(String.valueOf(nestvura.getZkusenost()));
-//            popisProperty.set(nestvura.getPoznamka());
+            if (postava.getZvlastniSchopnosti() != null) {
+                zvlSchObservableList.setAll(postava.getZvlastniSchopnosti());
+            }
+
+            if (postava.getKouzla() != null) {
+                kouzlaObservableList.setAll(postava.getKouzla());
+            }
+
+            if (postava.getKouzla() != null) {
+                kouzlaObservableList.setAll(postava.getPrirodniKouzla());
+            }
+
+            if (postava.getVybava() != null) {
+                vybavaObservableList.setAll(postava.getVybava());
+            }
+
+            popisProperty.set(postava.getPoznamka());
         }
+    }
+
+    /**
+     * Na základě povolání určí, jestli postava kouzlí, kouzlí pouze kouzelník
+     * a hraničář.
+     *
+     * @return boolean
+     */
+    public boolean postavaKouzli() {
+        String povolani = povolaniProperty.get();
+        if (povolani != null) {
+            if (povolani.equals("kouzelník") || (povolani.equals("hraničář"))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private void nastavPridejVybaveni(ObservableList<Odkaz> vybaveniList, String tabulka) {
+        // Nastaví se upravovaný ObservableList vybavení postavy do obecného
+        // ObservableListu, který se po vložení aktualizuje.
+        pridanyObservableList = vybaveniList;
+        polozkyPostavy.clear();
+        polozkyPostavy.addAll(vybaveniList);
+        seznamPolozek.clear();
+        seznamPolozek.addAll(dataOut.nactiOdkazy(tabulka));
+    }
+
+    public void nastavPridejZbranTVT() {
+        nastavPridejVybaveni(zbranTVTObservableList, TabulkaDB.ZBRAN_TVT.getTabNazev());
+        textyFormulare = FormularPridej.ZBRAN_TVT;
+    }
+
+    public void nastavPridejZbranSAV() {
+        nastavPridejVybaveni(zbranSAVObservableList, TabulkaDB.ZBRAN_SAV.getTabNazev());
+        textyFormulare = FormularPridej.ZBRAN_SAV;
+    }
+
+    public void nastavPridejZbroj() {
+        nastavPridejVybaveni(zbrojObservableList, TabulkaDB.ZBROJ.getTabNazev());
+        textyFormulare = FormularPridej.ZBROJ;
+    }
+
+    public void nastavPridejZvlSchopnost() {
+        // Nastaví se upravovaný ObservableList zvláštních schopností postavy do
+        // obecného ObservableListu, který se po vložení aktualizuje.
+        pridanyObservableList = zvlSchObservableList;
+
+        // seznam položek pro přidání postavě
+        String povolani = povolaniProperty.get();
+        String rasa = rasaProperty.get();
+        seznamPolozek.clear();
+        seznamPolozek.addAll(dataOut.getZvlSchopnostiRasaAPovolani(rasa, povolani));
+
+        // seznam zvláštních schopností postavy
+        polozkyPostavy.clear();
+        polozkyPostavy.addAll(zvlSchObservableList);
+
+        textyFormulare = FormularPridej.ZVL_SCHOPNOSTI;
+    }
+
+    public void nastavPridejKouzlo() {
+        // Nastaví se upravovaný ObservableList kouzel postavy do obecného
+        // ObservableListu, který se po vložení aktualizuje.
+        pridanyObservableList = kouzlaObservableList;
+        seznamPolozek.clear();
+        String povolani = povolaniProperty.get();
+        String tabulka = null;
+        if (povolani.equals("kouzelník")) tabulka = TabulkaDB.KOUZLO.getTabNazev();
+        if (povolani.equals("hraničář")) tabulka = TabulkaDB.PRIRODNI_KOUZLO.getTabNazev();
+        seznamPolozek.addAll(dataOut.nactiOdkazy(tabulka));
+        // seznam kouzel postavy
+        polozkyPostavy.clear();
+        polozkyPostavy.addAll(kouzlaObservableList);
+
+        textyFormulare = FormularPridej.KOUZLA;
+    }
+
+    public void nastavPridejVybava() {
+        nastavPridejVybaveni(vybavaObservableList, TabulkaDB.VYBAVA.getTabNazev());
+        textyFormulare = FormularPridej.VYBAVA;
+    }
+
+    /**
+     * Vyhodnotí, zda byly položky postavy vloženy, pokud ano, uloží změny
+     * do příslušného ObservableListu.
+     */
+    public void zrusOdkazNaObservableList() {
+        pridanyObservableList = null;
+    }
+
+    public void vlozUpraveneZbraneTVT() {
+        zbranTVTObservableList.clear();
+//        for (Object o : pridanyObservableList) {
+//            zbranTVTObservableList.add(o);
+//        }
+//                setAll((ObservableList<Odkaz>)pridanyObservableList);
     }
 
 
@@ -398,10 +535,55 @@ public class PostavaLogika extends Logika {
 
     private void init() {
 
+        // nastavení disable na magy, pro nekouzlící true.
+        boolean postavaKouzli = postavaKouzli();
+        kouzlaDisableProperty.set(postavaKouzli);
+
         // uloží hodnoty úrovní do ObservableList uroven -> urovenComboBox
         urovenObservableList.clear();
         for (int i : Postava.UROVEN) urovenObservableList.add(i);
 
+        // nastaví zkušenosti na další úroveň -> uroveň, povolání
+        urovenProperty.addListener((ObservableValue<? extends Integer>
+                observable, Integer oldValue, Integer newValue) -> {
+            String zkusenostiNaDalsi = getZkusenostiNaDalsiUroven(newValue,
+                    povolaniProperty.get());
+            zkusenostiNaDalsiUrovenProperty.set(zkusenostiNaDalsi);
+            // zvaliduje zkušenosti na základě nové úrovně
+            nastavZkusenosti();
+        });
+
+        // kontrola validitu zkušeností, životů a magů
+        zkusenostiProperty.addListener((ObservableValue<? extends String>
+                odservable, String oldValue, String newValue) -> {
+            nastavZkusenosti();
+        });
+
+        zivotyProperty.addListener((ObservableValue<? extends String>
+                odservable, String oldValue, String newValue) -> {
+            nastavZivoty();
+        });
+
+        if (postavaKouzli) {
+            magyProperty.addListener((ObservableValue<? extends String>
+                    odservable, String oldValue, String newValue) -> {
+                nastavMagy();
+            });
+        }
+
+
+        zkusenostiNaDalsiUrovenProperty.set(getZkusenostiNaDalsiUroven(
+                urovenProperty.get(), povolaniProperty.get()));
+    }
+
+    private String getZkusenostiNaDalsiUroven(Integer uroven, String povolani) {
+        if (uroven != null) {
+            if (uroven >= 1 && uroven <= 35) {
+                int zkusenostiNaDalsi = dataOut.getZkusenosti(povolani, uroven + 1);
+                return String.valueOf(zkusenostiNaDalsi);
+            }
+        }
+        return "N/A";
     }
 
     /** Vrátí bonus včetně znaménka pro hodnoty 1-50, jinak vrátí null. */
@@ -414,11 +596,93 @@ public class PostavaLogika extends Logika {
         if (novaPostava != null) return novaPostava;
         Integer id = vratIdOdkazu();
         if (id != null) {
-            return getData.getPostava(id);
+            return dataOut.getPostava(id);
         } else return null;
     }
+
+    private void nastavZkusenosti() {
+        if (!jeZkusenostiValidni()) {
+            zkusenostiStyleProperty.set(STYL_CHYBA);
+        } else zkusenostiStyleProperty.set(null);
+    }
+
+    private void nastavZivoty() {
+        if (!jeZivotyValidni()) {
+            zivotyStyleProperty.set(STYL_CHYBA);
+        } else zivotyStyleProperty.set(null);
+    }
+
+    private void nastavMagy() {
+        if (!jeMagyValidni()) {
+            magyStyleProperty.set(STYL_CHYBA);
+        } else magyStyleProperty.set(null);
+    }
+
+    public boolean jeZkusenostiValidni() {
+        Integer uroven = urovenProperty.get();
+        String povolani = povolaniProperty.get();
+        if (uroven != 0 && povolani != null) {
+            int zkusenosti = dataOut.getZkusenosti(povolani, uroven);
+            int zkusenostiNaDalsi = dataOut.getZkusenosti(povolani, uroven + 1);
+            String zkusenostiText = zkusenostiProperty.get();
+            if (zkusenosti != -1 && zkusenostiNaDalsi != -1 && zkusenostiText != null) {
+                return zvalidujStringCislo(zkusenostiText, zkusenosti, zkusenostiNaDalsi);
+            }
+        }
+        return false;
+    }
+
+    private boolean jeZivotyValidni() {
+        String zivoty = zivotyProperty.get();
+        return zvalidujStringCislo(zivoty, 0, 1000);
+    }
+
+    private boolean jeMagyValidni() {
+        String magy = magyProperty.get();
+        return zvalidujStringCislo(magy, 0, 1000);
+    }
+
+
 
 
 //##############################################################################
 //== NESTED DATA TYPES =========================================================
+
+    /** Slouží k určení labelů ve formuláři Pridej.fxml. */
+    public enum FormularPridej {
+        ZBRAN_TVT("Zbraně tváří v tvář", "seznam zbraní", "zbraně postavy"),
+        ZBRAN_SAV("Zbraně střelná a vrhací", "seznam zbraní", "zbraně postavy"),
+        ZBROJ("Zbroje a štíty", "seznam zbrojí a štítů", "zbroje a štíty postavy"),
+        ZVL_SCHOPNOSTI("Zvláštní schopnosti", "dostupné zvl. schopnosti",
+            "zvl. schopnosti postavy"),
+        KOUZLA("Kouzla", "seznam dostupných kouzel", "kouzla postavy"),
+        VYBAVA("Výbava", "seznam výbavy", "výbava postavy");
+
+        private final String nazev;
+        private final String seznamPolozek;
+        private final String polozkyPostavy;
+
+        // konstruktor
+        FormularPridej(String nazev, String seznamPolozek, String polozkyPostavy ) {
+            this.nazev = nazev;
+            this.seznamPolozek = seznamPolozek;
+            this.polozkyPostavy = polozkyPostavy;
+        }
+
+        // gettery a settery
+        public String getPolozkyPostavy() {
+            return polozkyPostavy;
+        }
+
+        public String getSeznamPolozek() {
+            return seznamPolozek;
+        }
+
+        // public metody
+        @Override
+        public String toString() {
+            return nazev;
+        }
+    }
+
 }

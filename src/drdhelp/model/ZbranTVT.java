@@ -11,7 +11,7 @@ package drdhelp.model;
  * @author  Michal Remišovský
  * @version 0.01.0000 — 2016-09-25
  */
-public class ZbranTVT extends Vybava implements IPopis{
+public class ZbranTVT extends Vybava implements IPopis {
 
 //== CONSTANT CLASS ATTRIBUTES =================================================
 //== VARIABLE CLASS ATTRIBUTES =================================================
@@ -93,19 +93,6 @@ public class ZbranTVT extends Vybava implements IPopis{
 
 //== ABSTRACT METHODS ==========================================================
 
-    @Override
-    public String getPodrobnyPopis() {
-        return    "Název:   " + super.getNazev() + "\n"
-                + "Druh:   " + super.getDruh() + " " + DRZENI + "\n"
-                + "Síla zbraně:   " + SILA + "\n"
-                  + "Útočnost:   " + getStringSeZnamenkem(UTOCNOST)+ "\n"
-                  + "Obrana zbraně:   " + getStringSeZnamenkem(OBRANA) + "\n"
-                + "Délka:   " + DELKA + "\n"
-                + "Váha:   " + super.getVaha() + " mn\n"
-                + "Cena:   " + super.getCenaVypis()
-                + super.vratPopis();
-    }
-
 //== INSTANCE GETTERS AND SETTERS ==============================================
 
     public String getDrzeni() {
@@ -132,10 +119,30 @@ public class ZbranTVT extends Vybava implements IPopis{
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
 
     @Override
-    public String toString()
-    {
+    public String getPodrobnyPopis() {
+        return    "Název:   " + super.getNazev() + "\n"
+                + "Druh:   " + super.getDruh() + " " + DRZENI + "\n"
+                + "Síla zbraně:   " + SILA + "\n"
+                  + "Útočnost:   " + getStringSeZnamenkem(UTOCNOST)+ "\n"
+                  + "Obrana zbraně:   " + getStringSeZnamenkem(OBRANA) + "\n"
+                + "Délka:   " + DELKA + "\n"
+                + "Váha:   " + super.getVaha() + " mn\n"
+                + "Cena:   " + super.getCenaVypis()
+                + super.vratPopis();
+    }
+
+    public String getPopisDoRadku() {
+        return super.getNazev() + " " + SILA + " " + super.getStringSeZnamenkem(
+                UTOCNOST) + " " + getStringSeZnamenkem(OBRANA) + " " + super
+                .getVaha() + " mn";
+    }
+
+    @Override
+    public String toString() {
         return getNazev();
     }
+
+
 
 
 

@@ -3,7 +3,7 @@
  */
 package drdhelp.model.logika;
 
-import drdhelp.model.io.GetData;
+import drdhelp.model.io.DataOut;
 import drdhelp.model.IPopis;
 import drdhelp.model.Nestvura;
 import drdhelp.model.Odkaz;
@@ -46,7 +46,7 @@ public class MainLogika {
 
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
 
-    GetData getData = new GetData();
+    DataOut dataOut = new DataOut();
     SeznamOdkazu seznamOdkazu = new SeznamOdkazu();
 
 
@@ -81,27 +81,27 @@ public class MainLogika {
         int id = odkaz.getId();
 
         if (tabulka.equals(TabulkaDB.POSTAVA.getTabNazev())) {
-            Postava postava = getData.getPostava(id);
+            Postava postava = dataOut.getPostava(id);
             return postava;
         }
         if (tabulka.equals(TabulkaDB.NESTVURA.getTabNazev())) {
-            Nestvura nestvura = getData.getNestvura(id);
+            Nestvura nestvura = dataOut.getNestvura(id);
             return nestvura;
         }
         if (tabulka.equals(TabulkaDB.ZBRAN_TVT.getTabNazev())) {
-            ZbranTVT zbran = getData.getZbranTVT(id);
+            ZbranTVT zbran = dataOut.getZbranTVT(id);
             return zbran;
         }
         if (tabulka.equals(TabulkaDB.ZBRAN_SAV.getTabNazev())) {
-            ZbranSAV zbran = getData.getZbranSAV(id);
+            ZbranSAV zbran = dataOut.getZbranSAV(id);
             return zbran;
         }
         if (tabulka.equals(TabulkaDB.ZBROJ.getTabNazev())) {
-            Zbroj zbroj = getData.getZbroj(id);
+            Zbroj zbroj = dataOut.getZbroj(id);
             return zbroj;
         }
         if (tabulka.equals(TabulkaDB.VYBAVA.getTabNazev())) {
-            Vybava vybava = getData.getVybava(id);
+            Vybava vybava = dataOut.getVybava(id);
             return vybava;
         }
         return null;

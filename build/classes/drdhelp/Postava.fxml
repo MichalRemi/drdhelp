@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="drdhelp.PostavaController">
+<AnchorPane id="AnchorPane" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="drdhelp.PostavaController">
     <stylesheets>
         <URL value="@DrDhelp.css" />
     </stylesheets>
@@ -84,13 +84,13 @@
                         </Label>
                         <HBox alignment="CENTER" VBox.vgrow="SOMETIMES">
                            <children>
-                              <TextField fx:id="zkusenostiTextField" alignment="CENTER" minWidth="60.0" prefWidth="90.0" text="150" HBox.hgrow="SOMETIMES" />
+                              <TextField fx:id="zkusenostiTextField" alignment="CENTER" minWidth="60.0" prefWidth="90.0" HBox.hgrow="SOMETIMES" />
                               <Label text="/">
                                  <HBox.margin>
                                     <Insets left="3.0" right="3.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="zkusenostiDalsiUrovenTField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="60.0" prefWidth="90.0" text="325" HBox.hgrow="SOMETIMES" />
+                              <TextField fx:id="zkusenostiDalsiUrovenTField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="60.0" prefWidth="90.0" HBox.hgrow="SOMETIMES" />
                            </children>
                         </HBox>
                      </children>
@@ -102,17 +102,17 @@
                               <Insets left="2.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="zivotyTextField" alignment="CENTER" minWidth="45.0" prefWidth="60.0" text="6" VBox.vgrow="SOMETIMES" />
+                        <TextField fx:id="zivotyTextField" alignment="CENTER" minWidth="45.0" prefWidth="60.0" VBox.vgrow="SOMETIMES" />
                      </children>
                   </VBox>
-                  <VBox>
+                  <VBox fx:id="magyVBox">
                      <children>
                         <Label text="magy">
                            <VBox.margin>
                               <Insets left="2.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="magyTextField" alignment="CENTER" minWidth="45.0" prefWidth="60.0" text="0" VBox.vgrow="SOMETIMES" />
+                        <TextField fx:id="magyTextField" alignment="CENTER" minWidth="45.0" prefWidth="60.0" VBox.vgrow="SOMETIMES" />
                      </children>
                   </VBox>
                   <VBox>
@@ -147,8 +147,8 @@
                         <HBox alignment="CENTER_LEFT" maxHeight="36.0" maxWidth="160.0" prefHeight="35.0" spacing="9.0" VBox.vgrow="SOMETIMES">
                            <children>
                               <Label alignment="CENTER_RIGHT" prefWidth="65.0" text="Síla" />
-                              <TextField fx:id="silaTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="16" />
-                              <TextField fx:id="silaBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="+2" />
+                              <TextField fx:id="silaTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" />
+                              <TextField fx:id="silaBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" />
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -157,8 +157,8 @@
                         <HBox alignment="CENTER_LEFT" maxHeight="36.0" maxWidth="160.0" prefHeight="35.0" spacing="9.0" VBox.vgrow="SOMETIMES">
                            <children>
                               <Label alignment="CENTER_RIGHT" prefWidth="65.0" text="Obratnost" />
-                              <TextField fx:id="obratnostTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="16" />
-                              <TextField fx:id="obratnostBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="+2" />
+                              <TextField fx:id="obratnostTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" />
+                              <TextField fx:id="obratnostBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" />
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -167,8 +167,8 @@
                         <HBox alignment="CENTER_LEFT" maxHeight="36.0" maxWidth="160.0" prefHeight="35.0" spacing="9.0" VBox.vgrow="SOMETIMES">
                            <children>
                               <Label alignment="CENTER_RIGHT" prefWidth="65.0" text="Odolnost" />
-                              <TextField fx:id="odolnostTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="16" />
-                              <TextField fx:id="odolnostbonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="+2" />
+                              <TextField fx:id="odolnostTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" />
+                              <TextField fx:id="odolnostbonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" />
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -177,8 +177,8 @@
                         <HBox alignment="CENTER_LEFT" maxHeight="36.0" maxWidth="160.0" prefHeight="35.0" spacing="9.0" VBox.vgrow="SOMETIMES">
                            <children>
                               <Label alignment="CENTER_RIGHT" prefWidth="65.0" text="Inteligence" />
-                              <TextField fx:id="inteligenceTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="16" />
-                              <TextField fx:id="inteligenceBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="+2" />
+                              <TextField fx:id="inteligenceTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" />
+                              <TextField fx:id="inteligenceBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" />
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -187,8 +187,8 @@
                         <HBox alignment="CENTER_LEFT" maxHeight="36.0" maxWidth="160.0" prefHeight="35.0" spacing="9.0" VBox.vgrow="SOMETIMES">
                            <children>
                               <Label alignment="CENTER_RIGHT" prefWidth="65.0" text="Charisma" />
-                              <TextField fx:id="charismaTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="16" />
-                              <TextField fx:id="charismaBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="+2" />
+                              <TextField fx:id="charismaTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" />
+                              <TextField fx:id="charismaBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" />
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -197,8 +197,8 @@
                         <HBox alignment="CENTER_LEFT" maxHeight="36.0" maxWidth="160.0" prefHeight="35.0" spacing="9.0" VBox.vgrow="SOMETIMES">
                            <children>
                               <Label alignment="CENTER_RIGHT" prefWidth="65.0" text="Pohyblivost" />
-                              <TextField fx:id="pohyblivostTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="16" />
-                              <TextField fx:id="pohyblivostBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="+2" />
+                              <TextField fx:id="pohyblivostTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" />
+                              <TextField fx:id="pohyblivostBonusTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" />
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -207,7 +207,7 @@
                         <HBox alignment="CENTER_LEFT" maxHeight="36.0" maxWidth="160.0" prefHeight="35.0" spacing="8.0">
                            <children>
                               <Label alignment="CENTER_RIGHT" prefWidth="65.0" text="Velikost" />
-                              <TextField fx:id="velikostTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" text="B" />
+                              <TextField fx:id="velikostTextField" alignment="CENTER" editable="false" focusTraversable="false" minWidth="30.0" prefWidth="40.0" />
                            </children>
                         </HBox>
                      </children>
@@ -223,13 +223,13 @@
                               </Label>
                               <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
                                  <children>
-                                    <Button fx:id="pridejZbranTVTButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+                                    <Button fx:id="pridejZbranTVTButton" mnemonicParsing="false" onAction="#handlePridejZbranTVT" prefHeight="25.0" prefWidth="25.0" text="+" />
                                     <Button fx:id="odeberZbranTVTButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
                                  </children>
                               </HBox>
                            </children>
                         </HBox>
-                        <ListView fx:id="zbranTVTListView" focusTraversable="false" prefHeight="71.0" />
+                        <ListView fx:id="zbranTVTListView" prefHeight="71.0" />
                         <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" spacing="10.0">
                            <children>
                               <Label text="zbraně střelné a vrhací">
@@ -239,7 +239,7 @@
                               </Label>
                               <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
                                  <children>
-                                    <Button fx:id="pridejZbranSAVButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+                                    <Button fx:id="pridejZbranSAVButton" mnemonicParsing="false" onAction="#handlePridejZbranSAV" prefHeight="25.0" prefWidth="25.0" text="+" />
                                     <Button fx:id="odeberZbranSAVButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
                                  </children>
                               </HBox>
@@ -248,7 +248,7 @@
                               <Insets top="3.0" />
                            </VBox.margin>
                         </HBox>
-                        <ListView fx:id="zbranSAVListView" focusTraversable="false" prefHeight="71.0" />
+                        <ListView fx:id="zbranSAVListView" prefHeight="71.0" />
                         <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" spacing="10.0">
                            <children>
                               <Label text="zbroj a štít">
@@ -258,7 +258,7 @@
                               </Label>
                               <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
                                  <children>
-                                    <Button fx:id="pridejZbrojButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+                                    <Button fx:id="pridejZbrojButton" mnemonicParsing="false" onAction="#handlePridejZbroj" prefHeight="25.0" prefWidth="25.0" text="+" />
                                     <Button fx:id="odeberZbrojButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
                                  </children>
                               </HBox>
@@ -267,7 +267,7 @@
                               <Insets top="3.0" />
                            </VBox.margin>
                         </HBox>
-                        <ListView fx:id="zbrojListView" focusTraversable="false" prefHeight="55.0" />
+                        <ListView fx:id="zbrojListView" prefHeight="55.0" />
                      </children>
                   </VBox>
                </children>
@@ -288,7 +288,7 @@
                               </Label>
                               <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
                                  <children>
-                                    <Button fx:id="pridejZvlButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+                                    <Button fx:id="pridejZvlButton" mnemonicParsing="false" onAction="#handlePridejZvlSchopnost" prefHeight="25.0" prefWidth="25.0" text="+" />
                                     <Button fx:id="odeberZvlButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
                                  </children>
                                  <padding>
@@ -297,8 +297,8 @@
                               </HBox>
                            </children>
                         </HBox>
-                        <ListView fx:id="zvlListView" focusTraversable="false" VBox.vgrow="SOMETIMES" />
-                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" spacing="10.0">
+                        <ListView fx:id="zvlListView" VBox.vgrow="SOMETIMES" />
+                        <HBox fx:id="kouzlaHBox" alignment="BOTTOM_LEFT" prefHeight="30.0" spacing="10.0">
                            <children>
                               <Label text="kouzla">
                                  <HBox.margin>
@@ -307,7 +307,7 @@
                               </Label>
                               <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
                                  <children>
-                                    <Button fx:id="pridejKouzloButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+                                    <Button fx:id="pridejKouzloButton" mnemonicParsing="false" onAction="#handlePridejKouzlo" prefHeight="25.0" prefWidth="25.0" text="+" />
                                     <Button fx:id="odeberKouzloVButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
                                  </children>
                                  <padding>
@@ -322,7 +322,7 @@
                               <Insets top="3.0" />
                            </VBox.margin>
                         </HBox>
-                        <ListView fx:id="kouzlaListView" focusTraversable="false" VBox.vgrow="SOMETIMES" />
+                        <ListView fx:id="kouzlaListView" VBox.vgrow="SOMETIMES" />
                      </children>
                   </VBox>
                   <VBox prefWidth="244.0" HBox.hgrow="SOMETIMES">
@@ -336,7 +336,7 @@
                               </Label>
                               <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
                                  <children>
-                                    <Button fx:id="pridejVybavaButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+                                    <Button fx:id="pridejVybavaButton" mnemonicParsing="false" onAction="#handlePridejVybava" prefHeight="25.0" prefWidth="25.0" text="+" />
                                     <Button fx:id="odeberVybavaButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
                                  </children>
                                  <padding>
@@ -345,7 +345,7 @@
                               </HBox>
                            </children>
                         </HBox>
-                        <ListView fx:id="vybavaListView" focusTraversable="false" VBox.vgrow="SOMETIMES" />
+                        <ListView fx:id="vybavaListView" VBox.vgrow="SOMETIMES" />
                         <Label text="poznámka">
                            <VBox.margin>
                               <Insets top="7.0" />

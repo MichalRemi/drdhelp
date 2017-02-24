@@ -5,6 +5,11 @@ package drdhelp.model.logika;
 
 import drdhelp.model.SeznamOdkazu;
 import drdhelp.model.Tvor;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -84,17 +89,32 @@ public abstract class Logika {
      * do dohorniMez
      */
     protected boolean zvalidujStringCislo(String text, int dolniMez, int horniMez) {
-        Integer cislo = StringNaCislo(text);
-        return ((cislo != null) && (cislo >= dolniMez) && (cislo <= horniMez));
+        try {
+            if (text != null) {
+                Integer cislo = prevedNaInteger(text);
+                if (cislo != null) {
+                    return ((cislo >= dolniMez) && (cislo <= horniMez));
+                }
+            }
+        }
+        catch (ParseException ex) {
+        }
+        return false;
     }
 
-    /** Vrátí číslo ze Stringu, při vyjímce vrátí null */
-    protected Integer StringNaCislo(String text) {
-        try {
-            return Integer.parseInt(text);
-        } catch (Exception e) {
-            return null;
+    private Integer prevedNaInteger(String text) throws ParseException {
+        if (!text.equals("")) {
+            Integer cislo = Integer.parseInt(text);
+            return cislo;
         }
+        return null;
+    }
+
+    /** Převede String na arrayList, oddělovač je ",". */
+    protected ArrayList<String> stringToArrayList(String text) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.addAll(Arrays.asList(text.split(",")));
+        return arrayList;
     }
 
      /**

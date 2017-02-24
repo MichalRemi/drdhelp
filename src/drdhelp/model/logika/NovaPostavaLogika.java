@@ -8,7 +8,8 @@ import drdhelp.model.Postava;
 import drdhelp.model.Povolani;
 import drdhelp.model.Rasa;
 import drdhelp.model.Vlastnost;
-import drdhelp.model.io.GetData;
+import drdhelp.model.io.DataIn;
+import drdhelp.model.io.DataOut;
 import java.util.ArrayList;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
@@ -38,7 +39,7 @@ public class NovaPostavaLogika extends Logika {
 
 //##############################################################################
 //== STATIC INITIALIZER (CLASS CONSTRUCTOR) ====================================
-//== CLASS TERS AND SETTERS =================================================
+//== CLASS TERS AND SETTERS ====================================================
 //== OTHER NON-PRIVATE CLASS METHODS ===========================================
 //== PRIVATE AND AUXILIARY CLASS METHODS =======================================
 
@@ -142,8 +143,8 @@ public class NovaPostavaLogika extends Logika {
     private final ObservableList<Integer> charisma = FXCollections.observableArrayList();
 
     // datový model pro čtení z databáze
-    GetData getData = new GetData();
-
+    DataOut dataOut = new DataOut();
+    DataIn dataIn = new DataIn();
 
 
 //##############################################################################
@@ -429,7 +430,7 @@ public class NovaPostavaLogika extends Logika {
                 Odkaz oldValue, Odkaz newValue) -> {
 
             boolean validitaRasaAPovolani = nastavValidituRasaAPovolani();
-            rasa = getData.getRasa(newValue.getId());
+            rasa = dataOut.getRasa(newValue.getId());
 
             nastavVyskuAVahu();
 
@@ -450,7 +451,7 @@ public class NovaPostavaLogika extends Logika {
 
             boolean validitaRasaAPovolani = nastavValidituRasaAPovolani();
 
-            povolani = getData.getPovolani(newValue.getId());
+            povolani = dataOut.getPovolani(newValue.getId());
 
             if (validitaRasaAPovolani) {
                 nastavHodnotyVlastnosti();

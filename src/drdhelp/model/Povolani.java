@@ -117,22 +117,23 @@ public class Povolani
 //##############################################################################
 //== NESTED DATA TYPES =========================================================
 
-//    public enum ZvlSchopnosti {
+//    public enum PrirodniKouzla {
 //
-//        ZASTRASENI("Zastrašení"),
-//        POZNANI_ARTEFAKTU("Poznání artefaktů"),
-//        PRESNOST("Přesnost"),
-//        SEHRANOST("Sehranost"),
-//        LECBA_VLASTNICH_ZRANENI("Léčba vlastních zranění"),
-//        ODHAD_ZBRANE("Odhad zbraně"),
-//        ODHAD_SOUPERE("Odhad soupeře"),
-//        VICENASOBNE_UTOKY("vícenásobné útoky");
+//        MLUV_SE_ZVIRATY(""),
+//        NAJDI_STOPY(""),
+//        NAJDI_ZVIRE(""),
+//        (""),
+//        MAGICKY_STIT(""),
+//        MAGUV_VELKY_MIX(""),
+//        MELENINA_KRASA(""),
+//
 //
 //        private final String nazev;
-//        private final String povolani;
+//        private final String magy;
 //
-//        ZvlSchopnosti(String nazev) {
+//        KouzlaHermeticka(String nazev, String magy) {
 //            this.nazev = nazev;
+//            this.magy = magy;
 //        }
 //
 //        @Override

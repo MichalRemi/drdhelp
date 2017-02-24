@@ -4,8 +4,8 @@
 package drdhelp.model.logika;
 
 import drdhelp.model.Vybava;
-import drdhelp.model.io.GetData;
-import drdhelp.model.io.SetData;
+import drdhelp.model.io.DataOut;
+import drdhelp.model.io.DataIn;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -60,8 +60,8 @@ public class VybavaLogika extends VybaveniLogika {
 
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
 
-    GetData getData = new GetData();
-    SetData setData = new SetData();
+    DataOut dataOut = new DataOut();
+    DataIn dataIn = new DataIn();
 
 
 
@@ -157,9 +157,9 @@ public class VybavaLogika extends VybaveniLogika {
     public void pridejVybavu() {
         Integer id = vratIdOdkazu();
         if (id != null) {
-            setData.zmenVybava(nactiZFormulare(id));
+            dataIn.zmenVybava(nactiZFormulare(id));
         } else {
-            setData.vlozVybava(nactiZFormulare(0));
+            dataIn.vlozVybava(nactiZFormulare(0));
         }
     }
 
@@ -234,7 +234,7 @@ public class VybavaLogika extends VybaveniLogika {
     private Vybava pridatNeboUpravit() {
         Integer id = vratIdOdkazu();
         if (id != null) {
-            Vybava vybava = getData.getVybava(id);
+            Vybava vybava = dataOut.getVybava(id);
             return vybava;
         } else return null;
     }

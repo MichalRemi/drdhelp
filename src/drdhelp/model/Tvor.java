@@ -143,7 +143,8 @@ public abstract class Tvor {
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
 
 
-    /** Převede ArrayList na String (výpis do řádků), jednotlivé položky
+    /**
+     * Převede ArrayList na String (výpis do řádků), jednotlivé položky
      * ArrayListu jsou odřádkované "\n"
      */
     public String arrayListdoRadku(ArrayList<String> list) {
@@ -154,12 +155,20 @@ public abstract class Tvor {
         return vypis;
     }
 
-    /** Převede String na arrayList (oddělovač je ",") */
+    /** Převede String na arrayList, oddělovač je ",". */
     public ArrayList<String> stringToArrayList(String text) {
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.addAll(Arrays.asList(text.split(",")));
         return arrayList;
     }
+
+    /** Převede arrayList na String, oddělovač je ",".*/
+    public String arrayListToString(ArrayList<String> arrayList) {
+        String list = null;
+        for (String s : arrayList) list += s + ",";
+        return list;
+    }
+
 
     /**
      * Vrátí ArrayList s Pohyblivostí pro naložení žádné, mírné, střední a velké.

@@ -4,8 +4,9 @@
 package drdhelp.model.logika;
 
 import drdhelp.model.ZbranTVT;
-import drdhelp.model.io.GetData;
-import drdhelp.model.io.SetData;
+import drdhelp.model.io.DataOut;
+import drdhelp.model.io.DataIn;
+import java.text.ParseException;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -42,32 +43,63 @@ public class ZbranTVTLogika extends VybaveniLogika
 //== CONSTANT INSTANCE ATTRIBUTES ==============================================
 
     private final StringProperty nazevProperty = new SimpleStringProperty();
-    private final ObjectProperty<Druh> druhObjectProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<Drzeni> drzeniObjectProperty = new SimpleObjectProperty<>();
+
+    private final ObjectProperty<Druh> druhObjectProperty =
+            new SimpleObjectProperty<>();
+
+    private final ObjectProperty<Drzeni> drzeniObjectProperty =
+            new SimpleObjectProperty<>();
+
     private final StringProperty silaProperty = new SimpleStringProperty();
+
     private final StringProperty utocnostProperty = new SimpleStringProperty();
+
     private final StringProperty obranaProperty = new SimpleStringProperty();
-    private final ObjectProperty<Delka> delkaObjectProperty = new SimpleObjectProperty<>();
+
+    private final ObjectProperty<Delka> delkaObjectProperty =
+            new SimpleObjectProperty<>();
+
     private final StringProperty vahaProperty = new SimpleStringProperty();
+
     private final StringProperty zlatakyProperty = new SimpleStringProperty();
+
     private final StringProperty stribrnakyProperty = new SimpleStringProperty();
+
     private final StringProperty medakyProperty = new SimpleStringProperty();
+
     private final StringProperty popisProperty = new SimpleStringProperty();
 
-    private final BooleanProperty nazevChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty silaChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty utocnostChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty obranaChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty vahaChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty zlatakyChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty stribrnakyChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty medakyChybaVisibleProperty = new SimpleBooleanProperty();
+
+    private final BooleanProperty nazevChybaVisibleProperty =
+    new SimpleBooleanProperty();
+
+    private final BooleanProperty silaChybaVisibleProperty =
+    new SimpleBooleanProperty();
+
+    private final BooleanProperty utocnostChybaVisibleProperty =
+    new SimpleBooleanProperty();
+
+    private final BooleanProperty obranaChybaVisibleProperty =
+    new SimpleBooleanProperty();
+
+    private final BooleanProperty vahaChybaVisibleProperty =
+    new SimpleBooleanProperty();
+
+    private final BooleanProperty zlatakyChybaVisibleProperty =
+    new SimpleBooleanProperty();
+
+    private final BooleanProperty stribrnakyChybaVisibleProperty =
+    new SimpleBooleanProperty();
+
+    private final BooleanProperty medakyChybaVisibleProperty =
+    new SimpleBooleanProperty();
+
     private final BooleanProperty valid = new SimpleBooleanProperty(false);
 
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
 
-    GetData getData = new GetData();
-    SetData setData = new SetData();
+    DataOut dataOut = new DataOut();
+    DataIn dataIn = new DataIn();
 
 
 
@@ -193,9 +225,9 @@ public class ZbranTVTLogika extends VybaveniLogika
     public void pridejZbranTVT() {
         Integer id = vratIdOdkazu();
         if (id != null) {
-            setData.zmenZbranTVT(nactiZFormulare(id));
+            dataIn.zmenZbranTVT(nactiZFormulare(id));
         } else {
-            setData.vlozZbranTVT(nactiZFormulare(0));
+            dataIn.vlozZbranTVT(nactiZFormulare(0));
         }
     }
 
@@ -332,7 +364,7 @@ public class ZbranTVTLogika extends VybaveniLogika
     private ZbranTVT pridatNeboUpravit() {
         Integer id = vratIdOdkazu();
         if (id != null) {
-            ZbranTVT zbranTVT = getData.getZbranTVT(id);
+            ZbranTVT zbranTVT = dataOut.getZbranTVT(id);
             return zbranTVT;
         } else return null;
     }
