@@ -3,6 +3,7 @@
  */
 package drdhelp.model;
 
+import drdhelp.model.io.DataOut;
 import java.util.ArrayList;
 
 
@@ -44,19 +45,15 @@ public class Postava extends Tvor implements IPopis {
 
     /** Povolání postavy. */
     private final String POVOLANI;
-    private String poznamka;
+
+    /** Může postava ovládat magii? */
+    private final boolean KOUZLI;
 
     /** Aktuální životy postavy. */
     private int zivoty;
 
-    /** Maximum životů postavy. */
-    private int zivotyMax;
-
     /** Aktuální magenergie postavy. */
     private int magy;
-
-    /** Maximální magenergie postavy. */
-    private int magyMax;
 
     /** Úroveň postavy. */
     private int uroven;
@@ -97,6 +94,12 @@ public class Postava extends Tvor implements IPopis {
     /** Přírodní kouzla postavy. */
     private ArrayList<Odkaz> prirodniKouzla;
 
+    /** Popis, poznámka, atd... . */
+    private String poznamka;
+
+
+    DataOut dataOut = new DataOut();
+
 
 
 //##############################################################################
@@ -109,13 +112,11 @@ public class Postava extends Tvor implements IPopis {
      * @param nazev Jméno postavy
      * @param rasa Rasa postavy
      * @param povolani Povolání postavy
+     * @param kouzli Umí postava ovládat magii?
      * @param zivoty Aktuální počet životů
-     * @param zivotyMax Maximum životů
      * @param magy Aktuální magenergie
-     * @param magyMax Maximum magenergie
      * @param hodnotyVlastnosti Hodnoty vlastností postavy - int[]
      * @param zkusenosti Získané zkušenosti postavy
-     * @param zkusenostiDalsiUroven Zkušenosti potřebné na přestup na další úroveň
      * @param uroven Úroveň postavy
      * @param pohyblivost Pohyblivost postavy
      * @param vyska Výška postavy
@@ -131,23 +132,20 @@ public class Postava extends Tvor implements IPopis {
      * @param prirodniKouzla Hraničářská kouzla postavy
      * @param poznamka Zde může být cokoliv
      */
-    public Postava(int id, String nazev, String rasa, String povolani, int zivoty,
-            int zivotyMax, int magy, int magyMax, int uroven, int zkusenosti,
-            int zkusenostiDalsiUroven, Integer[] hodnotyVlastnosti,
+    public Postava(int id, String nazev, String rasa, String povolani, boolean kouzli,
+            int zivoty, int magy, int uroven,
+            int zkusenosti, Integer[] hodnotyVlastnosti,
             Vlastnost pohyblivost, int vyska, int vaha, ArrayList<Odkaz> zbranTVT,
             ArrayList<Odkaz> zbranSAV, ArrayList<Odkaz> zbroj,
             ArrayList<Odkaz> vybava, String rodovaZbran, String velikost,
             ArrayList<Odkaz> zvlastniSchopnosti, ArrayList<Odkaz> kouzla,
             ArrayList<Odkaz> prirodniKouzla, String poznamka) {
 
-        this(id, nazev, rasa, povolani, vyska, vaha, hodnotyVlastnosti, pohyblivost,
+        this(id, nazev, rasa, povolani, kouzli, vyska, vaha, hodnotyVlastnosti, pohyblivost,
             velikost, rodovaZbran);
         this.zivoty = zivoty;
-        this.zivotyMax = zivotyMax;
         this.magy = magy;
-        this.magyMax = magyMax;
         this.uroven = uroven;
-        this.zkusenostiDalsiUroven = zkusenostiDalsiUroven;
         this.zbranTVT = zbranTVT;
         this.zbranSAV = zbranSAV;
         this.zbroj = zbroj;
@@ -157,40 +155,41 @@ public class Postava extends Tvor implements IPopis {
         this.prirodniKouzla = prirodniKouzla;
     }
 
-    private Postava(int id, String nazev, String rasa, String povolani, int vyska,
-            int vaha, Integer[] hodnotyVlastnosti, Vlastnost pohyblivost,
+    private Postava(int id, String nazev, String rasa, String povolani, boolean kouzli,
+            int vyska, int vaha, Integer[] hodnotyVlastnosti, Vlastnost pohyblivost,
             String velikost, String rodovaZbran) {
 
         super(id, nazev, hodnotyVlastnosti, pohyblivost, velikost, null);
         this.RASA = rasa;
         this.POVOLANI = povolani;
+        this.KOUZLI = kouzli;
         this.VYSKA = vyska;
         this.VAHA = vaha;
         this.RODOVA_ZBRAN = rodovaZbran;
     }
 
     /** Konstruktor pro tvobu nové postavy */
-    public Postava(String nazev, String rasa, String povolani, int vyska,
+    public Postava(String nazev, String rasa, String povolani, boolean kouzli, int vyska,
             int vaha, Integer[] hodnotyVlastnosti, Vlastnost pohyblivost,
             String velikost, String rodovaZbran) {
 
-        this(0, nazev, rasa, povolani, vyska, vaha, hodnotyVlastnosti, pohyblivost,
+        this(0, nazev, rasa, povolani, kouzli, vyska, vaha, hodnotyVlastnosti, pohyblivost,
                 velikost, rodovaZbran);
-        this.zivoty = 0;
-        this.zivotyMax = 0;
+          this.zivoty = 0;
         this.magy = 0;
-        this.magyMax = 0;
         this.uroven = 1;
         this.zkusenosti = 0;
-        this.zkusenostiDalsiUroven = 0;
-        this.zbranTVT = null;
-        this.zbranSAV = null;
-        this.zbroj = null;
-        this.vybava = null;
-        this.zvlastniSchopnosti = null;
-        this.kouzla = null;
-        this.prirodniKouzla = null;
+//        this.zbranTVT = null;
+//        this.zbranSAV = null;
+//        this.zbroj = null;
+//        this.vybava = null;
+//        this.zvlastniSchopnosti = null;
+//        this.kouzla = null;
+//        this.prirodniKouzla = null;
 }
+
+
+
 
 
 
@@ -232,6 +231,10 @@ public class Postava extends Tvor implements IPopis {
         return vybava;
     }
 
+    public String getRodovaZbran() {
+        return RODOVA_ZBRAN;
+    }
+
     public String getRasa() {
         return RASA;
     }
@@ -240,12 +243,8 @@ public class Postava extends Tvor implements IPopis {
         return POVOLANI;
     }
 
-    public int getZivotyMax() {
-        return zivotyMax;
-    }
-
-    public void setZivotyMax(int zivotyMax) {
-        this.zivotyMax = zivotyMax;
+    public boolean isKouzli() {
+        return KOUZLI;
     }
 
     public int getMagy() {
@@ -254,14 +253,6 @@ public class Postava extends Tvor implements IPopis {
 
     public void setMagy(int magy) {
         this.magy = magy;
-    }
-
-    public int getMagyMax() {
-        return magyMax;
-    }
-
-    public void setMagyMax(int magyMax) {
-        this.magyMax = magyMax;
     }
 
     public int getZkusenosti() {
@@ -356,10 +347,13 @@ public class Postava extends Tvor implements IPopis {
     }
 
     /** Kouzlí postava? ano/ne - true/false. */
-    public Boolean postavaKouzli() {
-        if (getMagy() != 0) {
-            return true;
-        } else return false;
+    public boolean postavaKouzli() {
+        for (MagickaPovolani m : MagickaPovolani.values()) {
+            if (POVOLANI.equals(m.toString())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** Pokud postava kouzlí, vrátí String s počtem magů, jinak null. */
@@ -396,6 +390,21 @@ public class Postava extends Tvor implements IPopis {
     /** Vrátí String s váhou postavy. */
     public String getVahaString() {
         return String.valueOf(getVaha());
+    }
+
+//    public int getZkusenostiDalsiUroven() {
+//        return zkusenostiDalsiUroven;
+//    }
+
+    public String urciZkusenostiNaDalsiUroven(Integer uroven, String povolani) {
+        if (uroven != null) {
+            if (uroven >= 1 && uroven <= 35) {
+                int zkusenostiNaDalsi = dataOut.getZkusenosti(povolani, uroven + 1);
+                System.out.println("Postava.getZkusenostiNaDalsiUroven: zkusenosti na další: " + zkusenostiNaDalsi);
+                return String.valueOf(zkusenostiNaDalsi);
+            }
+        }
+        return "N/A";
     }
 
 
@@ -506,26 +515,24 @@ public class Postava extends Tvor implements IPopis {
     public ArrayList<String> getBojArrayList() {
         ArrayList<String> boj = new ArrayList<>();
         // Zbraně tváří v tvář
-        if (!getZbranTVT().equals("null")) {
+        if (getZbranTVT() != null) {
             boj.add("Zbraně tváří v tvář");
             for (Odkaz o : getZbranTVT()) boj.add(o.getNazev());
             boj.add("");
         }
         // Zbraně střelné a vrhací
-        if (!getZbranSAV().equals("null")) {
+        if (getZbranSAV() != null) {
             boj.add("Zbraně střelné a vrhací");
             for (Odkaz o : getZbranSAV()) boj.add(o.getNazev());
             boj.add("");
         }
         // Zbroj a štít
-        if (!getZbranSAV().equals("null")) {
+        if (getZbranSAV() != null) {
             boj.add("Zbroj");
             for (Odkaz o : getZbroj()) boj.add(o.getNazev());
         }
       return boj;
     }
-
-
 
     /**
     * Vrací textovou reprezentaci postavy - vypíše jméno, rasu, povolání
@@ -546,6 +553,33 @@ public class Postava extends Tvor implements IPopis {
 //##############################################################################
 //== NESTED DATA TYPES =========================================================
 
+    public enum MagickaPovolani {
+        KOUZELNIK("kouzelník",TabulkaDB.KOUZLO.getTabNazev()),
+        HRANICAR("hraničář",TabulkaDB.PRIRODNI_KOUZLO.getTabNazev());
 
+
+        private final String nazev;
+        private final String tabulkaKouzla;
+
+        private MagickaPovolani(String nazev, String tabulkaKouzla) {
+            this.nazev = nazev;
+            this.tabulkaKouzla = tabulkaKouzla;
+        }
+
+        public String getNazev() {
+            return nazev;
+        }
+
+        public String getTabulkaKouzla() {
+            return tabulkaKouzla;
+        }
+
+        @Override
+        public String toString() {
+            return nazev;
+        }
+
+
+    }
 
 }

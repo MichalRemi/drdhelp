@@ -9,9 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 /*******************************************************************************
@@ -273,7 +271,6 @@ public class DataOut extends Data {
         {
             dotaz.setString(1, povolani);
             try (ResultSet vysledky = dotaz.executeQuery()) {
-                vysledky.next();
 
                 ArrayList<Odkaz> vystup = new ArrayList<>();
                 while (vysledky.next()) {
@@ -281,6 +278,9 @@ public class DataOut extends Data {
                             .getTabNazev());
                     vystup.add(odkaz);
                 }
+                System.out.println("DataOut.getZvlSchopnostiPovolani()");
+                System.out.println(vystup);
+                System.out.println("");
                 return vystup;
             }
         } catch (SQLException ex) {
@@ -297,8 +297,7 @@ public class DataOut extends Data {
      * @param rasa Název Rasy z databaze drddesk_db
      * @return String
      */
-    public Odkaz getZvlSchopnostiRasa(String rasa) {
-        ArrayList<String> zvlSchopnostiList = new ArrayList<>();
+    public Odkaz getZvlSchopnostRasa(String rasa) {
         String sql = "SELECT * FROM zvl_schopnost WHERE rasa=?";
         try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
             PreparedStatement dotaz = db.prepareStatement(sql); )
@@ -309,7 +308,7 @@ public class DataOut extends Data {
                     Odkaz zvlSchopnost = new Odkaz(vysledky.getInt("id"),
                                         vysledky.getString("nazev"),
                                         TabulkaDB.ZVL_SCHOPNOSTI.getTabNazev());
-                   return zvlSchopnost;
+                    return zvlSchopnost;
                 }
             }
         } catch (SQLException ex) {
@@ -330,8 +329,11 @@ public class DataOut extends Data {
                                                            String povolani) {
         ArrayList<Odkaz> zvlArrayList = new ArrayList<>();
         zvlArrayList.addAll(getZvlSchopnostiPovolani(povolani));
-        Odkaz zvlRasa = getZvlSchopnostiRasa(rasa);
+        Odkaz zvlRasa = getZvlSchopnostRasa(rasa);
         if (zvlRasa != null) zvlArrayList.add(zvlRasa);
+        System.out.println("DataOut.getZvlSchopnostiRasaAPovolani()");
+        System.out.println(zvlArrayList);
+        System.out.println("");
         return zvlArrayList;
     }
 
@@ -342,6 +344,9 @@ public class DataOut extends Data {
      * @return Instance třídy Postava.
      */
     public Postava getPostava(int id) {
+
+        System.out.println("DataOut.getPostava():");
+
         String sql = "SELECT * FROM postava WHERE id=?";
         try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
             PreparedStatement dotaz = db.prepareStatement(sql); )
@@ -363,17 +368,16 @@ public class DataOut extends Data {
                     vysledky.getString("nazev"),
                     vysledky.getString("rasa"),
                     vysledky.getString("povolani"),
+                    vysledky.getBoolean("kouzli"),
                     vysledky.getInt("zivoty"),
-                    vysledky.getInt("zivoty_max"),
                     vysledky.getInt("magy"),
-                    vysledky.getInt("magy_max"),
                     vysledky.getInt("uroven"),
                     vysledky.getInt("zkusenosti"),
-                    vysledky.getInt("zk_dalsi_uroven"),
                     hodnotyVlastnosti,
                     pohyblivost,
                     vysledky.getInt("vyska"),
                     vysledky.getInt("vaha"),
+
                     stringToArrayListOdkaz(vysledky.getString("zbran_tvt"),
                                            TabulkaDB.ZBRAN_TVT.getTabNazev()),
                     stringToArrayListOdkaz(vysledky.getString("zbran_sav"),
@@ -392,6 +396,8 @@ public class DataOut extends Data {
                                            TabulkaDB.PRIRODNI_KOUZLO.getTabNazev()),
                     vysledky.getString("poznamka"));
 
+                System.out.println("DataOut.getPostava(): konec not null");
+
                 return postavaPomocna;
             }
         } catch (SQLException ex) {
@@ -403,6 +409,7 @@ public class DataOut extends Data {
 //                    " postava, sloupec kouzla u položky id: " + id);
 //            ex.printStackTrace();
         }
+        System.out.println("DataOut.getPostava(): konec null");
         return null;
     }
 
@@ -476,6 +483,11 @@ public class DataOut extends Data {
      * @return Zkušenosti potřebné na další úroveň.
      */
     public int getZkusenosti(String povolani, int uroven) {
+
+        System.out.println("DataOut.getZkusenosti(): povolani:" + povolani);
+        System.out.println("DataOut.getZkusenosti(): uroven: " + uroven);
+
+
         String sql = "SELECT * FROM zkusenosti WHERE uroven=?";
         try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
             PreparedStatement dotaz = db.prepareStatement(sql); )
@@ -483,6 +495,11 @@ public class DataOut extends Data {
             dotaz.setInt(1, uroven);
             try (ResultSet vysledky = dotaz.executeQuery()) {
                 vysledky.next();
+
+//                if (povolani.equals("hraničář")) {
+//                    return vysledky.getInt("hranicar");
+//                }
+
                 switch (povolani) {
                     case "válečník": return vysledky.getInt("valecnik");
                     case "hraničář": return vysledky.getInt("hranicar");
@@ -658,30 +675,38 @@ public class DataOut extends Data {
     }
 
     /**
-     * Převede seznamId na ArrayList Odkazů.
+     * Převede seznamId na ArrayList(Odkaz).
      *
-     * @param seznamId Seznam odkazu ve tvaru {id1},{id2},{id3}, ...
+     * @param seznamId Seznam odkazu ve tvaru {id1,id2,id3,...}
      * @param tabulka Tabulka z databaze drddesk_db, které odpovídají id ze SeznamId.
      * @return
      */
     public ArrayList<Odkaz> stringToArrayListOdkaz(String seznamId, String tabulka) {
         if (seznamId != null) {
-            String[] poleStrings = seznamId.split(",");
-            int id;
-            ArrayList<Odkaz> arrayList = new ArrayList<>();
+            String[] poleString = seznamId.split(";");
 
-            if (poleStrings != null) {
-                for (String polozka : poleStrings) {
-                    id = Integer.parseInt(polozka);
-                    Odkaz odkaz = nactiOdkaz(id, tabulka);
-                    if (odkaz != null) {
-                        arrayList.add(odkaz);
-                    } else System.err.println("DataOut.stringToArrayListOdkaz(): CHYBA," +
-                            " pro id: " + id + " v tabulce: " + tabulka +
-                            " neexistuje položka v databázi drddesk_db!");
-                }
-                return arrayList;
-            }
+            System.out.println(tabulka + "poleString: " + poleString);
+
+             int id;
+             ArrayList<Odkaz> arrayList = new ArrayList<>();
+
+             if (poleString != null) {
+                 for (String polozka : poleString) {
+                     id = Integer.parseInt(polozka);
+                     Odkaz odkaz = nactiOdkaz(id, tabulka);
+                     if (odkaz != null) {
+                         arrayList.add(odkaz);
+                     } else System.err.println("DataOut.stringToArrayListOdkaz():" +
+                             " CHYBA, pro id: " + id + " v tabulce: " + tabulka +
+                             " neexistuje položka v databázi drddesk_db!");
+                 }
+
+                 System.out.println("výsledný Arraylist: " + arrayList);
+
+                 return arrayList;
+             }
+        }
+        else {
         }
         return null;
     }
@@ -727,7 +752,6 @@ public class DataOut extends Data {
 
     /** Vrátí Odkaz s příslušným řádkovým popisem */
     private Odkaz vratOdkaz(ResultSet data, String tabulka) throws SQLException {
-
         int id = data.getInt("id");
         String nazev = data.getString("nazev");
         String radkovyPopis = nazev + "   ";
@@ -777,9 +801,8 @@ public class DataOut extends Data {
         }
         // zvláštní schopnosti
         if (tabulka.equals(TabulkaDB.ZVL_SCHOPNOSTI.getTabNazev())) {
-            radkovyPopis = radkovyPopis.trim();
         }
-
+        radkovyPopis = radkovyPopis.trim();
         return new Odkaz(id, radkovyPopis, tabulka);
     }
 

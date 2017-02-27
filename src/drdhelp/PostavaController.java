@@ -5,7 +5,6 @@
  */
 package drdhelp;
 
-import drdhelp.model.Kouzlo;
 import drdhelp.model.Odkaz;
 import drdhelp.model.SeznamOdkazu;
 import drdhelp.model.io.DataOut;
@@ -149,8 +148,11 @@ public class PostavaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        // nastavení disable magů a kouzel, pro nekouzlící postavy true
-        boolean postavaKouzli = logika.postavaKouzli();
+        // načte se nová nebo upravovaná postava
+        logika.naplnFormular();
+
+        // nastavení disable magů a kouzel.
+        boolean postavaKouzli = PostavaLogika.getPostavaKouzli();
         magyVBox.setDisable(!postavaKouzli);
         kouzlaListView.setDisable(!postavaKouzli);
         kouzlaHBox.setDisable(!postavaKouzli);
@@ -238,11 +240,13 @@ public class PostavaController implements Initializable {
         Bindings.bindBidirectional(zivotyTextField.styleProperty(),
                 logika.zivotyStyleProperty());
 
-        Bindings.bindBidirectional(magyTextField.textProperty(),
-                logika.magyProperty());
+        if (postavaKouzli) {
+            Bindings.bindBidirectional(magyTextField.textProperty(),
+                    logika.magyProperty());
 
-        Bindings.bindBidirectional(magyTextField.styleProperty(),
-                logika.magyStyleProperty());
+            Bindings.bindBidirectional(magyTextField.styleProperty(),
+                    logika.magyStyleProperty());
+        }
 
         Bindings.bindBidirectional(vyskaTextField.textProperty(),
                 logika.vyskaProperty());
@@ -289,19 +293,19 @@ public class PostavaController implements Initializable {
         Bindings.bindBidirectional(velikostTextField.textProperty(),
                 logika.velikostProperty());
 
-        logika.naplnFormular();
     }
 
     /** Obsluha tlačítka Vložit - aktualizuje údaje a zavře okna Postava. */
     @FXML
     private void handleVlozit(ActionEvent event) {
-        // TODO logika.pridejPostavu();
+        logika.pridejPostavu();
         zavriScenu();
     }
 
     /** Obsluha tlačítka Odejít - zavření dialogového okna Postava. */
     @FXML
     private void handleOdejit(ActionEvent event) {
+        logika.odejitLogika();
         zavriScenu();
     }
 

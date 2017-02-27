@@ -7,7 +7,6 @@ package drdhelp;
 
 import drdhelp.model.Nestvura;
 import drdhelp.model.SeznamOdkazu;
-import drdhelp.model.TabulkaDB;
 import drdhelp.model.Tvor;
 import drdhelp.model.logika.NestvuraLogika;
 import java.net.URL;

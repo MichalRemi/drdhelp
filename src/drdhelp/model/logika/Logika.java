@@ -3,13 +3,13 @@
  */
 package drdhelp.model.logika;
 
+import drdhelp.model.Odkaz;
 import drdhelp.model.SeznamOdkazu;
 import drdhelp.model.Tvor;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 
 
 
@@ -117,6 +117,16 @@ public abstract class Logika {
         return arrayList;
     }
 
+    protected String observableListToString(ObservableList<Odkaz> list) {
+        String vyslednyText = "";
+        for (Odkaz odkaz : list) {
+            vyslednyText += odkaz.getNazev();
+        }
+        int delka = vyslednyText.length();
+        // vrátí vyslednyText bez poslední čárky
+        return vyslednyText.substring(0, delka-2);
+    }
+
      /**
      * Vyhodnotí, zda je hodnota v poli. Pokud ano, vrátí ho
      * v int. Pokud ne, vrátí 0.
@@ -127,12 +137,12 @@ public abstract class Logika {
         if (hodnota != null) {
             for (String s : Tvor.hodnotyArray) {
                 if (hodnota.equals(s)) {
-                    if (s.equals("N/A")) return null;
+                    if (s.equals("N/A")) return 0;
                     else return Integer.parseInt(s);
                 }
             }
         }
-        return null;
+        return 0;
     }
 
     /**

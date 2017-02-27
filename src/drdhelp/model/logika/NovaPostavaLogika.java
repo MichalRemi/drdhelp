@@ -5,6 +5,7 @@ package drdhelp.model.logika;
 
 import drdhelp.model.Odkaz;
 import drdhelp.model.Postava;
+import drdhelp.model.Postava.MagickaPovolani;
 import drdhelp.model.Povolani;
 import drdhelp.model.Rasa;
 import drdhelp.model.Vlastnost;
@@ -338,9 +339,14 @@ public class NovaPostavaLogika extends Logika {
         nastavVlastnosti(nahodneVlastnosti);
     }
 
-    /** Logika tlačítka poklačuj */
+    /** Logika tlačítka Poklačuj. */
     public void pokracujLogika() {
         PostavaLogika.setNovaPostava(nactiZFormulare());
+    }
+
+    /** Logika tlačítka Odejít - nastaví statickou proměnnou nová postava na null. */
+    public void odejitLogika() {
+        PostavaLogika.setNovaPostava(null);
     }
 
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================
@@ -608,6 +614,18 @@ public class NovaPostavaLogika extends Logika {
          + vahaPostavyMax + "!");
     }
 
+        /** Kouzlí postava? ano/ne - true/false. */
+    private boolean postavaKouzli(String povolani) {
+        for (MagickaPovolani m : MagickaPovolani.values()) {
+            if (povolani.equals(m.toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
     /** Nastaví vlastnosti do příslušných ObservableListů -> ComboBoxů. */
     private void nastavHodnotyVlastnosti() {
         vlastnostiVPoliMinAMax = vlastnostiVPoliMinAMax(rasa, povolani);
@@ -641,6 +659,9 @@ public class NovaPostavaLogika extends Logika {
 
     private Postava nactiZFormulare() {
 
+        String povolani = povolaniProperty.get().getNazev();
+        System.out.println("NovaPostavaLogika.nactiZFormulare(): povolani:" + povolani + ".");
+
         Integer[] hodnotyVlastnosti = {silaProperty.get(),
                                    obratnostProperty.get(),
                                    odolnostProperty.get(),
@@ -652,7 +673,8 @@ public class NovaPostavaLogika extends Logika {
 
         Postava novaPostava = new Postava(nazevProperty.get(),
                                         rasa.getNazev(),
-                                        povolani.getNazev(),
+                                        povolani,
+                                        postavaKouzli(povolani),
                                         Integer.parseInt(vyskaProperty.get()),
                                         Integer.parseInt(vahaProperty.get()),
                                         hodnotyVlastnosti,

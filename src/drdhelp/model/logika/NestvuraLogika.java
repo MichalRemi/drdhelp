@@ -146,7 +146,7 @@ public class NestvuraLogika extends Logika {
 
     DataOut dataOut = new DataOut();
 
-    DataIn setData = new DataIn();
+    DataIn dataIn = new DataIn();
 
 //##############################################################################
 //== CONSTUCTORS AND FACTORY METHODS ===========================================
@@ -363,9 +363,9 @@ public class NestvuraLogika extends Logika {
     public void pridejNestvuru() {
         Integer id = vratIdOdkazu();
         if (id != null) {
-            setData.zmenNestvura(nactiZFormulare(id));
+            dataIn.zmenNestvura(nactiZFormulare(id));
         } else {
-            setData.vlozNestvura(nactiZFormulare(0));
+            dataIn.vlozNestvura(nactiZFormulare(0));
         }
     }
 
@@ -562,8 +562,10 @@ public class NestvuraLogika extends Logika {
                                     vyhodnotAVratInt(odolnostProperty.get()),
                                     vyhodnotAVratInt(inteligenceProperty.get()),
                                     vyhodnotAVratInt(charismaProperty.get())};
+
         Vlastnost pohyblivost = new Vlastnost("Pohyblivost"
                 ,vyhodnotAVratInt(hodnotyPohyblivostObjectProperty.get()));
+
         Vlastnost vytrvalost = new Vlastnost("Vytrvalost"
                 ,vyhodnotAVratInt(hodnotyVytrvalostObjectProperty.get()));
 

@@ -112,8 +112,9 @@ public class Vlastnost {
 //== CONSTUCTORS AND FACTORY METHODS ===========================================
 
     /**
-     * Konstruktor. Hodnota vlastnosti musí být z intervalu 1 - 50 včetně
-     * nebo null, jinak bude hodnota vlastnosti a bonus null.
+     * Konstruktor. Hodnota vlastnosti musí být z intervalu 1 - 50 včetně,
+     * nebo null(null je platná hodnota), jinak bude hodnota
+     * vlastnosti a bonusu null a v konzoli vysločí varovná hláška
      * @param nazev Název vlastnosti.
      * @param hodnota
      */

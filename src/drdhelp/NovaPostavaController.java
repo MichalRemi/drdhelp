@@ -215,6 +215,7 @@ public class NovaPostavaController implements Initializable {
     /** Obsluha tlačítka Odejít - zavření dialogového okna Nová postava. */
     @FXML
     private void handleOdejit(ActionEvent event) {
+        logika.odejitLogika();
         zavriScenu();
     }
 
