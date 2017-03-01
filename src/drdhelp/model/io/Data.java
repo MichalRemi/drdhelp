@@ -3,7 +3,11 @@
  */
 package drdhelp.model.io;
 
+import drdhelp.Okno;
 import drdhelp.model.TabulkaDB;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 
 
@@ -68,6 +72,20 @@ public abstract class Data
 
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================
 
+    protected Connection vytvorSpojeniDB() {
+        try {
+            Connection db = DriverManager.getConnection(URL, USER, HESLO);
+            return db;
+        } catch (SQLException e) {
+            System.out.println("Nelze se připojit k databázi!");
+            System.out.println("chyba: " + e);
+            Okno okno = new Okno("Chybová hláška",
+                    "CHYBA!: Nepodařilo se navázat spojení s databází!\n" +
+                    "Aplikace bude ukončena.");
+            System.exit(1);
+        }
+        return null;
+    }
 
 
 //##############################################################################

@@ -1,20 +1,31 @@
 /* The file is saved in UTF-8 codepage.
  * Check: «Stereotype», Section mark-§, Copyright-©, Alpha-α, Beta-β, Smile-☺
  */
-package drdhelp.model;
+package drdhelp;
 
-import java.util.Random;
+import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.Window;
+
+
 
 
 
 /*******************************************************************************
- * Instance třídy {@code Kostka} představují hrací kostky z deskových her. Kostky
- * mají různý počet stěn.
+ * Instance třídy {@code Okno} představují ...
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-09-18
+ * @version 0.00.0000 — 2017-03-01
  */
-public class Kostka {
+public class Okno extends Stage {
 
 //== CONSTANT CLASS ATTRIBUTES =================================================
 //== VARIABLE CLASS ATTRIBUTES =================================================
@@ -31,11 +42,6 @@ public class Kostka {
 
 //##############################################################################
 //== CONSTANT INSTANCE ATTRIBUTES ==============================================
-
-    private final Random random;
-
-    private final int POCET_STEN;
-
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
 
 
@@ -43,51 +49,51 @@ public class Kostka {
 //##############################################################################
 //== CONSTUCTORS AND FACTORY METHODS ===========================================
 
-    /**
-     * Konstruktor pro kostku s libovolným počtem stěn
+    /***************************************************************************
      *
-     * @param PocetSten
      */
-    public Kostka(int PocetSten) {
-        this.POCET_STEN = PocetSten;
-        random = new Random();
+    public Okno(String nadpisOkna, String text) {
+        setTitle(nadpisOkna);
+        setWidth(450);
+        setHeight(200);
+
+//        initStyle(StageStyle.UTILITY);
+//        initModality(Modality.WINDOW_MODAL);
+//        initOwner(okno);
+        setScene(novaScena(text));
+        showAndWait();
     }
 
 
 
 //== ABSTRACT METHODS ==========================================================
 //== INSTANCE GETTERS AND SETTERS ==============================================
-
-    /**
-    * Vrátí počet stěn hrací kostky
-    * @return počet stěn hrací kostky
-    */
-    public int getPocetSten() {
-        return POCET_STEN;
-    }
-
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
-
-    /**
-    * Vykoná hod kostkou
-    * @return Číslo od 1 do počtu stěn
-    */
-    public int hod() {
-        return random.nextInt(POCET_STEN) + 1;
-    }
-
-    /**
-    * Vrací textovou reprezentaci kostky - vypíše kolik má stěn
-    * @return Textová reprezentace kostky
-    */
-    @Override
-    public String toString() {
-        return String.format("Kostka s/se %s stěnami", POCET_STEN);
-    }
-
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================
 
+    private Scene novaScena(String text) {
 
+        VBox box = new VBox();
+        box.setAlignment(Pos.CENTER);
+        box.setSpacing(20);
+
+        // Label
+        Label textLabel = new Label(text);
+        textLabel.setTextAlignment(TextAlignment.CENTER);
+
+        // Tlačítko
+        Button tlacitko = new Button("OK");
+        tlacitko.setMinWidth(50);
+        tlacitko.setMinHeight(30);
+        tlacitko.setOnAction((ActionEvent e) -> {
+            Stage stage = (Stage) tlacitko.getScene().getWindow();
+            stage.close();
+        });
+
+        box.getChildren().addAll(textLabel, tlacitko);
+
+        return new Scene(box);
+    }
 
 //##############################################################################
 //== NESTED DATA TYPES =========================================================

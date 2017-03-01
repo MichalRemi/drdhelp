@@ -677,6 +677,7 @@ public class PostavaLogika extends Logika {
         ArrayList<Odkaz> kouzla = new ArrayList<>();
         ArrayList<Odkaz> prirodniKouzla = new ArrayList<>();
         if (postavaKouzli) {
+            magy = Integer.parseInt(magyProperty.get());
             // načtení kouzelnických kouzel z formuláře
             if (povolani.equals(Postava.MagickaPovolani.KOUZELNIK.getNazev())) {
                 kouzla.addAll(kouzlaObservableList);
@@ -697,6 +698,8 @@ public class PostavaLogika extends Logika {
         Vlastnost pohyblivost = new Vlastnost("Pohyblivost"
                 ,vyhodnotAVratInt(pohyblivostProperty.get()));
 
+        int intMagy;
+
         Postava postava = new Postava(
                 id,
                 nazevProperty.get(),
@@ -704,7 +707,7 @@ public class PostavaLogika extends Logika {
                 povolaniProperty.get(),
                 postavaKouzli,
                 Integer.parseInt(zivotyProperty.get()),
-                Integer.parseInt(magyProperty.get()),
+                magy,
                 urovenProperty.get(),
                 Integer.parseInt(zkusenostiProperty.get()),
                 hodnotyVlastnosti,

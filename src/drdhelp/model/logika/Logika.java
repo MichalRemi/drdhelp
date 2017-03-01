@@ -137,12 +137,12 @@ public abstract class Logika {
         if (hodnota != null) {
             for (String s : Tvor.hodnotyArray) {
                 if (hodnota.equals(s)) {
-                    if (s.equals("N/A")) return 0;
+                    if (s.equals("N/A")) return null;
                     else return Integer.parseInt(s);
                 }
             }
         }
-        return 0;
+        return null;
     }
 
     /**

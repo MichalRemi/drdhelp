@@ -68,7 +68,7 @@ public class DataOut extends Data {
     public ArrayList<Odkaz> nactiOdkazy(String tabulka) {
         if (isTabOk(tabulka)) {
             String sql = "SELECT * FROM " + tabulka;
-            try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+            try (Connection db = vytvorSpojeniDB();
                 PreparedStatement dotaz = db.prepareStatement(sql);
                 ResultSet data = dotaz.executeQuery();)
             {
@@ -102,7 +102,7 @@ public class DataOut extends Data {
         if (tabulka.equals(TabulkaDB.KOUZLO.getTabNazev())
                 || tabulka.equals(TabulkaDB.PRIRODNI_KOUZLO.getTabNazev())) {
             String sql = "SELECT * FROM " + tabulka;
-            try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+            try (Connection db = vytvorSpojeniDB();
                 PreparedStatement dotaz = db.prepareStatement(sql);
                 ResultSet data = dotaz.executeQuery();)
             {
@@ -136,7 +136,7 @@ public class DataOut extends Data {
      */
     public ArrayList<String> getNazevAIdPostav() {
         String sql = "SELECT * FROM postava";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql);
             ResultSet data = dotaz.executeQuery(); )
         {
@@ -164,7 +164,7 @@ public class DataOut extends Data {
      */
     public Rasa getRasa(int id) {
         String sql = "SELECT * FROM rasa WHERE id=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setInt(1, id);
@@ -223,7 +223,7 @@ public class DataOut extends Data {
      */
     public Povolani getPovolani(int id) {
         String sql = "SELECT * FROM povolani WHERE id=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setInt(1, id);
@@ -266,7 +266,7 @@ public class DataOut extends Data {
     public ArrayList<Odkaz> getZvlSchopnostiPovolani(String povolani) {
         ArrayList<Odkaz> zvlSchopnostiList = new ArrayList<>();
         String sql = "SELECT * FROM zvl_schopnost WHERE povolani=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, povolani);
@@ -299,7 +299,7 @@ public class DataOut extends Data {
      */
     public Odkaz getZvlSchopnostRasa(String rasa) {
         String sql = "SELECT * FROM zvl_schopnost WHERE rasa=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, rasa);
@@ -331,9 +331,6 @@ public class DataOut extends Data {
         zvlArrayList.addAll(getZvlSchopnostiPovolani(povolani));
         Odkaz zvlRasa = getZvlSchopnostRasa(rasa);
         if (zvlRasa != null) zvlArrayList.add(zvlRasa);
-        System.out.println("DataOut.getZvlSchopnostiRasaAPovolani()");
-        System.out.println(zvlArrayList);
-        System.out.println("");
         return zvlArrayList;
     }
 
@@ -348,7 +345,7 @@ public class DataOut extends Data {
         System.out.println("DataOut.getPostava():");
 
         String sql = "SELECT * FROM postava WHERE id=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setInt(1, id);
@@ -396,8 +393,6 @@ public class DataOut extends Data {
                                            TabulkaDB.PRIRODNI_KOUZLO.getTabNazev()),
                     vysledky.getString("poznamka"));
 
-                System.out.println("DataOut.getPostava(): konec not null");
-
                 return postavaPomocna;
             }
         } catch (SQLException ex) {
@@ -422,7 +417,7 @@ public class DataOut extends Data {
      */
     public Nestvura getNestvura(int id) {
         String sql = "SELECT * FROM nestvura WHERE id=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setInt(1, id);
@@ -489,7 +484,7 @@ public class DataOut extends Data {
 
 
         String sql = "SELECT * FROM zkusenosti WHERE uroven=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setInt(1, uroven);
@@ -524,7 +519,7 @@ public class DataOut extends Data {
      */
     public ZbranTVT getZbranTVT(int id) {
         String sql = "SELECT * FROM zbran_tvt WHERE id=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setInt(1, id);
@@ -560,7 +555,7 @@ public class DataOut extends Data {
      */
     public ZbranSAV getZbranSAV(int id) {
         String sql = "SELECT * FROM zbran_sav WHERE id=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setInt(1, id);
@@ -597,7 +592,7 @@ public class DataOut extends Data {
      */
     public Vybava getVybava(int id) {
         String sql = "SELECT * FROM vybava WHERE id=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setInt(1, id);
@@ -648,7 +643,7 @@ public class DataOut extends Data {
      */
     public Zbroj getZbroj(int id) {
         String sql = "SELECT * FROM zbroj WHERE id=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setInt(1, id);
@@ -722,7 +717,7 @@ public class DataOut extends Data {
     public Odkaz nactiOdkaz(int id, String tabulka) {
         if (isTabOk(tabulka)) {
             String sql = "SELECT * FROM " + tabulka + " WHERE id=?";
-            try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+            try (Connection db = vytvorSpojeniDB();
                 PreparedStatement dotaz = db.prepareStatement(sql); )
             {
                 dotaz.setInt(1, id);
@@ -816,7 +811,7 @@ public class DataOut extends Data {
         if (tabulka.equals(TabulkaDB.KOUZLO.getTabNazev())
                 || tabulka.equals(TabulkaDB.PRIRODNI_KOUZLO.getTabNazev())) {
             String sql = "SELECT * FROM " + tabulka + " WHERE id=?";
-            try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+            try (Connection db = vytvorSpojeniDB();
                 PreparedStatement dotaz = db.prepareStatement(sql); )
             {
                 dotaz.setInt(1, id);

@@ -76,7 +76,7 @@ public class DataIn extends Data {
                 " rodova_zbran, zbran_tvt, zbran_sav, zbroj, vybaveni) VALUES " +
                 "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?," +
                 " ?, ?, ?, ?, ?, ?)";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, postava.getNazev());
@@ -130,7 +130,7 @@ public class DataIn extends Data {
                 " manevr_schopnost, zakl_sila_mysli, ochoceni, presvedceni," +
                 " poklady, zkusenost, poznamka) VALUES (?, ?, ?, ?, ?, ?, ?," +
                 " ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, nestvura.getNazev());
@@ -183,7 +183,7 @@ public class DataIn extends Data {
         String sql = "INSERT INTO zbran_tvt (nazev, druh, drzeni, sila," +
             " utocnost, obrana, delka, vaha, zlataky, stribrnaky, medaky," +
                     " poznamka) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try ( Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try ( Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, zbranTvT.getNazev());
@@ -219,7 +219,7 @@ public class DataIn extends Data {
                 " dostrel, vaha, cena, poznamka)" +
                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, zbranSaV.getNazev());
@@ -251,7 +251,7 @@ public class DataIn extends Data {
     public boolean vlozVybava(Vybava vybava) {
         String sql = "INSERT INTO vybava (nazev, druh, vaha, cena," +
                     " poznamka) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, vybava.getNazev());
@@ -275,7 +275,7 @@ public class DataIn extends Data {
         String sql = "INSERT INTO zbroj (nazev, druh, kvalita, vaha_a," +
                     " vaha_b, vaha_c, cena_a, cena_b, cena_c, poznamka)" +
                     " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try ( Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try ( Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, zbroj.getNazev());
@@ -314,7 +314,7 @@ public class DataIn extends Data {
                 " pohyblivost=?, zvlastni_schopnosti=?, kouzla=?, prirodni_kouzla=?," +
                 " poznamka=?, vyska=?, vaha=?, velikost=?, rodova_zbran=?," +
                 " zbran_tvt=?, zbran_sav=?, zbroj=?, vybaveni=? WHERE id=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, postava.getNazev());
@@ -372,7 +372,7 @@ public class DataIn extends Data {
                     " skupiny_pohyblivost=?, vytrvalost=?, skupiny_vytrvalost=?," +
                     " manevr_schopnost=?, zakl_sila_mysli=?, ochoceni=?," +
                     " presvedceni=?, poklady=?, zkusenost=?, poznamka=? WHERE id=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, nestvura.getNazev());
@@ -428,7 +428,7 @@ public class DataIn extends Data {
         String sql = "UPDATE zbran_tvt SET nazev=?, druh=?, drzeni=?," +
                      " sila=?, utocnost=?, obrana=?, delka=?, vaha=?, " +
                      "zlataky=?, stribrnaky=?, medaky=?, poznamka=? WHERE id=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, zbranTVT.getNazev());
@@ -463,7 +463,7 @@ public class DataIn extends Data {
     public boolean zmenVybava(Vybava vybava) {
         String sql = "UPDATE vybava SET nazev=?, druh=?, vaha=?, zlataky=?," +
                             " stribrnaky=?, medaky=?, poznamka=? WHERE id=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, vybava.getNazev());
@@ -492,7 +492,7 @@ public class DataIn extends Data {
         String sql = "UPDATE zbroj SET nazev=?, druh=?, kvalita=?, vaha_a=?," +
                             " vaha_b=?, vaha_c=?, cena_a=?, cena_b=?, cena_c=?," +
                             " poznamka=? WHERE id=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, zbroj.getNazev());
@@ -526,7 +526,7 @@ public class DataIn extends Data {
         String sql = "UPDATE zbran_sav SET nazev=?, druh=?, typ=?, sila=?," +
                     " utocnost=?, maly_dostrel=?, stredni_dostrel=?, velky_dostrel=?," +
                     " vaha=?, zlataky=?, stribrnaky=?, medaky=?, poznamka=? WHERE id=?";
-        try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+        try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, zbranSAV.getNazev());
@@ -566,7 +566,7 @@ public class DataIn extends Data {
         String tabulka = odkaz.getTabulka();
         if (isTabOk(tabulka)) {
             String sql = "DELETE FROM " + tabulka + " WHERE id=?";
-            try (Connection db = DriverManager.getConnection(URL, USER, HESLO);
+            try (Connection db = vytvorSpojeniDB();
                 PreparedStatement dotaz = db.prepareStatement(sql); )
             {
                 dotaz.setInt(1, odkaz.getId());
@@ -598,7 +598,7 @@ public class DataIn extends Data {
         System.out.println("DataIn.vlozIntNeboNull:");
         System.out.println("hodnota: " + hodnota);
 
-        if (hodnota != null || hodnota != 0) dotaz.setInt(index, hodnota);
+        if (hodnota != null) dotaz.setInt(index, hodnota);
         else dotaz.setNull(index, Types.INTEGER);
 
         System.out.println("DataIn.vlozIntNeboNull: konec");
