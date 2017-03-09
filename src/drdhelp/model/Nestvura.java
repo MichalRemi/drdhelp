@@ -155,43 +155,6 @@ public class Nestvura extends Tvor implements IPopis{
 
 //== ABSTRACT METHODS ==========================================================
 
-    @Override
-    public String getPodrobnyPopis() {
-        String popis =    "Název:   " + super.getNazev() + "\n"
-                        + "Životaschopnost:   " + getZivotaschopnostString()
-                        + getVypis(" + ", getKonstantaZvt()) + "\n"
-                        + "Útok:   " + getUtok() + "\n"
-                        + "Obrana:   " + getObranaString()+ "\n";
-
-        // výpis Síla, Obratnost, Odolnost/ Inteligence, Charisma
-        ArrayList<String> vlastnosti = getVlastnosti().getVlastnostiArrayList();
-        if (vlastnosti != null) {
-            popis += arrayListdoRadku(vlastnosti);
-        }
-
-        String zranitelnost = "";
-        if (getVypis(getZranitelnost()).equals("")) {
-            zranitelnost = getVypis(getSkupinaZranitelnost());
-        } else zranitelnost = getVypis(getZranitelnost());
-
-        popis +=  getVypis("Velikost:   ", super.getVelikost(), "\n" )
-                + getVypis("Bojovnost:   ", getBojovnost(), "\n")
-                + "Zranitelnost:   " + zranitelnost + "\n"
-                + getVypis("Pohyblivost:   ", getPohyblivost().getHodnota(), "/")
-                + getVypis(getSkupinaPohyblivost(), "\n")
-                + getVypis("Vytrvalost:   ", getVytrvalost().getHodnota(), "/")
-                + getVypis(getSkupinaVytrvalost(), "\n")
-                + getVypis("Manévrovací schopnost:   ", getManevrSchopnost(), "\n")
-                + getVypis("Základní síla mysli:   ", getZaklSilaMysli(), "\n")
-                + getVypis("Přesvědčení:   ", getPresvedceni(), "\n")
-                + getVypis("Poklady:   ", getPoklady(), "\n")
-                + getVypis("Zkušenost:   ", getZkusenost(), "\n")
-                + getVypis("Ochočení:   ", getOchoceni())
-                + getVypis("\nPoznámka:\n", getPoznamka());
-
-        return popis;
-    }
-
 
 //== INSTANCE GETTERS AND SETTERS ==============================================
 
@@ -293,6 +256,43 @@ public class Nestvura extends Tvor implements IPopis{
     }
 
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
+
+    @Override
+    public String getPodrobnyPopis() {
+        String popis =    "Název:   " + super.getNazev() + "\n"
+                        + "Životaschopnost:   " + getZivotaschopnostString()
+                        + getVypis(" + ", getKonstantaZvt()) + "\n"
+                        + "Útok:   " + getUtok() + "\n"
+                        + "Obrana:   " + getObranaString()+ "\n";
+
+        // výpis Síla, Obratnost, Odolnost/ Inteligence, Charisma
+        ArrayList<String> vlastnosti = getVlastnosti().getVlastnostiArrayList();
+        if (vlastnosti != null) {
+            popis += arrayListdoRadku(vlastnosti);
+        }
+
+        String zranitelnost = "";
+        if (getVypis(getZranitelnost()).equals("")) {
+            zranitelnost = getVypis(getSkupinaZranitelnost());
+        } else zranitelnost = getVypis(getZranitelnost());
+
+        popis +=  getVypis("Velikost:   ", super.getVelikost(), "\n" )
+                + getVypis("Bojovnost:   ", getBojovnost(), "\n")
+                + "Zranitelnost:   " + zranitelnost + "\n"
+                + getVypis("Pohyblivost:   ", getPohyblivost().getHodnota(), "/")
+                + getVypis(getSkupinaPohyblivost(), "\n")
+                + getVypis("Vytrvalost:   ", getVytrvalost().getHodnota(), "/")
+                + getVypis(getSkupinaVytrvalost(), "\n")
+                + getVypis("Manévrovací schopnost:   ", getManevrSchopnost(), "\n")
+                + getVypis("Základní síla mysli:   ", getZaklSilaMysli(), "\n")
+                + getVypis("Přesvědčení:   ", getPresvedceni(), "\n")
+                + getVypis("Poklady:   ", getPoklady(), "\n")
+                + getVypis("Zkušenost:   ", getZkusenost(), "\n")
+                + getVypis("Ochočení:   ", getOchoceni())
+                + getVypis("\nPoznámka:\n", getPoznamka());
+
+        return popis;
+    }
 
     /**
      * Vrátí obranu nestvůry. U humanoidů bonus za obratnost + text "kvalita zbroje"
@@ -498,14 +498,14 @@ public class Nestvura extends Tvor implements IPopis{
 
     public enum Pohyblivost {
         HUMANOID("humanoid"),
-        ZVER("zvíře"),
-        SELMY("šelma"),
-        DRACI("drak"),
-        PLAZY("plaz"),
+        ZVIRE("zvíře"),
+        SELMA("šelma"),
+        DRAK("drak"),
+        PLAZ("plaz"),
         HMYZ("hmyz"),
-        VODNI_TVOROVE("vodní tvor"),
-        OKRIDLENCI("okřídlenec"),
-        MAGICTI_TVOROVE("magický tvor");
+        VODNI_TVOR("vodní tvor"),
+        OKRIDLENEC("okřídlenec"),
+        MAGICTI_TVOR("magický tvor");
 
 
         private final String nazev;
@@ -520,69 +520,4 @@ public class Nestvura extends Tvor implements IPopis{
         }
     }
 
-
 }
-
-/**
- * pohyblivost:
- * humanoid
- * zvěř
- * šelmy
- * draci
- * plazi
- * hmyz
- * vodní tvorové
- * okřídlenci
- * magičtí tvorové
- *
- * zranitelnost:
- * zvíře
- * humanoid
- * drak
- * lykantrop
- * nemrtní
- * neviděný
- *
- * "A" - "P"
- *
- * "+" "0" "½" "¼"
- */
-
-/**
- *1  int id,
- *2  String nazev,
- *3  int zivotaschopnost,
- *4  String utok,
- *5  int obrana,
- *6  int[] vlastnosti,
- *7  String velikost,
- *8  int bojovnost,
- *9  String zranitelnost,
- *10 String skupinyZranitelnost,
- *11 Vlastnost pohyblivost,
- *12 String skupinyPohyblivost,
- *13 Vlastnost vytrvalost,
- *14 String skupinyVytrvalost,
- *15 int manevrovaciSchopnost,
- *16 int zakladniSilaMysli,
- *17 String presvedceni,
- *18 String poklady,
- *19 int zkusenost,
- *20 int ochoceni,
- *21 String poznamka
- */
-
-
-//    /**
-//     * Vyhodnotí String a převede na int. Pro "N/A", null nebo hodnoty
-//     * neodpovídající obsahu String[] pole vrátí 0.
-//     */
-//    private int prevedHodnotuNaInt(String hodnota, String[] pole) {
-//        for (String s : pole) {
-//            if (hodnota.equals(s)) {
-//                if (s.equals("N/A")) return 0;
-//                else return Integer.parseInt(s);
-//            }
-//        }
-//        return 0;
-//    }

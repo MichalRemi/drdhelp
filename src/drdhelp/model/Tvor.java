@@ -144,8 +144,8 @@ public abstract class Tvor {
 
 
     /**
-     * Převede ArrayList na String (výpis do řádků), jednotlivé položky
-     * ArrayListu jsou odřádkované "\n"
+     * Převede ArrayList(String) na String (výpis do řádků), jednotlivé položky
+     * ArrayListu jsou odřádkované "\n".
      */
     public String arrayListdoRadku(ArrayList<String> list) {
         String vypis = new String();
@@ -155,19 +155,31 @@ public abstract class Tvor {
         return vypis;
     }
 
-    /** Převede String na arrayList, oddělovač je ",". */
+    /**
+     * Převede ArrayList(Odkaz) na String (výpis názvů odkazů do řádků),
+     * jednotlivé položky ArrayListu jsou odřádkované "\n".
+     */
+    public String arrayListNazvydoRadku(ArrayList<Odkaz> list) {
+        String vypis = new String();
+        for (Odkaz o : list) {
+            vypis += o + "\n";
+        }
+        return vypis;
+    }
+
+    /** Převede String na arrayList(String), oddělovač je ",". */
     public ArrayList<String> stringToArrayList(String text) {
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.addAll(Arrays.asList(text.split(",")));
         return arrayList;
     }
 
-    /** Převede arrayList na String, oddělovač je ",".*/
-    public String arrayListToString(ArrayList<String> arrayList) {
-        String list = null;
-        for (String s : arrayList) list += s + ",";
-        return list;
-    }
+//    /** Převede arrayList na String, oddělovač je ",". */
+//    public String arrayListtToString(ArrayList<String> arrayList) {
+//        String list = null;
+//        for (String s : arrayList) list += s + ",";
+//        return list;
+//    }
 
 
     /**

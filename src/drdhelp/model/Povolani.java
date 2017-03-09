@@ -117,31 +117,4 @@ public class Povolani
 //##############################################################################
 //== NESTED DATA TYPES =========================================================
 
-//    public enum PrirodniKouzla {
-//
-//        MLUV_SE_ZVIRATY(""),
-//        NAJDI_STOPY(""),
-//        NAJDI_ZVIRE(""),
-//        (""),
-//        MAGICKY_STIT(""),
-//        MAGUV_VELKY_MIX(""),
-//        MELENINA_KRASA(""),
-//
-//
-//        private final String nazev;
-//        private final String magy;
-//
-//        KouzlaHermeticka(String nazev, String magy) {
-//            this.nazev = nazev;
-//            this.magy = magy;
-//        }
-//
-//        @Override
-//        public String toString() {
-//            return nazev;
-//        }
-//    }
-
-
-
 }

@@ -20,7 +20,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import static java.util.Collections.*;
 
 
 
@@ -387,8 +386,7 @@ public class PostavaLogika extends Logika {
             povolaniProperty.set(postava.getPovolani());
             urovenProperty.set(postava.getUroven());
             zkusenostiProperty.set(postava.getZkusenostiString());
-            zkusenostiNaDalsiUrovenProperty.set(postava.urciZkusenostiNaDalsiUroven(
-                                                            uroven, povolani));
+            zkusenostiNaDalsiUrovenProperty.set(postava.urciZkusenostiNaDalsiUroven());
             zivotyProperty.set(postava.getZivotyString());
             magyProperty.set(postava.getMagyString());
             vyskaProperty.set(postava.getVyskaString());

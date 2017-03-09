@@ -103,11 +103,13 @@ public class SeznamOdkazu {
             puvodniOdkazy = dataOut.nactiOdkazy(getTabName(nazevTlacitka));
             serad(puvodniOdkazy);
             odkazy.clear();
-            if (!odkazy.addAll(puvodniOdkazy))
-                System.err.println("SeznamOdkazu.nactiOdkazy: Nezdařilo se přidání" +
-                                                                "ArrayList<Odkaz>");
+            if (!odkazy.addAll(puvodniOdkazy)) {
+                System.err.println("SeznamOdkazu.nactiOdkazy(): Nezdařilo se přidání" +
+                                                                "ArrayList<Odkaz>:");
+                System.err.println(puvodniOdkazy);
+            }
         } else {
-            System.err.println("SeznamOdkazu.nactiOdkazy: Parametr nazevTlacitka je null");
+            System.err.println("SeznamOdkazu.nactiOdkazy(): Parametr nazevTlacitka je null");
         }
     }
 

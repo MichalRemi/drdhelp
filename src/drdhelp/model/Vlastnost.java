@@ -18,11 +18,11 @@ public class Vlastnost {
 //== CONSTANT CLASS ATTRIBUTES =================================================
 
     /**
-     * Uchovává bonusy od -5 do +19 pro vlastnosti od 1 až 50. Hodnota vlastnosti
+     * Uchovává bonusy od -5 do +19 pro vlastnosti od 0 až 50. Hodnota vlastnosti
      * je zároveň index pole příslušného bonusu.
      */
-    private static final int[] BONUSY = {-100, -5, -4, -4, -3, -3, -2, -2, -1, -1,
-    //                             indexy:  0   1   2   3   4   5   6   7   8   9
+    private static final int[] BONUSY = {-6, -5, -4, -4, -3, -3, -2, -2, -1, -1,
+    //                          indexy:   0   1   2   3   4   5   6   7   8   9
             0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10,
         // 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30  31  32
            11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19};
@@ -42,7 +42,7 @@ public class Vlastnost {
      * @param vlastnost hodnota 1 - 50, nebo null.
      */
     public static String getBonus(Integer vlastnost) {
-        if (vlastnost != null && vlastnost >= 1 && vlastnost <= 50) {
+        if (vlastnost != null && vlastnost >= 0 && vlastnost <= 50) {
             int bonus = BONUSY[vlastnost];
             if (bonus == 0) return "+0";
             else return String.format("%+d",bonus);
@@ -66,21 +66,21 @@ public class Vlastnost {
         return pomocna + konstanta;
     }
 
-    /**
-     * Vytvoří vzestupné pole hodnot od minima po maximum.
-     * @param minimum Dolní mez intervalu včetně.
-     * @param maximum Horní mez intervalu včetně.
-     * @param krok Krok mezi sousedícími hodnotami.
-     * @return pole Integer
-     */
-    public static Integer[] hodnotyPodleMezi(int minimum, int maximum, int krok) {
-        int konstanta = ((maximum - minimum) / krok);
-        Integer[] pomocne = new Integer[konstanta + 1];
-        for (int i = 0; i <= konstanta; i++) {
-            pomocne[i] = minimum + i * krok;
-        }
-        return pomocne;
-    }
+//    /**
+//     * Vytvoří vzestupné pole hodnot od minima po maximum.
+//     * @param minimum Dolní mez intervalu včetně.
+//     * @param maximum Horní mez intervalu včetně.
+//     * @param krok Krok mezi sousedícími hodnotami.
+//     * @return pole Integer
+//     */
+//    public static Integer[] hodnotyPodleMezi(int minimum, int maximum, int krok) {
+//        int konstanta = ((maximum - minimum) / krok);
+//        Integer[] pomocne = new Integer[konstanta + 1];
+//        for (int i = 0; i <= konstanta; i++) {
+//            pomocne[i] = minimum + i * krok;
+//        }
+//        return pomocne;
+//    }
 
 
 //== PRIVATE AND AUXILIARY CLASS METHODS =======================================
@@ -112,16 +112,17 @@ public class Vlastnost {
 //== CONSTUCTORS AND FACTORY METHODS ===========================================
 
     /**
-     * Konstruktor. Hodnota vlastnosti musí být z intervalu 1 - 50 včetně,
+     * Konstruktor. Hodnota vlastnosti musí být z intervalu 0 - 50 včetně,
      * nebo null(null je platná hodnota), jinak bude hodnota
-     * vlastnosti a bonusu null a v konzoli vysločí varovná hláška
+     * vlastnosti a bonusu null a v konzoli vyskočí varovná hláška
      * @param nazev Název vlastnosti.
      * @param hodnota
      */
     public Vlastnost(String nazev, Integer hodnota) {
         this.NAZEV = nazev;
+        // if (hodnota == 0) hodnota = null;
         if (hodnota != null) {
-            if ((hodnota >= 1) && (hodnota <= 50)) {
+            if ((hodnota >= 0) && (hodnota <= 50)) {
                 this.bonus = BONUSY[hodnota];
                 this.hodnota = hodnota;
             }
@@ -129,7 +130,9 @@ public class Vlastnost {
                 this.hodnota = hodnota;
                 this.bonus = null;
                 System.err.println("Chybný parametr hodnota v konstruktoru" +
-                    " Vlastnost(), hodnota musí být z intervalu <1-50> nebo null");
+                    " Vlastnost(), hodnota musí být z intervalu <0-50> nebo null");
+                System.err.println("Vlastnost je: " + nazev);
+                System.err.println("Nyní je hodnota: " + hodnota);
             }
         } else {
         this.hodnota = null;

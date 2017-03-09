@@ -117,19 +117,19 @@ public abstract class Logika {
         return arrayList;
     }
 
-    protected String observableListToString(ObservableList<Odkaz> list) {
-        String vyslednyText = "";
-        for (Odkaz odkaz : list) {
-            vyslednyText += odkaz.getNazev();
-        }
-        int delka = vyslednyText.length();
-        // vrátí vyslednyText bez poslední čárky
-        return vyslednyText.substring(0, delka-2);
-    }
+//    protected String observablekListToString(ObservableList<Odkaz> list) {
+//        String vyslednyText = "";
+//        for (Odkaz odkaz : list) {
+//            vyslednyText += odkaz.getNazev();
+//        }
+//        int delka = vyslednyText.length();
+//        // vrátí vyslednyText bez poslední čárky
+//        return vyslednyText.substring(0, delka-2);
+//    }
 
      /**
-     * Vyhodnotí, zda je hodnota v poli. Pokud ano, vrátí ho
-     * v int. Pokud ne, vrátí 0.
+     * Vyhodnotí, zda je hodnota v poli Tvor.hodnotyArray. Pokud ano, vrátí ho
+     * v int. Pokud ne, vrátí null.
      * @param hodnota libovolný String
      * @return String
      */

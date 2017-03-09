@@ -326,15 +326,19 @@ public class Postava extends Tvor implements IPopis {
         popis += "\n";
 
         // přidá zbraně, zbroj a štít
-        popis += arrayListdoRadku(getBojArrayList());
-        popis += "\n";
+        String vyzbroj = arrayListdoRadku(getBojArrayList());
+        if (vyzbroj != null) {
+            popis += vyzbroj;
+        }
 
         // přidá vlastnosti, pohyblivost a nosnost
         popis += arrayListdoRadku(getAtributyArrayList());
 
-//        // přidá zvláštní schopnosti
-//        popis += "\nZvláštní schopnosti:\n"
-//                + arrayListdoRadku(zvlastniSchopnosti);
+        // přidá zvláštní schopnosti
+        if (zvlastniSchopnosti != null) {
+            popis += "Zvláštní schopnosti:\n"
+                    + arrayListNazvydoRadku(zvlastniSchopnosti);
+        }
 
         popis += nactiPoznamku();
 
@@ -392,11 +396,9 @@ public class Postava extends Tvor implements IPopis {
         return String.valueOf(getVaha());
     }
 
-//    public int getZkusenostiDalsiUroven() {
-//        return zkusenostiDalsiUroven;
-//    }
-
-    public String urciZkusenostiNaDalsiUroven(Integer uroven, String povolani) {
+    public String urciZkusenostiNaDalsiUroven() {
+        Integer uroven = this.uroven;
+        String povolani = this.POVOLANI;
         if (uroven != null) {
             if (uroven >= 1 && uroven <= 35) {
                 int zkusenostiNaDalsi = dataOut.getZkusenosti(povolani, uroven + 1);
@@ -406,7 +408,6 @@ public class Postava extends Tvor implements IPopis {
         }
         return "N/A";
     }
-
 
     /**
      * Vrátí ArrayList pro Naložení žádné, mírné, střední a velké.
@@ -502,6 +503,7 @@ public class Postava extends Tvor implements IPopis {
         if (getVlastnosti().getObratnost() != null) {
             atributy.add("Postřeh hledání");
             atributy.addAll(getPostrehArrayList());
+            atributy.add("");
         }
         return atributy;
     }
@@ -530,6 +532,7 @@ public class Postava extends Tvor implements IPopis {
         if (getZbranSAV() != null) {
             boj.add("Zbroj");
             for (Odkaz o : getZbroj()) boj.add(o.getNazev());
+            boj.add("");
         }
       return boj;
     }
