@@ -32,6 +32,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 
 
@@ -144,6 +145,10 @@ public class MainController implements Initializable {
                                             .selectedItemProperty().isNull());
         smazatButton.disableProperty().bind(seznamListView.getSelectionModel()
                                             .selectedItemProperty().isNull());
+    }
+
+    public Window getWindow() {
+        return konecButton.getScene().getWindow();
     }
 
     /** Obsluha hledejTextField */

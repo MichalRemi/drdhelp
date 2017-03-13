@@ -12,26 +12,19 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/J:/DrDhelp/test/drdhelp/model/logika/LogikaTest.java</file>
-<<<<<<< HEAD
-            <file>file:/J:/DrDhelp/src/drdhelp/model/io/DataIn.java</file>
-            <file>file:/J:/DrDhelp/src/drdhelp/VybavaController.java</file>
-            <file>file:/J:/DrDhelp/src/drdhelp/ZbranSAVController.java</file>
-            <file>file:/J:/DrDhelp/src/drdhelp/model/io/Data.java</file>
-            <file>file:/J:/DrDhelp/src/drdhelp/MainController.java</file>
-            <file>file:/J:/DrDhelp/src/drdhelp/ZbrojController.java</file>
-            <file>file:/J:/DrDhelp/src/drdhelp/model/logika/MainLogika.java</file>
-            <file>file:/J:/DrDhelp/src/drdhelp/model/Nestvura.java</file>
-            <file>file:/J:/DrDhelp/src/drdhelp/ZbranTVTController.java</file>
-=======
-            <file>file:/J:/DrDhelp/src/drdhelp/MainController.java</file>
-            <file>file:/J:/DrDhelp/src/drdhelp/model/Vlastnosti.java</file>
-            <file>file:/J:/DrDhelp/src/drdhelp/model/logika/MainLogika.java</file>
-            <file>file:/J:/DrDhelp/src/drdhelp/model/Nestvura.java</file>
-            <file>file:/J:/DrDhelp/src/drdhelp/model/logika/Logika.java</file>
-            <file>file:/J:/DrDhelp/src/drdhelp/model/logika/NovaPostavaLogika.java</file>
-            <file>file:/J:/DrDhelp/src/drdhelp/model/logika/NestvuraLogika.java</file>
->>>>>>> origin/master
+            <file>file:/C:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/Okno.java</file>
+            <file>file:/C:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/model/io/Data.java</file>
+            <file>file:/C:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/model/io/DataIn.java</file>
+            <file>file:/C:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/model/logika/Logika.java</file>
+            <file>file:/C:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/DrDhelp.java</file>
+            <file>file:/C:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/MainController.java</file>
+            <file>file:/C:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/model/logika/PostavaLogika.java</file>
+            <file>file:/C:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/ZbranSAVController.java</file>
+            <file>file:/C:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/model/SeznamOdkazu.java</file>
+            <file>file:/C:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/model/io/DataOut.java</file>
+            <file>file:/C:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/model/logika/MainLogika.java</file>
+            <file>file:/C:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/ChyboveHlaseni.java</file>
+            <file>file:/C:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/model/Tvor.java</file>
         </group>
     </open-files>
 </project-private>

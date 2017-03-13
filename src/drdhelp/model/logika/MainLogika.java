@@ -35,7 +35,6 @@ public class MainLogika {
 //== CLASS GETTERS AND SETTERS =================================================
 
 
-
 //== OTHER NON-PRIVATE CLASS METHODS ===========================================
 //== PRIVATE AND AUXILIARY CLASS METHODS =======================================
 
@@ -57,7 +56,6 @@ public class MainLogika {
      *
      */
     public MainLogika() {
-
     }
 
 

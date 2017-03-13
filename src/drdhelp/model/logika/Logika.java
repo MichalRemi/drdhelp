@@ -3,13 +3,11 @@
  */
 package drdhelp.model.logika;
 
-import drdhelp.model.Odkaz;
 import drdhelp.model.SeznamOdkazu;
 import drdhelp.model.Tvor;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import javafx.collections.ObservableList;
 
 
 
@@ -26,11 +24,12 @@ public abstract class Logika {
 //== VARIABLE CLASS ATTRIBUTES =================================================
 
 
-
 //##############################################################################
 //== STATIC INITIALIZER (CLASS CONSTRUCTOR) ====================================
 //== CLASS GETTERS AND SETTERS =================================================
 //== OTHER NON-PRIVATE CLASS METHODS ===========================================
+
+
 //== PRIVATE AND AUXILIARY CLASS METHODS =======================================
 
 

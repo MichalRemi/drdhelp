@@ -156,17 +156,7 @@ public class LogikaTest
         assertTrue(instance.zvalidujStringCislo("9", dolniMez, horniMez));
         assertFalse(instance.zvalidujStringCislo("11", dolniMez, horniMez));
         assertFalse(instance.zvalidujStringCislo("-1", dolniMez, horniMez));
-<<<<<<< HEAD
         assertFalse(instance.zvalidujStringCislo("a", dolniMez, horniMez));
-=======
-        try {
-            instance.zvalidujStringCislo("a", dolniMez, horniMez);
-            fail("Chyba, parsovani String -> Integer znaku \"a\" nevyhodilo vyjímku!");
-        } catch (NumberFormatException ex) {
-            System.out.println("Parsovani String -> Integer znaku \"a\" " +
-                    "správně vyhodilo vyjímku");
-        }
->>>>>>> origin/master
     }
 
     /**

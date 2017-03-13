@@ -3,28 +3,20 @@
  */
 package drdhelp;
 
-import javafx.event.ActionEvent;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import drdhelp.model.logika.MainLogika;
+import javafx.stage.Window;
 
 
 
 
 
 /*******************************************************************************
- * Instance třídy {@code Okno} představují ...
+ * Instance třídy {@code ChyboveHlaseni} zajišťují chybová hlášení.
  *
  * @author  Michal Remišovský
- * @version 0.00.0000 — 2017-03-01
+ * @version 0.00.0000 — 20yy-mm-dd
  */
-public class Okno extends Stage {
+public class ChyboveHlaseni {
 
 //== CONSTANT CLASS ATTRIBUTES =================================================
 //== VARIABLE CLASS ATTRIBUTES =================================================
@@ -51,14 +43,7 @@ public class Okno extends Stage {
     /***************************************************************************
      *
      */
-    public Okno(String nadpisOkna, String text) {
-        setTitle(nadpisOkna);
-        setWidth(450);
-        setHeight(200);
-        initStyle(StageStyle.UTILITY);
-        initModality(Modality.WINDOW_MODAL);
-        setScene(novaScena(text));
-        showAndWait();
+    public ChyboveHlaseni() {
     }
 
 
@@ -66,31 +51,16 @@ public class Okno extends Stage {
 //== ABSTRACT METHODS ==========================================================
 //== INSTANCE GETTERS AND SETTERS ==============================================
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
+
+    public void chybaSpojeniDatabaze() {
+        Okno okno = new Okno("Chybová hláška",
+                "CHYBA!: Nepodařilo se navázat spojení s databází!\n" +
+                "Aplikace bude ukončena.");
+    }
+
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================
 
-    private Scene novaScena(String text) {
 
-        VBox box = new VBox();
-        box.setAlignment(Pos.CENTER);
-        box.setSpacing(20);
-
-        // Label
-        Label textLabel = new Label(text);
-        textLabel.setTextAlignment(TextAlignment.CENTER);
-
-        // Tlačítko
-        Button tlacitko = new Button("OK");
-        tlacitko.setMinWidth(50);
-        tlacitko.setMinHeight(30);
-        tlacitko.setOnAction((ActionEvent e) -> {
-            Stage stage = (Stage) tlacitko.getScene().getWindow();
-            stage.close();
-        });
-
-        box.getChildren().addAll(textLabel, tlacitko);
-
-        return new Scene(box);
-    }
 
 //##############################################################################
 //== NESTED DATA TYPES =========================================================
