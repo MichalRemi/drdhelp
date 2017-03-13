@@ -436,7 +436,8 @@ public class NestvuraLogika extends Logika {
         if (presvedceni != null) presvedceniObjectProperty.set(presvedceni);
     }
 
-    /** Určí životaschopnost. V případě čísla převede na String */
+    /** Určí životaschopnost. Ve zvláštním případě čísel -2 a -1, vrátí příslušné
+        životaschopnosti, a to "½ (1-4 životy)" a "1-2 životy". */
     private String urciZvt(Integer zivotaschopnost) {
         if (zivotaschopnost != null) {
             String zvt = String.valueOf(zivotaschopnost);

@@ -6,7 +6,6 @@ package drdhelp.model.logika;
 import drdhelp.model.ZbranTVT;
 import drdhelp.model.io.DataOut;
 import drdhelp.model.io.DataIn;
-import java.text.ParseException;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -339,6 +338,11 @@ public class ZbranTVTLogika extends VybaveniLogika
             medakyChybaVisibleProperty.set(!jeMedakyValidni(newValue));
             validProperty().set(jeFormularValidni());
         });
+
+        zlatakyProperty.setValue("0");
+        stribrnakyProperty.setValue("0");
+        medakyProperty.setValue("0");
+
     }
 
     /** Načte hodnoty z formuláře a vrátí je v instanci ZbranTVT */

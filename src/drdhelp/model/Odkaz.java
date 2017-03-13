@@ -35,7 +35,6 @@ public class Odkaz implements Comparable<Odkaz>{
     private final int id;
     private final String nazev;
     private final String tabulka;
-    private int pocet = 1;
 
 
 //##############################################################################
@@ -55,7 +54,6 @@ public class Odkaz implements Comparable<Odkaz>{
         }
 
 
-
 //== ABSTRACT METHODS ==========================================================
 //== INSTANCE GETTERS AND SETTERS ==============================================
 
@@ -70,17 +68,6 @@ public class Odkaz implements Comparable<Odkaz>{
     public String getTabulka() {
         return tabulka;
     }
-
-    public int getPocet() {
-        return pocet;
-    }
-
-    public void setPocet(int pocet) {
-        this.pocet = pocet;
-    }
-
-
-
 
 
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================

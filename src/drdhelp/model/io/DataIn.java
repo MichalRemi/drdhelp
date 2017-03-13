@@ -11,7 +11,6 @@ import drdhelp.model.ZbranSAV;
 import drdhelp.model.ZbranTVT;
 import drdhelp.model.Zbroj;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -110,7 +109,7 @@ public class DataIn extends Data {
             dotaz.executeUpdate();
             return true;
         } catch (SQLException | NullPointerException ex) {
-        System.err.println("DataIn.vlozPostava: " + CHYBA + ex);
+        System.err.println("DataIn.vlozPostava: " + CHYBA);
         ex.printStackTrace();
         return false;
         }
@@ -167,7 +166,7 @@ public class DataIn extends Data {
             dotaz.executeUpdate();
             return true;
         } catch (SQLException | NullPointerException ex) {
-        System.err.println("DataIn.vlozNestvura: " + CHYBA + ex);
+        System.err.println("DataIn.vlozNestvura: " + CHYBA);
         ex.printStackTrace();
         return false;
         }
@@ -202,7 +201,7 @@ public class DataIn extends Data {
             dotaz.executeUpdate();
             return true;
         } catch (SQLException | NullPointerException ex) {
-        System.err.println("DataIn.vlozZbranTVT: " + CHYBA + ex);
+        System.err.println("DataIn.vlozZbranTVT: " + CHYBA);
         ex.printStackTrace();
         return false;
         }
@@ -215,28 +214,32 @@ public class DataIn extends Data {
      * @return boolean
      */
     public boolean vlozZbranSAV(ZbranSAV zbranSaV) {
-        String sql = "INSERT INTO zbran_sav (nazev, druh, sila, utocnost," +
-                " dostrel, vaha, cena, poznamka)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO zbran_sav (nazev, druh, typ, sila, utocnost," +
+                " maly_dostrel, stredni_dostrel, velky_dostrel, vaha, zlataky," +
+                " stribrnaky, medaky, poznamka)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
             dotaz.setString(1, zbranSaV.getNazev());
             dotaz.setString(2, zbranSaV.getDruh());
-            dotaz.setInt(3, zbranSaV.getSila());
-            dotaz.setInt(4, zbranSaV.getUtocnost());
-            dotaz.setString(5, zbranSaV.getDostrel());
-            dotaz.setInt(6, zbranSaV.getVaha());
-            vlozIntNeboNull(dotaz, 7, zbranSaV.getZlataky());
-            vlozIntNeboNull(dotaz, 8, zbranSaV.getStribrnaky());
-            vlozIntNeboNull(dotaz, 9, zbranSaV.getMedaky());
-            dotaz.setString(10, zbranSaV.getPopis());
+            dotaz.setString(3, zbranSaV.getTyp());
+            dotaz.setInt(4, zbranSaV.getSila());
+            dotaz.setInt(5, zbranSaV.getUtocnost());
+            dotaz.setInt(6, zbranSaV.getMalyDostrel());
+            dotaz.setInt(7, zbranSaV.getStredniDostrel());
+            dotaz.setInt(8, zbranSaV.getVelkyDostrel());
+            dotaz.setInt(9, zbranSaV.getVaha());
+            vlozIntNeboNull(dotaz, 10, zbranSaV.getZlataky());
+            vlozIntNeboNull(dotaz, 11, zbranSaV.getStribrnaky());
+            vlozIntNeboNull(dotaz, 12, zbranSaV.getMedaky());
+            dotaz.setString(13, zbranSaV.getPopis());
 
             dotaz.executeUpdate();
             return true;
         } catch (SQLException | NullPointerException ex) {
-        System.err.println("DataIn.vlozZbranSAV(): " + CHYBA + ex);
+        System.err.println("DataIn.vlozZbranSAV(): " + CHYBA);
         ex.printStackTrace();
         return false;
         }
@@ -249,8 +252,8 @@ public class DataIn extends Data {
      * @return boolean
      */
     public boolean vlozVybava(Vybava vybava) {
-        String sql = "INSERT INTO vybava (nazev, druh, vaha, cena," +
-                    " poznamka) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO vybava (nazev, druh, vaha, zlataky," +
+                " stribrnaky, medaky, poznamka) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
@@ -265,7 +268,7 @@ public class DataIn extends Data {
             dotaz.executeUpdate();
             return true;
         } catch (SQLException | NullPointerException ex) {
-        System.err.println("DataIn.vlozVybavu: " + CHYBA + ex);
+        System.err.println("DataIn.vlozVybavu: " + CHYBA);
         ex.printStackTrace();
         return false;
         }
@@ -274,7 +277,7 @@ public class DataIn extends Data {
     public boolean vlozZbroj(Zbroj zbroj) {
         String sql = "INSERT INTO zbroj (nazev, druh, kvalita, vaha_a," +
                     " vaha_b, vaha_c, cena_a, cena_b, cena_c, poznamka)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try ( Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
         {
@@ -288,12 +291,11 @@ public class DataIn extends Data {
             dotaz.setInt(8, zbroj.getCenaB());
             dotaz.setInt(9, zbroj.getCenaC());
             dotaz.setString(10, zbroj.getPopis());
-            dotaz.setInt(11, zbroj.getId());
 
             dotaz.executeUpdate();
             return true;
         } catch (SQLException | NullPointerException ex) {
-        System.err.println("DataIn.vlozZbroj: " + CHYBA + ex);
+        System.err.println("DataIn.vlozZbroj: " + CHYBA);
         ex.printStackTrace();
         return false;
         }
@@ -448,7 +450,7 @@ public class DataIn extends Data {
             dotaz.executeUpdate();
             return true;
         } catch (SQLException | NullPointerException ex) {
-        System.err.println("DataIn.zmenZbranTVT(): " + CHYBA + ex);
+        System.err.println("DataIn.zmenZbranTVT(): " + CHYBA);
         ex.printStackTrace();
         return false;
         }
@@ -468,11 +470,12 @@ public class DataIn extends Data {
         {
             dotaz.setString(1, vybava.getNazev());
             dotaz.setString(2, vybava.getDruh());
-            vlozIntNeboNull(dotaz, 3, vybava.getZlataky());
-            vlozIntNeboNull(dotaz, 4, vybava.getStribrnaky());
-            vlozIntNeboNull(dotaz, 5, vybava.getMedaky());
+            dotaz.setInt(3, vybava.getVaha());
+            vlozIntNeboNull(dotaz, 4, vybava.getZlataky());
+            vlozIntNeboNull(dotaz, 5, vybava.getStribrnaky());
+            vlozIntNeboNull(dotaz, 6, vybava.getMedaky());
             dotaz.setString(7, vybava.getPopis());
-            dotaz.setInt(9, vybava.getId());
+            dotaz.setInt(8, vybava.getId());
             dotaz.executeUpdate();
             return true;
         } catch (SQLException | NullPointerException ex) {
@@ -510,7 +513,7 @@ public class DataIn extends Data {
             dotaz.executeUpdate();
             return true;
         } catch (SQLException | NullPointerException ex) {
-        System.err.println("DataIn.zmenZbroj(): " + CHYBA + ex);
+        System.err.println("DataIn.zmenZbroj(): " + CHYBA);
         ex.printStackTrace();
         return false;
         }
@@ -548,7 +551,7 @@ public class DataIn extends Data {
             dotaz.executeUpdate();
             return true;
         } catch (SQLException | NullPointerException ex) {
-        System.err.println("DataIn.zmenZbranSAV(): " + CHYBA + ex);
+        System.err.println("DataIn.zmenZbranSAV(): " + CHYBA);
         ex.printStackTrace();
         return false;
         }
@@ -574,7 +577,7 @@ public class DataIn extends Data {
                 dotaz.executeUpdate();
                 return true;
             } catch (SQLException ex) {
-            System.err.println("DataIn.smazPolozkuDleOdkazu(): " + CHYBA + ex);
+            System.err.println("DataIn.smazPolozkuDleOdkazu(): " + CHYBA);
             ex.printStackTrace();
             return false;
             }

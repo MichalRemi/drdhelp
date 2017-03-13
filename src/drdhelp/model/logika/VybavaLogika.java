@@ -8,6 +8,7 @@ import drdhelp.model.io.DataOut;
 import drdhelp.model.io.DataIn;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -56,6 +57,7 @@ public class VybavaLogika extends VybaveniLogika {
     private final BooleanProperty medakyChybaVisibleProperty = new SimpleBooleanProperty();
     private final BooleanProperty valid = new SimpleBooleanProperty(false);
 
+    private final ReadOnlyBooleanProperty zlatakyFocusProperty = new SimpleBooleanProperty();
 
 
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
@@ -118,6 +120,9 @@ public class VybavaLogika extends VybaveniLogika {
     }
     public BooleanProperty validProperty() {
         return valid;
+    }
+    public ReadOnlyBooleanProperty zlatakyFocusProperty() {
+        return zlatakyFocusProperty;
     }
 
 
@@ -201,6 +206,11 @@ public class VybavaLogika extends VybaveniLogika {
             medakyChybaVisibleProperty.set(!jeMedakyValidni(newValue));
             validProperty().set(jeFormularValidni());
         });
+
+        zlatakyProperty.setValue("0");
+        stribrnakyProperty.setValue("0");
+        medakyProperty.setValue("0");
+
     }
 
     /** Načte hodnoty z formuláře a vrátí je v instanci Vybava */

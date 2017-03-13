@@ -290,6 +290,11 @@ public class ZbranSAVLogika extends VybaveniLogika {
             validProperty().set(jeFormularValidni());
         });
 
+        zlatakyProperty.setValue("0");
+        stribrnakyProperty.setValue("0");
+        medakyProperty.setValue("0");
+
+
     }
 
     /** Načte hodnoty z formuláře a vrátí je v instanci ZbranSAV */
@@ -326,7 +331,7 @@ public class ZbranSAVLogika extends VybaveniLogika {
 
     /** Nastaví druh předané zbraně SaV v typCombobox, pokud hodnota odpovídá enum Druh */
     private void nastavTyp(ZbranSAV zbranSAV) {
-        String typ = zbranSAV.getDruh();
+        String typ = zbranSAV.getTyp();
         if (typ != null) {
             for (Typ t : Typ.values()) {
                 if (typ.equals(t.toString())) {

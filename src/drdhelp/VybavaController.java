@@ -6,7 +6,6 @@
 package drdhelp;
 
 import drdhelp.model.SeznamOdkazu;
-import drdhelp.model.TabulkaDB;
 import drdhelp.model.logika.VybavaLogika;
 import java.net.URL;
 import java.util.Arrays;
@@ -98,6 +97,7 @@ public class VybavaController implements Initializable {
 
         // nabindování vlastnosti Disable na validitu formuláře
         vlozitButton.disableProperty().bind(logika.validProperty().not());
+
     }
 
     /** Obsluha tlačítka Vložit - aktualizuje údaje a zavře okna Výbava. */

@@ -99,18 +99,6 @@ public class ZbranSAV extends Vybava implements IPopis {
 
 //== ABSTRACT METHODS ==========================================================
 
-    @Override
-    public String getPodrobnyPopis() {
-        return    "Název:   " + super.getNazev() + "\n"
-                + "Druh:   " + TYP + " " + super.getDruh() + "\n"
-                + "Síla zbraně:   " + SILA + "\n"
-                + "Útočnost:   " + getUtocnostString() + "\n"
-                + "Dostřel:   " + getDostrel() + "\n"
-                + "Váha:   " + super.getVaha() + " mn\n"
-                + "Cena:   " + super.getCenaVypis()
-                + super.vratPopis();
-
-    }
 
 //== INSTANCE GETTERS AND SETTERS ==============================================
 
@@ -141,6 +129,19 @@ public class ZbranSAV extends Vybava implements IPopis {
 
 
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
+
+    @Override
+    public String getPodrobnyPopis() {
+        return    "Název:   " + super.getNazev() + "\n"
+                + "Druh:   " + super.getDruh() + " " + TYP + "\n"
+                + "Síla zbraně:   " + SILA + "\n"
+                + "Útočnost:   " + getUtocnostString() + "\n"
+                + "Dostřel:   " + getDostrel() + "\n"
+                + "Váha:   " + super.getVaha() + " mn\n"
+                + "Cena:   " + super.getCenaVypis()
+                + super.vratPopis();
+
+    }
 
     /** Vrátí útočnost se znaménkem i pro kladná čísla a 0 */
     public String getUtocnostString() {
