@@ -309,6 +309,7 @@ public class NestvuraLogika extends Logika {
 
     /** Jsou všechny položky formuláře validní? */
     public boolean jeFormularValidni() {
+        System.out.println(jeSkupinyZranitelnostValidni());
         return jeNazevValidni() && jeZivotaschopnostValidni() && jeUtokValidni()
                 && jeObranaValidni() && jeVelikostValidni()
                 && jeSkupinyZranitelnostValidni() && jeHodnotaPohyblivostValidni()
@@ -458,70 +459,111 @@ public class NestvuraLogika extends Logika {
 
     private void init() {
         // nastaví validitu fornuláře
+
+        System.out.println("Nastavení počáteční validity formuláře");
         validProperty().set(jeFormularValidni());
+        System.out.println("");
 
         // listenery pro název, druh, váhu, zlaťáky, stříbrňáky a zlaťáky
         nazevProperty.addListener((observable, oldValue, newValue) -> {
             nazevChybaVisibleProperty.set(!jeNazevValidni(newValue));
+            System.out.println("název");
             validProperty().set(jeFormularValidni());
+            System.out.println("");
         });
 
         zivotaschopnostProperty.addListener((observable, oldValue, newValue) -> {
             zivotaschopnostChybaVisibleProperty.set(!jeZivotaschopnostValidni(newValue));
+            System.out.println("životaschopnost");
             validProperty().set(jeFormularValidni());
+            System.out.println("");
         });
 
         utokProperty.addListener((observable, oldValue, newValue) -> {
             utokChybaVisibleProperty.set(!jeNazevValidni(newValue));
+            System.out.println("útok");
             validProperty().set(jeFormularValidni());
+            System.out.println("");
         });
 
         obranaProperty.addListener((observable, oldValue, newValue) -> {
             obranaChybaVisibleProperty.set(!jeObranaValidni(newValue));
+            System.out.println("obrana");
             validProperty().set(jeFormularValidni());
+            System.out.println("");
         });
 
         velikostProperty.addListener((observable, oldValue, newValue) -> {
-            if (newValue != null)
-            validProperty().set(jeFormularValidni());
+            System.out.println("velikost");
+            if (newValue != null) {
+                validProperty().set(jeFormularValidni());
+            }
+            System.out.println("");
         });
 
         zranitelnostObjectProperty.addListener((observable, oldValue, newValue) -> {
+            System.out.println("zranitelnost");
+            System.out.println("OldValue: " + oldValue);
+            System.out.println("NewValue: " + newValue);
+
             if (newValue != null) {
                 // po vybrání zranitelnosti v comboboxu naplní pole výpis
                 // skupin(zranitelnost) z enum Zranitelnost.skupinaZranitelnost
                 String skupinaZranitelnost = newValue.getSkupinyZranitelnost();
-                skupinyZranitelnostProperty.set(skupinaZranitelnost);
+                if (skupinaZranitelnost != null) {
+                    skupinyZranitelnostProperty.set(skupinaZranitelnost);
+                }
             }
+                System.out.println("");
         });
 
         skupinyZranitelnostProperty.addListener((observable, oldValue, newValue) -> {
+            System.out.println("skupinyZranitelnost");
             // pokud se změní skupiny zranitelnosti (A, B, C, ...), tak
             // vyhodnotí, zda odpovídají nějaké zranitelnosti (zvíře, humanoid, ...).
             // Pokud ne, nastaví pole na hodnotu "N/A".
             zranitelnostPodleSkupinZranitelnost(newValue);
             skupinyZranitelnostChybaVisibleProperty.set(!jeSkupinyZranitelnostValidni(newValue));
-            validProperty().set(jeFormularValidni());
+
+            System.out.println("OldValue: " + oldValue);
+            System.out.println("NewValue: " + newValue);
+
+            boolean vali = jeFormularValidni();
+            System.out.println(vali);
+
+            validProperty().set(vali);
+            System.out.println("");
+
+            // validProperty().set(jeFormularValidni());
+
         });
 
         hodnotyPohyblivostObjectProperty.addListener((observable, oldValue, newValue) -> {
+            System.out.println("hodnotyPohyblivost");
             if (newValue != null)
             validProperty().set(jeFormularValidni());
+            System.out.println("");
         });
 
         pohyblivostObjectProperty.addListener((observable, oldValue, newValue) -> {
+            System.out.println("pohyblivost");
             if (newValue != null)
             validProperty().set(jeFormularValidni());
+            System.out.println("");
         });
 
         hodnotyVytrvalostObjectProperty.addListener((observable, oldValue, newValue) -> {
+            System.out.println("hodnotyVytrvalost");
             if (newValue != null)
             validProperty().set(jeFormularValidni());
+            System.out.println("");
         });
 
         vytrvalostObjectProperty.addListener((observable, oldValue, newValue) -> {
+            System.out.println("vytrvalost");
             if (newValue != null)
             validProperty().set(jeFormularValidni());
+            System.out.println("");
         });
 
         zaklSilaMysliProperty.addListener((observable, oldValue, newValue) -> {
@@ -529,13 +571,17 @@ public class NestvuraLogika extends Logika {
         });
 
         presvedceniObjectProperty.addListener((observable, oldValue, newValue) -> {
+            System.out.println("přesvědčení");
             if (newValue != null)
             validProperty().set(jeFormularValidni());
+            System.out.println("");
         });
 
         zkusenostiProperty.addListener((observable, oldValue, newValue) -> {
+            System.out.println("zkušenosti");
             zkusenostiChybaVisibleProperty.set(!jeZkusenostiValidni(newValue));
             validProperty().set(jeFormularValidni());
+            System.out.println("");
         });
     }
 
@@ -570,6 +616,12 @@ public class NestvuraLogika extends Logika {
         Vlastnost vytrvalost = new Vlastnost("Vytrvalost"
                 ,vyhodnotAVratInt(hodnotyVytrvalostObjectProperty.get()));
 
+        String zkusenost = zkusenostiProperty.get();
+        int zkusenostInt = 0;
+        if (zvalidujStringCislo(zkusenost, 0, 900000)) {
+            zkusenostInt = Integer.parseInt(zkusenost);
+        }
+
         return new Nestvura(id,
                 nazevProperty.get(),
                 vyhodnotZvtAVratInteger(zivotaschopnostProperty.get()),
@@ -589,7 +641,8 @@ public class NestvuraLogika extends Logika {
                 vyhodnotAVratInt(zaklSilaMysliProperty.get()),
                 vratPresvedceni(),
                 vyhodnotAVratString(pokladyProperty.get()),
-                vyhodnotAVratInt(zkusenostiProperty.get()),
+                zkusenostInt,
+                // vyhodnotAVratInt(zkusenostiProperty.get()),
                 vyhodnotAVratInt(ochoceniProperty.get()),
                 popisProperty.get());
     }
@@ -722,6 +775,7 @@ public class NestvuraLogika extends Logika {
     /** Ověří platnost výpisu skupin zranitelnosti, zda je to text v rozsahu
         1 - 200 znaků */
     private boolean jeSkupinyZranitelnostValidni(String skupinyZranitelnost) {
+        System.out.println("SkupinyZranitelnost: " + skupinyZranitelnost);
         return jeStringValidni(skupinyZranitelnost, 1, 200);
     }
 
