@@ -444,7 +444,10 @@ public class PostavaLogika extends Logika {
         polozkyPostavy.clear();
         polozkyPostavy.addAll(vybaveniList);
         seznamPolozek.clear();
-        seznamPolozek.addAll(dataOut.nactiOdkazy(tabulka));
+        ArrayList<Odkaz> list = dataOut.nactiOdkazy(tabulka);
+        if (list != null) {
+            seznamPolozek.addAll(dataOut.nactiOdkazy(tabulka));
+        }
     }
 
     public void nastavPridejZbranTVT() {
@@ -489,7 +492,10 @@ public class PostavaLogika extends Logika {
         String tabulka = null;
         if (povolani.equals("kouzelník")) tabulka = TabulkaDB.KOUZLO.getTabNazev();
         if (povolani.equals("hraničář")) tabulka = TabulkaDB.PRIRODNI_KOUZLO.getTabNazev();
-        seznamPolozek.addAll(dataOut.nactiOdkazy(tabulka));
+        ArrayList<Odkaz> list = dataOut.nactiOdkazy(tabulka);
+        if (list != null) {
+            seznamPolozek.addAll(dataOut.nactiOdkazy(tabulka));
+        }
         // seznam kouzel postavy
         polozkyPostavy.clear();
         polozkyPostavy.addAll(kouzlaObservableList);
@@ -501,6 +507,31 @@ public class PostavaLogika extends Logika {
         nastavPridejVybaveni(vybavaObservableList, TabulkaDB.VYBAVA.getTabNazev());
         textyFormulare = FormularPridej.VYBAVA;
     }
+
+    public void smazZbranTVT(Odkaz zbranTVT) {
+        zbranTVTObservableList.remove(zbranTVT);
+    }
+
+    public void smazZbranSAV(Odkaz zbranSAV) {
+        zbranSAVObservableList.remove(zbranSAV);
+    }
+
+    public void smazZbroj(Odkaz zbroj) {
+        zbrojObservableList.remove(zbroj);
+    }
+
+    public void smazZvlSchopnost(Odkaz zvlSchopnost) {
+        zvlSchObservableList.remove(zvlSchopnost);
+    }
+
+    public void smazKouzlo(Odkaz kouzlo) {
+        kouzlaObservableList.remove(kouzlo);
+    }
+
+    public void smazVybava(Odkaz vybava) {
+        vybavaObservableList.remove(vybava);
+    }
+
 
     /**
      * Vyhodnotí, zda byly položky postavy vloženy, pokud ano, uloží změny

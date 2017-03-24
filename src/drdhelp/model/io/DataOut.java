@@ -721,9 +721,10 @@ public class DataOut extends Data {
             {
                 dotaz.setInt(1, id);
                 try (ResultSet vysledky = dotaz.executeQuery()) {
-                    vysledky.next();
-                    Odkaz odkaz = vratOdkaz(vysledky, tabulka);
-                    return odkaz;
+                    if (vysledky.next()) {
+                        Odkaz odkaz = vratOdkaz(vysledky, tabulka);
+                        return odkaz;
+                    }
                 }
             } catch (SQLException ex) {
             System.err.println("DataOut.nactiOdkaz(): " + CHYBA);

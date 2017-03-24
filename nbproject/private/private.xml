@@ -12,14 +12,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/model/logika/MainLogika.java</file>
-            <file>file:/D:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/model/logika/NestvuraLogika.java</file>
-            <file>file:/D:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/model/Nestvura.java</file>
-            <file>file:/D:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/MainController.java</file>
-            <file>file:/D:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/model/logika/Logika.java</file>
-            <file>file:/D:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/NestvuraController.java</file>
-            <file>file:/D:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/model/io/DataIn.java</file>
-            <file>file:/D:/Michal/Dropbox/Java/DrDhelp/src/drdhelp/model/Tvor.java</file>
+            <file>file:/J:/DrDhelp/src/drdhelp/model/SeznamOdkazu.java</file>
+            <file>file:/J:/DrDhelp/src/drdhelp/model/io/DataOut.java</file>
+            <file>file:/J:/DrDhelp/src/drdhelp/ZbranTVT.fxml</file>
+            <file>file:/J:/DrDhelp/src/drdhelp/PostavaController.java</file>
+            <file>file:/J:/DrDhelp/src/drdhelp/NovaPostavaController.java</file>
+            <file>file:/J:/DrDhelp/src/drdhelp/model/logika/PostavaLogika.java</file>
         </group>
     </open-files>
 </project-private>
