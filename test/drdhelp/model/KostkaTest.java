@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
  * {@link KostkaTest}.
  *
  * @author  Michal Remišovský
- * @version 0.00.0000 — 20yy-mm-dd
+ * @version 0.01.0000 — 2017-04-15
  */
 public class KostkaTest
 {

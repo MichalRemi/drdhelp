@@ -33,6 +33,7 @@ import javafx.stage.Stage;
  * FXML Controller class
  *
  * @author Michal Remišovský
+ * @version 0.01.0000 — 2017-04-15
  */
 public class NestvuraController implements Initializable {
 
@@ -165,38 +166,69 @@ public class NestvuraController implements Initializable {
                         skupinyZranitelnostTextField.focusedProperty().not());
 
         // nastavení obousměrného bindingu
-        Bindings.bindBidirectional(nazevTextField.textProperty(), logika.nazevProperty());
-        Bindings.bindBidirectional(zivotaschopnostComboBox.valueProperty(), logika.zivotaschopnostProperty());
-        Bindings.bindBidirectional(konstantaZvtComboBox.valueProperty(), logika.konstantaZvtProperty());
-        Bindings.bindBidirectional(utokTextField.textProperty(), logika.utokProperty());
-        Bindings.bindBidirectional(obranaTextField.textProperty(), logika.obranaProperty());
-        Bindings.bindBidirectional(silaComboBox.valueProperty(), logika.silaProperty());
-        Bindings.bindBidirectional(obratnostComboBox.valueProperty(), logika.obratnostProperty());
-        Bindings.bindBidirectional(odolnostComboBox.valueProperty(), logika.odolnostProperty());
-        Bindings.bindBidirectional(inteligenceComboBox.valueProperty(), logika.inteligenceProperty());
-        Bindings.bindBidirectional(charismaComboBox.valueProperty(), logika.charismaProperty());
-        Bindings.bindBidirectional(velikostComboBox.valueProperty(), logika.velikostProperty());
-        Bindings.bindBidirectional(bojovnostComboBox.valueProperty(), logika.bojovnostObjectProperty());
-        Bindings.bindBidirectional(zranitelnostComboBox.valueProperty(), logika.zranitelnostObjectProperty());
-        Bindings.bindBidirectional(skupinyZranitelnostTextField.textProperty(), logika.skupinyZranitelnostProperty());
-        Bindings.bindBidirectional(pohyblivostComboBox.valueProperty(), logika.pohyblivostObjectProperty());
-        Bindings.bindBidirectional(hodnotyPohyblivostComboBox.valueProperty(), logika.hodnotyPohyblivostObjectProperty());
-        Bindings.bindBidirectional(vytrvalostComboBox.valueProperty(), logika.VytrvalostObjectProperty());
-        Bindings.bindBidirectional(hodnotyVytrvalosttComboBox.valueProperty(), logika.hodnotyVytrvalostObjectProperty());
-        Bindings.bindBidirectional(manevrSchopnostComboBox.valueProperty(), logika.manevrSchopnostProperty());
-        Bindings.bindBidirectional(zaklSilaMysliTextField.textProperty(), logika.zaklSilaMysliProperty());
-        Bindings.bindBidirectional(ochoceniComboBox.valueProperty(), logika.ochoceniProperty());
-        Bindings.bindBidirectional(presvedceniComboBox.valueProperty(), logika.presvedceniObjectProperty());
-        Bindings.bindBidirectional(pokladyTextField.textProperty(), logika.pokladyProperty());
-        Bindings.bindBidirectional(zkusenostiTextField.textProperty(), logika.zkusenostiProperty());
-        Bindings.bindBidirectional(popisTextArea.textProperty(), logika.popisProperty());
+        Bindings.bindBidirectional(nazevTextField.textProperty(),
+                                   logika.nazevProperty());
+        Bindings.bindBidirectional(zivotaschopnostComboBox.valueProperty(),
+                                   logika.zivotaschopnostProperty());
+        Bindings.bindBidirectional(konstantaZvtComboBox.valueProperty(),
+                                   logika.konstantaZvtProperty());
+        Bindings.bindBidirectional(utokTextField.textProperty(),
+                                   logika.utokProperty());
+        Bindings.bindBidirectional(obranaTextField.textProperty(),
+                                   logika.obranaProperty());
+        Bindings.bindBidirectional(silaComboBox.valueProperty(),
+                                   logika.silaProperty());
+        Bindings.bindBidirectional(obratnostComboBox.valueProperty(),
+                                   logika.obratnostProperty());
+        Bindings.bindBidirectional(odolnostComboBox.valueProperty(),
+                                   logika.odolnostProperty());
+        Bindings.bindBidirectional(inteligenceComboBox.valueProperty(),
+                                   logika.inteligenceProperty());
+        Bindings.bindBidirectional(charismaComboBox.valueProperty(),
+                                   logika.charismaProperty());
+        Bindings.bindBidirectional(velikostComboBox.valueProperty(),
+                                   logika.velikostProperty());
+        Bindings.bindBidirectional(bojovnostComboBox.valueProperty(),
+                                   logika.bojovnostObjectProperty());
+        Bindings.bindBidirectional(zranitelnostComboBox.valueProperty(),
+                                   logika.zranitelnostObjectProperty());
+        Bindings.bindBidirectional(skupinyZranitelnostTextField.textProperty(),
+                                   logika.skupinyZranitelnostProperty());
+        Bindings.bindBidirectional(pohyblivostComboBox.valueProperty(),
+                                   logika.pohyblivostObjectProperty());
+        Bindings.bindBidirectional(hodnotyPohyblivostComboBox.valueProperty(),
+                                   logika.hodnotyPohyblivostObjectProperty());
+        Bindings.bindBidirectional(vytrvalostComboBox.valueProperty(),
+                                   logika.VytrvalostObjectProperty());
+        Bindings.bindBidirectional(hodnotyVytrvalosttComboBox.valueProperty(),
+                                   logika.hodnotyVytrvalostObjectProperty());
+        Bindings.bindBidirectional(manevrSchopnostComboBox.valueProperty(),
+                                   logika.manevrSchopnostProperty());
+        Bindings.bindBidirectional(zaklSilaMysliTextField.textProperty(),
+                                   logika.zaklSilaMysliProperty());
+        Bindings.bindBidirectional(ochoceniComboBox.valueProperty(),
+                                   logika.ochoceniProperty());
+        Bindings.bindBidirectional(presvedceniComboBox.valueProperty(),
+                                   logika.presvedceniObjectProperty());
+        Bindings.bindBidirectional(pokladyTextField.textProperty(),
+                                   logika.pokladyProperty());
+        Bindings.bindBidirectional(zkusenostiTextField.textProperty(),
+                                   logika.zkusenostiProperty());
+        Bindings.bindBidirectional(popisTextArea.textProperty(),
+                                   logika.popisProperty());
 
-        Bindings.bindBidirectional(nazevChybaLabel.visibleProperty(), logika.nazevChybaVisibleProperty());
-        Bindings.bindBidirectional(utokChybaLabel.visibleProperty(), logika.utokChybaVisibleProperty());
-        Bindings.bindBidirectional(obranaChybaLabel.visibleProperty(), logika.obranaChybaVisibleProperty());
-        Bindings.bindBidirectional(skupinyZranitelnostChybaLabel.visibleProperty(), logika.skupinyZranitelnostChybaVisibleProperty());
-        Bindings.bindBidirectional(zkusenostiChybaLabel.visibleProperty(), logika.zkusenostiChybaVisibleProperty());
-        Bindings.bindBidirectional(zaklSilaMysliChybaLabel.visibleProperty(), logika.zaklSilaMysliChybaVisibleProperty());
+        Bindings.bindBidirectional(nazevChybaLabel.visibleProperty(),
+                                   logika.nazevChybaVisibleProperty());
+        Bindings.bindBidirectional(utokChybaLabel.visibleProperty(),
+                                   logika.utokChybaVisibleProperty());
+        Bindings.bindBidirectional(obranaChybaLabel.visibleProperty(),
+                                   logika.obranaChybaVisibleProperty());
+        Bindings.bindBidirectional(skupinyZranitelnostChybaLabel.visibleProperty(),
+                                   logika.skupinyZranitelnostChybaVisibleProperty());
+        Bindings.bindBidirectional(zkusenostiChybaLabel.visibleProperty(),
+                                   logika.zkusenostiChybaVisibleProperty());
+        Bindings.bindBidirectional(zaklSilaMysliChybaLabel.visibleProperty(),
+                                   logika.zaklSilaMysliChybaVisibleProperty());
 
 
         // nabindování vlastnosti Disable na validitu formuláře

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="drdhelp.PostavaController">
+<AnchorPane id="AnchorPane" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="drdhelp.PostavaController">
     <stylesheets>
         <URL value="@DrDhelp.css" />
     </stylesheets>
@@ -224,7 +224,7 @@
                               <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
                                  <children>
                                     <Button fx:id="pridejZbranTVTButton" mnemonicParsing="false" onAction="#handlePridejZbranTVT" prefHeight="25.0" prefWidth="25.0" text="+" />
-                                    <Button fx:id="odeberZbranTVTButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
+                                    <Button fx:id="odeberZbranTVTButton" focusTraversable="false" mnemonicParsing="false" onAction="#handleSmazZbranTVT" prefHeight="25.0" prefWidth="25.0" text="-" />
                                  </children>
                               </HBox>
                            </children>
@@ -240,7 +240,7 @@
                               <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
                                  <children>
                                     <Button fx:id="pridejZbranSAVButton" mnemonicParsing="false" onAction="#handlePridejZbranSAV" prefHeight="25.0" prefWidth="25.0" text="+" />
-                                    <Button fx:id="odeberZbranSAVButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
+                                    <Button fx:id="odeberZbranSAVButton" focusTraversable="false" mnemonicParsing="false" onAction="#handleSmazZbranSAV" prefHeight="25.0" prefWidth="25.0" text="-" />
                                  </children>
                               </HBox>
                            </children>
@@ -259,7 +259,7 @@
                               <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
                                  <children>
                                     <Button fx:id="pridejZbrojButton" mnemonicParsing="false" onAction="#handlePridejZbroj" prefHeight="25.0" prefWidth="25.0" text="+" />
-                                    <Button fx:id="odeberZbrojButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
+                                    <Button fx:id="odeberZbrojButton" focusTraversable="false" mnemonicParsing="false" onAction="#handleSmazZbroj" prefHeight="25.0" prefWidth="25.0" text="-" />
                                  </children>
                               </HBox>
                            </children>
@@ -289,7 +289,7 @@
                               <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
                                  <children>
                                     <Button fx:id="pridejZvlButton" mnemonicParsing="false" onAction="#handlePridejZvlSchopnost" prefHeight="25.0" prefWidth="25.0" text="+" />
-                                    <Button fx:id="odeberZvlButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
+                                    <Button fx:id="odeberZvlButton" focusTraversable="false" mnemonicParsing="false" onAction="#handleSmazZvlSchopnost" prefHeight="25.0" prefWidth="25.0" text="-" />
                                  </children>
                                  <padding>
                                     <Insets bottom="2.0" />
@@ -308,7 +308,7 @@
                               <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
                                  <children>
                                     <Button fx:id="pridejKouzloButton" mnemonicParsing="false" onAction="#handlePridejKouzlo" prefHeight="25.0" prefWidth="25.0" text="+" />
-                                    <Button fx:id="odeberKouzloVButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
+                                    <Button fx:id="odeberKouzloVButton" focusTraversable="false" mnemonicParsing="false" onAction="#handleSmazKouzlo" prefHeight="25.0" prefWidth="25.0" text="-" />
                                  </children>
                                  <padding>
                                     <Insets bottom="2.0" />
@@ -337,7 +337,7 @@
                               <HBox alignment="CENTER_RIGHT" spacing="9.0" HBox.hgrow="SOMETIMES">
                                  <children>
                                     <Button fx:id="pridejVybavaButton" mnemonicParsing="false" onAction="#handlePridejVybava" prefHeight="25.0" prefWidth="25.0" text="+" />
-                                    <Button fx:id="odeberVybavaButton" focusTraversable="false" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
+                                    <Button fx:id="odeberVybavaButton" focusTraversable="false" mnemonicParsing="false" onAction="#handleSmazvybavu" prefHeight="25.0" prefWidth="25.0" text="-" />
                                  </children>
                                  <padding>
                                     <Insets bottom="2.0" />

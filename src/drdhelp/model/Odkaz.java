@@ -11,7 +11,7 @@ package drdhelp.model;
  * Instance třídy {@code Odkaz} představují název a id z různých tabulek.
  *
  * @author  Michal Remišovský
- * @version 0.02.0000 — 2016-12-22
+ * @version 0.01.0000 — 2017-04-15
  */
 public class Odkaz implements Comparable<Odkaz>{
 
@@ -72,6 +72,7 @@ public class Odkaz implements Comparable<Odkaz>{
 
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
 
+    @Override
     public int compareTo(Odkaz o) {
 
 		/**

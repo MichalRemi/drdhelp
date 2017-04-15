@@ -30,6 +30,7 @@ import javafx.stage.Stage;
  * FXML Controller class
  *
  * @author Michal Remišovský
+ * @version 0.01.0000 — 2017-04-15
  */
 public class NovaPostavaController implements Initializable {
 
@@ -209,7 +210,6 @@ public class NovaPostavaController implements Initializable {
         Bindings.bindBidirectional(pohyblivostBonusTextField.textProperty(),
                 logika.pohyblivostBonusProperty());
 
-
     }
 
     /** Obsluha tlačítka Odejít - zavření dialogového okna Nová postava. */
@@ -237,10 +237,6 @@ public class NovaPostavaController implements Initializable {
         Stage stage = (Stage) odejitButton.getScene().getWindow();
         stage.close();
     }
-
-
-
-
 
 }
 

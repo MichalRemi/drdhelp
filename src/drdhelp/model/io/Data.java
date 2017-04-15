@@ -3,7 +3,7 @@
  */
 package drdhelp.model.io;
 
-import drdhelp.Okno;
+import drdhelp.ChyboveHlaseni;
 import drdhelp.model.TabulkaDB;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,7 @@ import java.sql.SQLException;
 
 /*******************************************************************************
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-09-13
+ * @version 0.01.0000 — 2017-04-15
  */
 public abstract class Data
 {
@@ -45,6 +45,7 @@ public abstract class Data
 //== CONSTANT INSTANCE ATTRIBUTES ==============================================
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
 
+    ChyboveHlaseni chyboveHlaseni = new ChyboveHlaseni();
 
 
 //##############################################################################
@@ -76,12 +77,8 @@ public abstract class Data
         try {
             Connection db = DriverManager.getConnection(URL, USER, HESLO);
             return db;
-        } catch (SQLException e) {
-            System.out.println("Nelze se připojit k databázi!");
-            System.out.println("chyba: " + e);
-            Okno okno = new Okno("Chybová hláška",
-                    "CHYBA!: Nepodařilo se navázat spojení s databází!\n" +
-                    "Aplikace bude ukončena.");
+        } catch (SQLException ex) {
+            chyboveHlaseni.chybaSpojeniDatabaze();
             System.exit(1);
         }
         return null;

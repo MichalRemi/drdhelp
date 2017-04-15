@@ -18,10 +18,10 @@ import javafx.beans.property.StringProperty;
 
 
 /*******************************************************************************
- * Instance třídy {@code HlavniLogika} představují ...
+ * Instance třídy {@code HlavniLogika} představují logiku formuláře ZbranSAV.fxml.
  *
  * @author  Michal Remišovský
- * @version 0.03.0000 — 2016-12-02
+ * @version 0.01.0000 — 2017-04-15
  */
 public class ZbranSAVLogika extends VybaveniLogika {
 
@@ -42,8 +42,10 @@ public class ZbranSAVLogika extends VybaveniLogika {
 //== CONSTANT INSTANCE ATTRIBUTES ==============================================
 
     private final StringProperty nazevProperty = new SimpleStringProperty();
-    private final ObjectProperty<Druh> druhObjectProperty = new SimpleObjectProperty<>();
-    private final ObjectProperty<Typ> typObjectProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<Druh> druhObjectProperty =
+            new SimpleObjectProperty<>();
+    private final ObjectProperty<Typ> typObjectProperty =
+            new SimpleObjectProperty<>();
     private final StringProperty silaProperty = new SimpleStringProperty();
     private final StringProperty utocnostProperty = new SimpleStringProperty();
     private final StringProperty malyDostrelProperty = new SimpleStringProperty();
@@ -55,16 +57,26 @@ public class ZbranSAVLogika extends VybaveniLogika {
     private final StringProperty medakyProperty = new SimpleStringProperty();
     private final StringProperty popisProperty = new SimpleStringProperty();
 
-    private final BooleanProperty nazevChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty silaChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty utocnostChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty malyDostrelChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty stredniDostrelChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty velkyostrelChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty vahaChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty zlatakyChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty stribrnakyChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty medakyChybaVisibleProperty = new SimpleBooleanProperty();
+    private final BooleanProperty nazevChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty silaChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty utocnostChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty malyDostrelChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty stredniDostrelChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty velkyostrelChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty vahaChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty zlatakyChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty stribrnakyChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty medakyChybaVisibleProperty =
+            new SimpleBooleanProperty();
     private final BooleanProperty valid = new SimpleBooleanProperty(false);
 
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
@@ -73,7 +85,6 @@ public class ZbranSAVLogika extends VybaveniLogika {
     DataIn dataIn = new DataIn();
     // aktuální pozice kurzoru
     int poziceKurzoru;
-
 
 
 //##############################################################################
@@ -85,7 +96,6 @@ public class ZbranSAVLogika extends VybaveniLogika {
     public ZbranSAVLogika() {
        init();
     }
-
 
 
 //== ABSTRACT METHODS ==========================================================
@@ -166,11 +176,7 @@ public class ZbranSAVLogika extends VybaveniLogika {
     }
 
 
-
-
-
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
-
 
     /** Jsou všechny položky formuláře validní? */
     public boolean jeFormularValidni() {
@@ -203,7 +209,6 @@ public class ZbranSAVLogika extends VybaveniLogika {
             medakyProperty.set(String.valueOf(zbranSAV.getMedaky()));
             popisProperty.set(zbranSAV.getPopis());
         }
-
     }
 
     /**
@@ -290,6 +295,10 @@ public class ZbranSAVLogika extends VybaveniLogika {
             validProperty().set(jeFormularValidni());
         });
 
+        zlatakyProperty.setValue("0");
+        stribrnakyProperty.setValue("0");
+        medakyProperty.setValue("0");
+
     }
 
     /** Načte hodnoty z formuláře a vrátí je v instanci ZbranSAV */
@@ -326,7 +335,7 @@ public class ZbranSAVLogika extends VybaveniLogika {
 
     /** Nastaví druh předané zbraně SaV v typCombobox, pokud hodnota odpovídá enum Druh */
     private void nastavTyp(ZbranSAV zbranSAV) {
-        String typ = zbranSAV.getDruh();
+        String typ = zbranSAV.getTyp();
         if (typ != null) {
             for (Typ t : Typ.values()) {
                 if (typ.equals(t.toString())) {
@@ -459,7 +468,6 @@ public class ZbranSAVLogika extends VybaveniLogika {
         public String toString() {
             return nazev;
         }
-
     }
 
     public enum Typ {
@@ -476,7 +484,6 @@ public class ZbranSAVLogika extends VybaveniLogika {
         public String toString() {
             return nazev;
         }
-
     }
 
 }

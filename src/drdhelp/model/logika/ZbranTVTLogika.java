@@ -6,7 +6,6 @@ package drdhelp.model.logika;
 import drdhelp.model.ZbranTVT;
 import drdhelp.model.io.DataOut;
 import drdhelp.model.io.DataIn;
-import java.text.ParseException;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -19,10 +18,10 @@ import javafx.beans.property.StringProperty;
 
 
 /*******************************************************************************
- * Instance třídy {@code HlavniLogika} představují ...
+ * Instance třídy {@code HlavniLogika} představují logiku formuláře ZbranTVT.fxml.
  *
  * @author  Michal Remišovský
- * @version 0.03.0000 — 2016-12-02
+ * @version 0.01.0000 — 2017-04-15
  */
 public class ZbranTVTLogika extends VybaveniLogika
 {
@@ -102,7 +101,6 @@ public class ZbranTVTLogika extends VybaveniLogika
     DataIn dataIn = new DataIn();
 
 
-
 //##############################################################################
 //== CONSTUCTORS AND FACTORY METHODS ===========================================
 
@@ -112,7 +110,6 @@ public class ZbranTVTLogika extends VybaveniLogika
     public ZbranTVTLogika() {
         init();
     }
-
 
 
 //== ABSTRACT METHODS ==========================================================
@@ -339,6 +336,11 @@ public class ZbranTVTLogika extends VybaveniLogika
             medakyChybaVisibleProperty.set(!jeMedakyValidni(newValue));
             validProperty().set(jeFormularValidni());
         });
+
+        zlatakyProperty.setValue("0");
+        stribrnakyProperty.setValue("0");
+        medakyProperty.setValue("0");
+
     }
 
     /** Načte hodnoty z formuláře a vrátí je v instanci ZbranTVT */

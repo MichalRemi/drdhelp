@@ -27,7 +27,7 @@ import static org.junit.Assert.*;
  * {@link NestvuraTest}.
 *
  * @author  Michal Remišovský
- * @version 0.00.0000 — 2017-03-02
+ * @version 0.01.0000 — 2017-04-15
  */
 public class NestvuraTest
 {

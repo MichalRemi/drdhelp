@@ -9,7 +9,7 @@ package drdhelp.model;
  * Instance třídy {@code ZbranTVT} představují zbraně tváří v tvář.
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-09-25
+ * @version 0.01.0000 — 2017-04-15
  */
 public class ZbranTVT extends Vybava implements IPopis {
 
@@ -55,8 +55,6 @@ public class ZbranTVT extends Vybava implements IPopis {
     private final String DELKA;
 
 
-
-
 //##############################################################################
 //== CONSTUCTORS AND FACTORY METHODS ===========================================
 
@@ -88,7 +86,6 @@ public class ZbranTVT extends Vybava implements IPopis {
         this.OBRANA = obrana;
         this.DELKA = delka;
     }
-
 
 
 //== ABSTRACT METHODS ==========================================================
@@ -141,9 +138,6 @@ public class ZbranTVT extends Vybava implements IPopis {
     public String toString() {
         return getNazev();
     }
-
-
-
 
 
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================

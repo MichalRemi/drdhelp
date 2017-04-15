@@ -6,10 +6,11 @@ package drdhelp.model;
 
 
 /*******************************************************************************
- * Instance interfejsu {@code IPopis} představují podrobný popis různých instancí.
+ * Instance interfejsu {@code IPopis} představují instance s implementovaným
+ * podrobným popisem "pod sebou", tedy včetně odřádkování.
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-12-25
+ * @version 0.01.0000 — 2017-04-15
  */
 public interface IPopis {
 

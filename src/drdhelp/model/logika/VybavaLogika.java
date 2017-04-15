@@ -8,6 +8,7 @@ import drdhelp.model.io.DataOut;
 import drdhelp.model.io.DataIn;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -21,7 +22,7 @@ import javafx.beans.property.StringProperty;
  * Instance třídy {@code HlavniLogika} představují logiku formuláře Vybava.fxml
  *
  * @author  Michal Remišovský
- * @version 0.03.0000 — 2016-12-02
+ * @version 0.01.0000 — 2017-04-15
  */
 public class VybavaLogika extends VybaveniLogika {
 
@@ -42,20 +43,28 @@ public class VybavaLogika extends VybaveniLogika {
 //== CONSTANT INSTANCE ATTRIBUTES ==============================================
 
     private final StringProperty nazevProperty = new SimpleStringProperty();
-    private final ObjectProperty<Druh> druhObjectProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<Druh> druhObjectProperty =
+            new SimpleObjectProperty<>();
     private final StringProperty vahaProperty = new SimpleStringProperty();
     private final StringProperty zlatakyProperty = new SimpleStringProperty();
     private final StringProperty stribrnakyProperty = new SimpleStringProperty();
     private final StringProperty medakyProperty = new SimpleStringProperty();
     private final StringProperty popisProperty = new SimpleStringProperty();
 
-    private final BooleanProperty nazevChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty vahaChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty zlatakyChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty stribrnakyChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty medakyChybaVisibleProperty = new SimpleBooleanProperty();
+    private final BooleanProperty nazevChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty vahaChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty zlatakyChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty stribrnakyChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty medakyChybaVisibleProperty =
+            new SimpleBooleanProperty();
     private final BooleanProperty valid = new SimpleBooleanProperty(false);
 
+    private final ReadOnlyBooleanProperty zlatakyFocusProperty =
+            new SimpleBooleanProperty();
 
 
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
@@ -119,6 +128,9 @@ public class VybavaLogika extends VybaveniLogika {
     public BooleanProperty validProperty() {
         return valid;
     }
+    public ReadOnlyBooleanProperty zlatakyFocusProperty() {
+        return zlatakyFocusProperty;
+    }
 
 
 
@@ -150,9 +162,9 @@ public class VybavaLogika extends VybaveniLogika {
     }
 
     /**
-     * Logika tlačítka Vložit. Podle odkazu ve statické proměnné SeznamOdkazu.upravit určí, zda se vkládá
-     * nová položka (null), nebo upravuje (odkaz je na ní). Zalová příslušnou
-     * metodu a předá ji obsah formuláře.
+     * Logika tlačítka Vložit. Podle odkazu ve statické proměnné
+     * SeznamOdkazu.upravit určí, zda se vkládá nová položka (null), nebo upravuje
+     * (odkaz je na ní). Zalová příslušnou metodu a předá ji obsah formuláře.
      */
     public void pridejVybavu() {
         Integer id = vratIdOdkazu();
@@ -201,6 +213,11 @@ public class VybavaLogika extends VybaveniLogika {
             medakyChybaVisibleProperty.set(!jeMedakyValidni(newValue));
             validProperty().set(jeFormularValidni());
         });
+
+        zlatakyProperty.setValue("0");
+        stribrnakyProperty.setValue("0");
+        medakyProperty.setValue("0");
+
     }
 
     /** Načte hodnoty z formuláře a vrátí je v instanci Vybava */

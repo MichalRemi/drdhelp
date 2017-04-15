@@ -3,13 +3,11 @@
  */
 package drdhelp.model.logika;
 
-import drdhelp.model.Odkaz;
 import drdhelp.model.SeznamOdkazu;
 import drdhelp.model.Tvor;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import javafx.collections.ObservableList;
 
 
 
@@ -18,7 +16,7 @@ import javafx.collections.ObservableList;
 /*******************************************************************************
  *
  * @author  Michal Remišovský
- * @version 0.00.0000 — 2017-01-20
+ * @version 0.01.0000 — 2017-04-15
  */
 public abstract class Logika {
 
@@ -26,11 +24,12 @@ public abstract class Logika {
 //== VARIABLE CLASS ATTRIBUTES =================================================
 
 
-
 //##############################################################################
 //== STATIC INITIALIZER (CLASS CONSTRUCTOR) ====================================
 //== CLASS GETTERS AND SETTERS =================================================
 //== OTHER NON-PRIVATE CLASS METHODS ===========================================
+
+
 //== PRIVATE AND AUXILIARY CLASS METHODS =======================================
 
 
@@ -97,13 +96,15 @@ public abstract class Logika {
                 }
             }
         }
-        catch (ParseException ex) {
+        catch (ParseException | NumberFormatException ex) {
         }
         return false;
     }
 
-    private Integer prevedNaInteger(String text) throws ParseException {
-        if (!text.equals("")) {
+    private Integer prevedNaInteger(String text) throws ParseException,
+                                                        NumberFormatException {
+        int delka = text.length();
+        if (!text.equals("") && delka < 9) {
             Integer cislo = Integer.parseInt(text);
             return cislo;
         }
@@ -116,16 +117,6 @@ public abstract class Logika {
         arrayList.addAll(Arrays.asList(text.split(",")));
         return arrayList;
     }
-
-//    protected String observablekListToString(ObservableList<Odkaz> list) {
-//        String vyslednyText = "";
-//        for (Odkaz odkaz : list) {
-//            vyslednyText += odkaz.getNazev();
-//        }
-//        int delka = vyslednyText.length();
-//        // vrátí vyslednyText bez poslední čárky
-//        return vyslednyText.substring(0, delka-2);
-//    }
 
      /**
      * Vyhodnotí, zda je hodnota v poli Tvor.hodnotyArray. Pokud ano, vrátí ho

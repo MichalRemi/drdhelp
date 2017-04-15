@@ -11,7 +11,7 @@ package drdhelp.model;
  * Instance třídy {@code Vybaveni} představují výbavu.
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-09-25
+ * @version 0.01.0000 — 2017-04-15
  */
 public class Vybava implements IPopis {
 
@@ -77,12 +77,6 @@ public class Vybava implements IPopis {
     /** Popis výbavy */
     private String popis;
 
-//    //***********BINDING**************
-//
-//    // String property pro název
-//    private final StringProperty nazev = new SimpleStringProperty();
-
-
 
 //##############################################################################
 //== CONSTUCTORS AND FACTORY METHODS ===========================================
@@ -112,7 +106,6 @@ public class Vybava implements IPopis {
     }
 
 
-
 //== ABSTRACT METHODS ==========================================================
 
     @Override
@@ -122,8 +115,8 @@ public class Vybava implements IPopis {
                 "Cena:   " + getCenaVypis() + "\n" +
                 "Vaha:   " + getVaha() +
                 vratPopis();
-
         }
+
 
 //== INSTANCE GETTERS AND SETTERS ==============================================
 
@@ -131,10 +124,6 @@ public class Vybava implements IPopis {
     public int getId() {
         return ID;
     }
-
-//    public StringProperty nazevProperty() {
-//        return nazev;
-//    }
 
     public String getNazev() {
         return NAZEV;
@@ -163,7 +152,6 @@ public class Vybava implements IPopis {
     public String getPopis() {
         return popis;
     }
-
 
 
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
@@ -212,8 +200,4 @@ public class Vybava implements IPopis {
 
 //##############################################################################
 //== NESTED DATA TYPES =========================================================
-
-
-
-
 }

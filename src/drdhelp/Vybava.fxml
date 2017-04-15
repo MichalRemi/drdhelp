@@ -102,7 +102,7 @@
                               <Insets right="10.0" />
                            </GridPane.margin>
                            <children>
-                              <TextField fx:id="zlatakyTextField" alignment="CENTER" prefWidth="80.0" />
+                              <TextField fx:id="zlatakyTextField" alignment="CENTER" prefWidth="80.0" text="0" />
                               <Label fx:id="zlatakyChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo 0 až 1 000 000!">
                                  <HBox.margin>
                                     <Insets left="5.0" />
@@ -120,7 +120,7 @@
                               <Insets right="10.0" />
                            </GridPane.margin>
                            <children>
-                              <TextField fx:id="stribrnakyTextField" alignment="CENTER" prefWidth="40.0" />
+                              <TextField fx:id="stribrnakyTextField" alignment="CENTER" prefWidth="40.0" text="0" />
                               <Label fx:id="stribrnakyChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo 0 až 9!">
                                  <HBox.margin>
                                     <Insets left="5.0" />
@@ -138,7 +138,7 @@
                               <Insets right="10.0" />
                            </GridPane.margin>
                            <children>
-                              <TextField fx:id="medakyTextField" alignment="CENTER" prefWidth="40.0" />
+                              <TextField fx:id="medakyTextField" alignment="CENTER" prefWidth="40.0" text="0" />
                               <Label fx:id="medakyChybaLabel" style="-fx-text-fill: red;" text="Zadejte číslo 0 až 9!">
                                  <HBox.margin>
                                     <Insets left="5.0" />

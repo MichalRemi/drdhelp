@@ -13,7 +13,7 @@ import java.util.Arrays;
 /*******************************************************************************
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2017-01-06
+ * @version 0.01.0000 — 2017-04-15
  */
 public abstract class Tvor {
 
@@ -174,14 +174,6 @@ public abstract class Tvor {
         return arrayList;
     }
 
-//    /** Převede arrayList na String, oddělovač je ",". */
-//    public String arrayListtToString(ArrayList<String> arrayList) {
-//        String list = null;
-//        for (String s : arrayList) list += s + ",";
-//        return list;
-//    }
-
-
     /**
      * Vrátí ArrayList s Pohyblivostí pro naložení žádné, mírné, střední a velké.
      *
@@ -193,9 +185,12 @@ public abstract class Tvor {
         Integer hodnota = pohyblivost.getHodnota();
         Vlastnost[] ctvrtiny = new Vlastnost[4];
         ctvrtiny[0] = pohyblivost;
-        ctvrtiny[1] = new Vlastnost("- mírné", pohyblivost.deleniNahoru(hodnota * 3, 4));
-        ctvrtiny[2] = new Vlastnost("- střední", pohyblivost.deleniNahoru(hodnota, 2));
-        ctvrtiny[3] = new Vlastnost("- velké", pohyblivost.deleniNahoru(hodnota, 4));
+        ctvrtiny[1] = new Vlastnost("- mírné", pohyblivost.
+                deleniNahoru(hodnota * 3, 4));
+        ctvrtiny[2] = new Vlastnost("- střední", pohyblivost.
+                deleniNahoru(hodnota, 2));
+        ctvrtiny[3] = new Vlastnost("- velké", pohyblivost.
+                deleniNahoru(hodnota, 4));
         for (Vlastnost v : ctvrtiny) pohyblivostArrayList.add(v.toString());
 
         return pohyblivostArrayList;
@@ -244,7 +239,8 @@ public abstract class Tvor {
 
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================
 
-    /** Ošetřuje situaci, kdy není poznámka zadaná v db(null), jinak ji vrátí ve String */
+    /** Ošetřuje situaci, kdy není poznámka zadaná v db(null), jinak ji vrátí
+        ve String */
     protected String nactiPoznamku() {
 
         String poznamka = "";

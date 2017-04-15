@@ -26,10 +26,10 @@ import javafx.collections.ObservableList;
 
 /*******************************************************************************
  * Instance třídy {@code NovaPostavaLogika} představují logiku formuláře
- * NovaPostava.
+ * NovaPostava.fxml.
  *
  * @author  Michal Remišovský
- * @version 0.00.0000 — 2017-02-03
+ * @version 0.01.0000 — 2017-04-15
  */
 public class NovaPostavaLogika extends Logika {
 
@@ -545,17 +545,6 @@ public class NovaPostavaLogika extends Logika {
         pohyblivostBonusProperty.setValue(Vlastnost.getBonus(pohyblivost));
     }
 
-//    private void vypisPole(int[][] pole) {
-//        int sirka = pole.length;
-//        int delka = pole[0].length;
-//        for (int i = 0; i < sirka; i++) {
-//            for (int j = 0; j < delka; j++) {
-//                System.out.print(pole[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-//    }
-
     private boolean nastavValidituRasaAPovolani() {
         boolean validitaRasaAPovolani = jeRasaValidni() && jePovolaniValidni();
         jeVybranaRasaAPovolani.set(validitaRasaAPovolani);
@@ -614,7 +603,7 @@ public class NovaPostavaLogika extends Logika {
          + vahaPostavyMax + "!");
     }
 
-        /** Kouzlí postava? ano/ne - true/false. */
+    /** Kouzlí postava? ano/ne - true/false. */
     private boolean postavaKouzli(String povolani) {
         for (MagickaPovolani m : MagickaPovolani.values()) {
             if (povolani.equals(m.toString())) {
@@ -623,8 +612,6 @@ public class NovaPostavaLogika extends Logika {
         }
         return false;
     }
-
-
 
     /** Nastaví vlastnosti do příslušných ObservableListů -> ComboBoxů. */
     private void nastavHodnotyVlastnosti() {
@@ -656,12 +643,8 @@ public class NovaPostavaLogika extends Logika {
         pohyblivostBonusProperty.setValue(null);
     }
 
-
     private Postava nactiZFormulare() {
-
         String povolani = povolaniProperty.get().getNazev();
-        System.out.println("NovaPostavaLogika.nactiZFormulare(): povolani:" + povolani + ".");
-
         Integer[] hodnotyVlastnosti = {silaProperty.get(),
                                    obratnostProperty.get(),
                                    odolnostProperty.get(),
@@ -687,5 +670,4 @@ public class NovaPostavaLogika extends Logika {
 
 //##############################################################################
 //== NESTED DATA TYPES =========================================================
-
 }

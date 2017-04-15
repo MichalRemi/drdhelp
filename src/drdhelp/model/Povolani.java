@@ -6,10 +6,11 @@ package drdhelp.model;
 
 
 /*******************************************************************************
- * Instance třídy {@code Povolani} představují ...
+ * Instance třídy {@code Povolani} představuje povolání postavy ze světa Dračího
+ * Doupěte.
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2017-02-10
+ * @version 0.01.0000 — 2017-04-15
  */
 public class Povolani
 {

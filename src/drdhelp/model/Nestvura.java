@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Instance třídy {@code Nestvura} reprezentují nestvůry ze světa Dračího Doupěte
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2017-01-03
+ * @version 0.01.0000 — 2017-04-15
  */
 public class Nestvura extends Tvor implements IPopis{
 
@@ -41,10 +41,6 @@ public class Nestvura extends Tvor implements IPopis{
 //##############################################################################
 //== CONSTANT INSTANCE ATTRIBUTES ==============================================
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
-
-
-
-//    super(id, nazev, vlastnosti, pohyblivost, velikost, poznamka);
 
     /** životaschopnost */
     private Integer zivotaschopnost;
@@ -265,7 +261,7 @@ public class Nestvura extends Tvor implements IPopis{
                         + "Útok:   " + getUtok() + "\n"
                         + "Obrana:   " + getObranaString()+ "\n";
 
-        // výpis Síla, Obratnost, Odolnost/ Inteligence, Charisma
+        // výpis Síla, Obratnost, Odolnost, Inteligence, Charisma
         ArrayList<String> vlastnosti = getVlastnosti().getVlastnostiArrayList();
         if (vlastnosti != null) {
             popis += arrayListdoRadku(vlastnosti);

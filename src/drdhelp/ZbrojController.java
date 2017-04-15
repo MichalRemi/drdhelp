@@ -28,7 +28,7 @@ import javafx.stage.Stage;
  * FXML Controller class
  *
  * @author Michal Remišovský
- * @version 0.01.0000 — 2017-01-16
+ * @version 0.01.0000 — 2017-04-15
  */
 public class ZbrojController implements Initializable {
 
@@ -93,25 +93,43 @@ public class ZbrojController implements Initializable {
         druhComboBox.getItems().setAll(Arrays.asList(ZbrojLogika.Typ.values()));
 
         // nastavení obousměrného bindingu
-        Bindings.bindBidirectional(nazevTextField.textProperty(), logika.nazevProperty());
-        Bindings.bindBidirectional(druhComboBox.valueProperty(), logika.druhObjectProperty());
-        Bindings.bindBidirectional(kvalitaTextField.textProperty(), logika.kvalitaProperty());
-        Bindings.bindBidirectional(vahaATextField.textProperty(), logika.vahaAProperty());
-        Bindings.bindBidirectional(vahaBTextField.textProperty(), logika.vahaBProperty());
-        Bindings.bindBidirectional(vahaCTextField.textProperty(), logika.vahaCProperty());
-        Bindings.bindBidirectional(cenaATextField.textProperty(), logika.cenaAProperty());
-        Bindings.bindBidirectional(cenaBTextField.textProperty(), logika.cenaBProperty());
-        Bindings.bindBidirectional(cenaCTextField.textProperty(), logika.cenaCProperty());
-        Bindings.bindBidirectional(popisTextArea.textProperty(), logika.popisProperty());
+        Bindings.bindBidirectional(nazevTextField.textProperty(), logika
+                                                        .nazevProperty());
+        Bindings.bindBidirectional(druhComboBox.valueProperty(), logika
+                                                        .druhObjectProperty());
+        Bindings.bindBidirectional(kvalitaTextField.textProperty(), logika
+                                                        .kvalitaProperty());
+        Bindings.bindBidirectional(vahaATextField.textProperty(), logika
+                                                        .vahaAProperty());
+        Bindings.bindBidirectional(vahaBTextField.textProperty(), logika
+                                                        .vahaBProperty());
+        Bindings.bindBidirectional(vahaCTextField.textProperty(), logika
+                                                        .vahaCProperty());
+        Bindings.bindBidirectional(cenaATextField.textProperty(), logika
+                                                        .cenaAProperty());
+        Bindings.bindBidirectional(cenaBTextField.textProperty(), logika
+                                                        .cenaBProperty());
+        Bindings.bindBidirectional(cenaCTextField.textProperty(), logika
+                                                        .cenaCProperty());
+        Bindings.bindBidirectional(popisTextArea.textProperty(), logika
+                                                        .popisProperty());
 
-        Bindings.bindBidirectional(nazevChybaLabel.visibleProperty(), logika.nazevChybaVisibleProperty());
-        Bindings.bindBidirectional(kvalitaChybaLabel.visibleProperty(), logika.kvalitaChybaVisibleProperty());
-        Bindings.bindBidirectional(vahaAChybaLabel.visibleProperty(), logika.vahaAChybaVisibleProperty());
-        Bindings.bindBidirectional(vahaBChybaLabel.visibleProperty(), logika.vahaBChybaVisibleProperty());
-        Bindings.bindBidirectional(vahaCChybaLabel.visibleProperty(), logika.vahaCChybaVisibleProperty());
-        Bindings.bindBidirectional(cenaAChybaLabel.visibleProperty(), logika.cenaAChybaVisibleProperty());
-        Bindings.bindBidirectional(cenaBChybaLabel.visibleProperty(), logika.cenaBChybaVisibleProperty());
-        Bindings.bindBidirectional(cenaCChybaLabel.visibleProperty(), logika.cenaCChybaVisibleProperty());
+        Bindings.bindBidirectional(nazevChybaLabel.visibleProperty(), logika
+                                                .nazevChybaVisibleProperty());
+        Bindings.bindBidirectional(kvalitaChybaLabel.visibleProperty(), logika
+                                                .kvalitaChybaVisibleProperty());
+        Bindings.bindBidirectional(vahaAChybaLabel.visibleProperty(), logika
+                                                .vahaAChybaVisibleProperty());
+        Bindings.bindBidirectional(vahaBChybaLabel.visibleProperty(), logika
+                                                .vahaBChybaVisibleProperty());
+        Bindings.bindBidirectional(vahaCChybaLabel.visibleProperty(), logika
+                                                .vahaCChybaVisibleProperty());
+        Bindings.bindBidirectional(cenaAChybaLabel.visibleProperty(), logika
+                                                .cenaAChybaVisibleProperty());
+        Bindings.bindBidirectional(cenaBChybaLabel.visibleProperty(), logika
+                                                .cenaBChybaVisibleProperty());
+        Bindings.bindBidirectional(cenaCChybaLabel.visibleProperty(), logika
+                                                .cenaCChybaVisibleProperty());
 
         // nabindování vlastnosti Disable na validitu formuláře
         vlozitButton.disableProperty().bind(logika.validProperty().not());
@@ -131,13 +149,13 @@ public class ZbrojController implements Initializable {
         zavriScenu();
     }
 
-    /** Zavře okno a obnoví seznam odkazů u seznamListView pomocí metody nactiOdkazy()*/
+    /** Zavře okno a obnoví seznam odkazů u seznamListView pomocí metody
+        nactiOdkazy() */
     private void zavriScenu() {
         Stage stage = (Stage) odejitButton.getScene().getWindow();
         stage.close();
         seznamOdkazu.nactiOdkazy(TabulkaDB.ZBROJ.getNazev());
     }
-
 
 }
 

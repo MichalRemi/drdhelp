@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * tvora. Skládá se z Vlastnost[] - obsahuje názv, hodnotu a bonus.
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-09-18
+ * @version 0.01.0000 — 2017-04-15
  */
 public class Vlastnosti
 {
@@ -63,7 +63,6 @@ public class Vlastnosti
     }
 
 
-
 //== ABSTRACT METHODS ==========================================================
 //== INSTANCE GETTERS AND SETTERS ==============================================
 
@@ -102,9 +101,6 @@ public class Vlastnosti
     public String getBonus(int i) {
         return vlastnosti[i].getBonusString();
     }
-
-
-
 
 
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================

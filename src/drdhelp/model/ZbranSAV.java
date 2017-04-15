@@ -9,7 +9,7 @@ package drdhelp.model;
  * Instance třídy {@code ZbranSAV} představují střelné a vrhací zbraně.
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-09-25
+ * @version 0.01.0000 — 2017-04-15
  */
 public class ZbranSAV extends Vybava implements IPopis {
 
@@ -27,7 +27,6 @@ public class ZbranSAV extends Vybava implements IPopis {
     public static String getTabulka() {
         return tabulka;
     }
-
 
 
 //== OTHER NON-PRIVATE CLASS METHODS ===========================================
@@ -54,7 +53,6 @@ public class ZbranSAV extends Vybava implements IPopis {
 
     /** Dostřel zbraně - velký dostřel */
     private final int VELKY_DOSTREL;
-
 
 
 //##############################################################################
@@ -96,21 +94,8 @@ public class ZbranSAV extends Vybava implements IPopis {
     }
 
 
-
 //== ABSTRACT METHODS ==========================================================
 
-    @Override
-    public String getPodrobnyPopis() {
-        return    "Název:   " + super.getNazev() + "\n"
-                + "Druh:   " + TYP + " " + super.getDruh() + "\n"
-                + "Síla zbraně:   " + SILA + "\n"
-                + "Útočnost:   " + getUtocnostString() + "\n"
-                + "Dostřel:   " + getDostrel() + "\n"
-                + "Váha:   " + super.getVaha() + " mn\n"
-                + "Cena:   " + super.getCenaVypis()
-                + super.vratPopis();
-
-    }
 
 //== INSTANCE GETTERS AND SETTERS ==============================================
 
@@ -139,8 +124,19 @@ public class ZbranSAV extends Vybava implements IPopis {
     }
 
 
-
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
+
+    @Override
+    public String getPodrobnyPopis() {
+        return    "Název:   " + super.getNazev() + "\n"
+                + "Druh:   " + super.getDruh() + " " + TYP + "\n"
+                + "Síla zbraně:   " + SILA + "\n"
+                + "Útočnost:   " + getUtocnostString() + "\n"
+                + "Dostřel:   " + getDostrel() + "\n"
+                + "Váha:   " + super.getVaha() + " mn\n"
+                + "Cena:   " + super.getCenaVypis()
+                + super.vratPopis();
+    }
 
     /** Vrátí útočnost se znaménkem i pro kladná čísla a 0 */
     public String getUtocnostString() {

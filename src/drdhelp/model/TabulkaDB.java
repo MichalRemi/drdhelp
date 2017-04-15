@@ -10,7 +10,7 @@ package drdhelp.model;
  * databázi drddesk_db a příslušný název s diakritikou.
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-12-19
+ * @version 0.01.0000 — 2017-04-15
  */
 public enum TabulkaDB {
 //== VALUES OF THE ENUMERATION TYPE ============================================

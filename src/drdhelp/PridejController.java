@@ -25,6 +25,7 @@ import javafx.stage.Stage;
  * FXML Controller class
  *
  * @author Michal Remišovský
+ * @version 0.01.0000 — 2017-04-15
  */
 public class PridejController implements Initializable {
 

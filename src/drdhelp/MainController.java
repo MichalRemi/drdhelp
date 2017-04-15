@@ -32,6 +32,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 
 
@@ -39,6 +40,7 @@ import javafx.stage.Stage;
  * FXML Controller class
  *
  * @author Michal Remišovský
+ * @version 0.01.0000 — 2017-04-15
  */
 public class MainController implements Initializable {
 
@@ -144,6 +146,10 @@ public class MainController implements Initializable {
                                             .selectedItemProperty().isNull());
         smazatButton.disableProperty().bind(seznamListView.getSelectionModel()
                                             .selectedItemProperty().isNull());
+    }
+
+    public Window getWindow() {
+        return konecButton.getScene().getWindow();
     }
 
     /** Obsluha hledejTextField */

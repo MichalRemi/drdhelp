@@ -25,10 +25,10 @@ import javafx.collections.ObservableList;
 
 
 /*******************************************************************************
- * Instance třídy {@code PostavaLogika} představují ...
+ * Instance třídy {@code PostavaLogika} představují logiku formuláře Postava.fxml.
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2017-02-03
+ * @version 0.01.0000 — 2017-04-15
  */
 public class PostavaLogika extends Logika {
 
@@ -161,15 +161,15 @@ public class PostavaLogika extends Logika {
     private final StringProperty velikostProperty = new SimpleStringProperty();
 
     // výzbroj
-    private final ObjectProperty<ObservableList<Odkaz>> zbranTVTProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<ObservableList<Odkaz>> zbranTVTProperty =
+            new SimpleObjectProperty<>();
 
-    private final ObjectProperty<Odkaz> zbranSAVProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<Odkaz> zbranSAVProperty =
+            new SimpleObjectProperty<>();
 
     private final ObjectProperty<Odkaz> zbrojProperty = new SimpleObjectProperty<>();
 
     // zvláštní schopnosti, kouzla, výbava, poznámka
-    // private final ObjectProperty<Odkaz> zvlProperty = new SimpleObjectProperty<>();
-
     private final ObservableList<String> zvlProperty =
             FXCollections.observableArrayList();
 
@@ -178,8 +178,6 @@ public class PostavaLogika extends Logika {
     private final ObjectProperty<Odkaz> vybavaProperty = new SimpleObjectProperty<>();
 
     private final StringProperty popisProperty = new SimpleStringProperty();
-
-//    private final BooleanProperty kouzlaDisableProperty = new SimpleBooleanProperty();
 
 
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
@@ -352,10 +350,6 @@ public class PostavaLogika extends Logika {
         return kouzlaObservableList;
     }
 
-//    public BooleanProperty kouzlaDisableeProperty() {
-//        return kouzlaDisableProperty;
-//    }
-
     public ObservableList<Odkaz> getVybavaList() {
         return vybavaObservableList;
     }
@@ -444,7 +438,10 @@ public class PostavaLogika extends Logika {
         polozkyPostavy.clear();
         polozkyPostavy.addAll(vybaveniList);
         seznamPolozek.clear();
-        seznamPolozek.addAll(dataOut.nactiOdkazy(tabulka));
+        ArrayList<Odkaz> list = dataOut.nactiOdkazy(tabulka);
+        if (list != null) {
+            seznamPolozek.addAll(dataOut.nactiOdkazy(tabulka));
+        }
     }
 
     public void nastavPridejZbranTVT() {
@@ -489,7 +486,10 @@ public class PostavaLogika extends Logika {
         String tabulka = null;
         if (povolani.equals("kouzelník")) tabulka = TabulkaDB.KOUZLO.getTabNazev();
         if (povolani.equals("hraničář")) tabulka = TabulkaDB.PRIRODNI_KOUZLO.getTabNazev();
-        seznamPolozek.addAll(dataOut.nactiOdkazy(tabulka));
+        ArrayList<Odkaz> list = dataOut.nactiOdkazy(tabulka);
+        if (list != null) {
+            seznamPolozek.addAll(dataOut.nactiOdkazy(tabulka));
+        }
         // seznam kouzel postavy
         polozkyPostavy.clear();
         polozkyPostavy.addAll(kouzlaObservableList);
@@ -500,6 +500,30 @@ public class PostavaLogika extends Logika {
     public void nastavPridejVybava() {
         nastavPridejVybaveni(vybavaObservableList, TabulkaDB.VYBAVA.getTabNazev());
         textyFormulare = FormularPridej.VYBAVA;
+    }
+
+    public void smazZbranTVT(Odkaz zbranTVT) {
+        zbranTVTObservableList.remove(zbranTVT);
+    }
+
+    public void smazZbranSAV(Odkaz zbranSAV) {
+        zbranSAVObservableList.remove(zbranSAV);
+    }
+
+    public void smazZbroj(Odkaz zbroj) {
+        zbrojObservableList.remove(zbroj);
+    }
+
+    public void smazZvlSchopnost(Odkaz zvlSchopnost) {
+        zvlSchObservableList.remove(zvlSchopnost);
+    }
+
+    public void smazKouzlo(Odkaz kouzlo) {
+        kouzlaObservableList.remove(kouzlo);
+    }
+
+    public void smazVybava(Odkaz vybava) {
+        vybavaObservableList.remove(vybava);
     }
 
     /**
@@ -541,10 +565,9 @@ public class PostavaLogika extends Logika {
         // do proměnné aktualniPostava uloží novou nebo uprovavanou postavu,
         // podle toho, co uživatel zvolil
         novaNeboUpravitPostavu();
+
         // uloží se, zda postava kouzlí - kouzlící true, ostatví false
         PostavaLogika.postavaKouzli = aktualniPostava.isKouzli();
-
-        // kouzlaDisableProperty.set(!postavaKouzli);
 
         // uloží hodnoty úrovní do ObservableList uroven -> urovenComboBox
         urovenObservableList.clear();
@@ -584,8 +607,6 @@ public class PostavaLogika extends Logika {
         if (uroven != null) {
             if (uroven >= 1 && uroven <= 35) {
                 int zkusenostiNaDalsi = dataOut.getZkusenosti(povolani, uroven + 1);
-                System.out.println("PostavaLogika.getZkusenostiNaDalsiUroven: zkusenosti na další: " + zkusenostiNaDalsi);
-
                 return String.valueOf(zkusenostiNaDalsi);
             }
         }
@@ -599,25 +620,13 @@ public class PostavaLogika extends Logika {
 
     /** Uloží do aktualniPostava Postavu, buď novou, nebo upravovanou */
     private void novaNeboUpravitPostavu() {
-
-        System.out.println("PostavaLogika.novaNeboUpravitPostavu(): ");
-
         if (novaPostava != null) {
-
-            System.out.println("Nová postava nastavena jako aktuální postava");
-
             aktualniPostava = novaPostava;
         }
         Integer id = vratIdOdkazu();
         if (id != null) {
-
-            System.out.println("Stávající postava nastavena jako aktuální postava");
-
             aktualniPostava = dataOut.getPostava(id);
         }
-
-        System.out.println("PostavaLogika.novaNeboUpravitPostavu(): konec ");
-
     }
 
     private void nastavZkusenosti() {
@@ -643,14 +652,12 @@ public class PostavaLogika extends Logika {
         String povolani = povolaniProperty.get();
         if (uroven != 0 && povolani != null) {
             int zkusenosti = dataOut.getZkusenosti(povolani, uroven);
-            System.out.println("PostavaLogika.jeZkusenostiValidni(): zkusenosti: " + zkusenosti);
-
             int zkusenostiNaDalsi = dataOut.getZkusenosti(povolani, uroven + 1);
-            System.out.println("PostavaLogika.jeZkusenostiValidni(): zkusenosti: " + zkusenostiNaDalsi);
-
             String zkusenostiText = zkusenostiProperty.get();
-            if (zkusenosti != -1 && zkusenostiNaDalsi != -1 && zkusenostiText != null) {
-                return zvalidujStringCislo(zkusenostiText, zkusenosti, zkusenostiNaDalsi);
+            if (zkusenosti != -1 && zkusenostiNaDalsi != -1
+                    && zkusenostiText != null) {
+                return zvalidujStringCislo(zkusenostiText, zkusenosti,
+                                                           zkusenostiNaDalsi);
             }
         }
         return false;
@@ -726,7 +733,6 @@ public class PostavaLogika extends Logika {
         return postava;
 
         }
-
 
     private ArrayList<Odkaz> observableListToArrayList(ObservableList<Odkaz> oList) {
         ArrayList<Odkaz> arrayList = new ArrayList<>();

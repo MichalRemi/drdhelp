@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Instance třídy {@code Postava} představují postavu v Dračím doupěti.
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-09-18
+ * @version 0.01.0000 — 2017-04-15
  */
 public class Postava extends Tvor implements IPopis {
 
@@ -179,23 +179,10 @@ public class Postava extends Tvor implements IPopis {
         this.magy = 0;
         this.uroven = 1;
         this.zkusenosti = 0;
-//        this.zbranTVT = null;
-//        this.zbranSAV = null;
-//        this.zbroj = null;
-//        this.vybava = null;
-//        this.zvlastniSchopnosti = null;
-//        this.kouzla = null;
-//        this.prirodniKouzla = null;
 }
 
 
-
-
-
-
 //== ABSTRACT METHODS ==========================================================
-
-
 //== INSTANCE GETTERS AND SETTERS ==============================================
 
 
@@ -312,7 +299,6 @@ public class Postava extends Tvor implements IPopis {
     }
 
 
-
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
 
     @Override
@@ -402,7 +388,6 @@ public class Postava extends Tvor implements IPopis {
         if (uroven != null) {
             if (uroven >= 1 && uroven <= 35) {
                 int zkusenostiNaDalsi = dataOut.getZkusenosti(povolani, uroven + 1);
-                System.out.println("Postava.getZkusenostiNaDalsiUroven: zkusenosti na další: " + zkusenostiNaDalsi);
                 return String.valueOf(zkusenostiNaDalsi);
             }
         }

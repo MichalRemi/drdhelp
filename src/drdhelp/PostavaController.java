@@ -36,6 +36,7 @@ import javafx.stage.Stage;
  * FXML Controller class
  *
  * @author Michal Remišovský
+ * @version 0.01.0000 — 2017-04-15
  */
 public class PostavaController implements Initializable {
 
@@ -317,11 +318,23 @@ public class PostavaController implements Initializable {
 
     }
 
+    /** Obsluha tlačítka "-" - smaž zbraň tvt*/
+    @FXML
+    private void handleSmazZbranTVT(ActionEvent event) {
+        logika.smazZbranTVT(zbranTVTListView.getSelectionModel().getSelectedItem());
+    }
+
     /** Obsluha tlačítka "+" - přidej zbraň sav*/
     @FXML
     private void handlePridejZbranSAV(ActionEvent event) {
         logika.nastavPridejZbranSAV();
         otevriOknoPridej();
+    }
+
+    /** Obsluha tlačítka "-" - smaž zbraň sav*/
+    @FXML
+    private void handleSmazZbranSAV(ActionEvent event) {
+        logika.smazZbranSAV(zbranSAVListView.getSelectionModel().getSelectedItem());
     }
 
     /** Obsluha tlačítka "+" - přidej zbroj*/
@@ -331,6 +344,12 @@ public class PostavaController implements Initializable {
         otevriOknoPridej();
     }
 
+    /** Obsluha tlačítka "-" - smaž zbroj*/
+    @FXML
+    private void handleSmazZbroj(ActionEvent event) {
+        logika.smazZbroj(zbrojListView.getSelectionModel().getSelectedItem());
+    }
+
     /** Obsluha tlačítka "+" - přidej zvláštní schopnost*/
     @FXML
     private void handlePridejZvlSchopnost(ActionEvent event) {
@@ -338,18 +357,36 @@ public class PostavaController implements Initializable {
         otevriOknoPridej();
     }
 
-    /** Obsluha tlačítka "+" - přidej zbraň tvt*/
+        /** Obsluha tlačítka "-" - smaž zvláštní schopost*/
+    @FXML
+    private void handleSmazZvlSchopnost(ActionEvent event) {
+        logika.smazZvlSchopnost(zvlListView.getSelectionModel().getSelectedItem());
+    }
+
+    /** Obsluha tlačítka "+" - přidej kouzlo*/
     @FXML
     private void handlePridejKouzlo(ActionEvent event) {
         logika.nastavPridejKouzlo();
         otevriOknoPridej();
     }
 
-    /** Obsluha tlačítka "+" - přidej zbraň tvt*/
+    /** Obsluha tlačítka "-" - smaž kouzlo*/
+    @FXML
+    private void handleSmazKouzlo(ActionEvent event) {
+        logika.smazKouzlo(kouzlaListView.getSelectionModel().getSelectedItem());
+    }
+
+    /** Obsluha tlačítka "+" - přidej výbavu*/
     @FXML
     private void handlePridejVybava(ActionEvent event) {
         logika.nastavPridejVybava();
         otevriOknoPridej();
+    }
+
+    /** Obsluha tlačítka "-" - smaž výbavu*/
+    @FXML
+    private void handleSmazvybavu(ActionEvent event) {
+        logika.smazVybava(vybavaListView.getSelectionModel().getSelectedItem());
     }
 
     /** Zavře okno a obnoví seznam odkazů u seznamListView pomocí metody

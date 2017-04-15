@@ -13,10 +13,10 @@ import javafx.collections.ObservableList;
 
 
 /*******************************************************************************
- * Instance třídy {@code PridejLogika} představují ...
+ * Instance třídy {@code PridejLogika} představují logiku formuláře Pridej.fxml.
  *
  * @author  Michal Remišovský
- * @version 0.00.0000 — 2017-02-20
+ * @version 0.01.0000 — 2017-04-15
  */
 public class PridejLogika
 {
@@ -48,9 +48,6 @@ public class PridejLogika
 //##############################################################################
 //== CONSTUCTORS AND FACTORY METHODS ===========================================
 
-    /***************************************************************************
-     *
-     */
     public PridejLogika() {
         init();
     }
@@ -112,16 +109,8 @@ public class PridejLogika
      */
     private void zredukujOPolozkyPostavy() {
         // pomocná pole
-        System.out.println("PridejLogika.zredukujOPolozkyPostavy():");
-        System.out.println("PostavaLogika.getSeznamPolozek():");
-        System.out.println(PostavaLogika.getSeznamPolozek());
-        System.out.println("");
         ArrayList<Odkaz> seznamPolozekArrayList = PostavaLogika.getSeznamPolozek();
         ArrayList<Odkaz> polozkyPostavyArrayList = PostavaLogika.getPolozkyPostavy();
-        System.out.println("PridejLogika.zredukujOPolozkyPostavy()");
-        System.out.println("seznamPolozekArrayList:");
-        System.out.println(seznamPolozekArrayList);
-        System.out.println("");
         // index položky postavy, který po nalezení a odebrání ze seznamu položek
         // slouží k odebrání z položek postavy
         int indexPolozkyPostavy;

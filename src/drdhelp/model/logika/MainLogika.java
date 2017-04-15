@@ -18,10 +18,10 @@ import drdhelp.model.Zbroj;
 
 
 /*******************************************************************************
- * Instance třídy {@code HlavniLogika} představují logiku formuláře Hlanvi.fxml.
+ * Instance třídy {@code HlavniLogika} představují logiku formuláře Main.fxml.
  *
  * @author  Michal Remišovský
- * @version 0.03.0000 — 2016-12-02
+ * @version 0.01.0000 — 2017-04-15
  */
 public class MainLogika {
 
@@ -33,7 +33,6 @@ public class MainLogika {
 //##############################################################################
 //== STATIC INITIALIZER (CLASS CONSTRUCTOR) ====================================
 //== CLASS GETTERS AND SETTERS =================================================
-
 
 
 //== OTHER NON-PRIVATE CLASS METHODS ===========================================
@@ -53,11 +52,7 @@ public class MainLogika {
 //##############################################################################
 //== CONSTUCTORS AND FACTORY METHODS ===========================================
 
-    /***************************************************************************
-     *
-     */
     public MainLogika() {
-
     }
 
 

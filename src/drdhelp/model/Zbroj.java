@@ -10,7 +10,7 @@ package drdhelp.model;
  * Dračího Doupěte
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-10-15
+ * @version 0.01.0000 — 2017-04-15
  */
 public class Zbroj implements IPopis {
 
@@ -183,7 +183,4 @@ private String vahaVypisABC() {
 
 //##############################################################################
 //== NESTED DATA TYPES =========================================================
-
-
-
 }

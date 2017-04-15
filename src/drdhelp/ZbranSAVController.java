@@ -28,7 +28,7 @@ import javafx.stage.Stage;
  * FXML Controller class
  *
  * @author Michal Remišovský
- * @version 0.03.0000 — 2016-12-02
+ * @version 0.01.0000 — 2017-04-15
  */
 public class ZbranSAVController implements Initializable {
 
@@ -108,30 +108,53 @@ public class ZbranSAVController implements Initializable {
         typComboBox.getItems().setAll(Arrays.asList(ZbranSAVLogika.Typ.values()));
 
         // nastavení obousměrného bindingu
-        Bindings.bindBidirectional(nazevTextField.textProperty(), logika.nazevProperty());
-        Bindings.bindBidirectional(druhComboBox.valueProperty(), logika.druhObjectProperty());
-        Bindings.bindBidirectional(typComboBox.valueProperty(), logika.typObjectProperty());
-        Bindings.bindBidirectional(silaTextField.textProperty(), logika.silaProperty());
-        Bindings.bindBidirectional(utocnostTextField.textProperty(), logika.utocnostProperty());
-        Bindings.bindBidirectional(malyDostrelTextField.textProperty(), logika.malyDostrelProperty());
-        Bindings.bindBidirectional(stredniDostrelTextField.textProperty(), logika.stredniDostrelProperty());
-        Bindings.bindBidirectional(velkyDostrelTextField.textProperty(), logika.velkyDostrelProperty());
-        Bindings.bindBidirectional(vahaTextField.textProperty(), logika.vahaProperty());
-        Bindings.bindBidirectional(zlatakyTextField.textProperty(), logika.zlatakyProperty());
-        Bindings.bindBidirectional(stribrnakyTextField.textProperty(), logika.stribrnakyProperty());
-        Bindings.bindBidirectional(medakyTextField.textProperty(), logika.medakyProperty());
-        Bindings.bindBidirectional(popisTextArea.textProperty(), logika.popisProperty());
+        Bindings.bindBidirectional(nazevTextField.textProperty(), logika
+                                                        .nazevProperty());
+        Bindings.bindBidirectional(druhComboBox.valueProperty(), logika
+                                                        .druhObjectProperty());
+        Bindings.bindBidirectional(typComboBox.valueProperty(), logika
+                                                        .typObjectProperty());
+        Bindings.bindBidirectional(silaTextField.textProperty(), logika
+                                                        .silaProperty());
+        Bindings.bindBidirectional(utocnostTextField.textProperty(), logika
+                                                        .utocnostProperty());
+        Bindings.bindBidirectional(malyDostrelTextField.textProperty(), logika
+                                                        .malyDostrelProperty());
+        Bindings.bindBidirectional(stredniDostrelTextField.textProperty(), logika
+                                                        .stredniDostrelProperty());
+        Bindings.bindBidirectional(velkyDostrelTextField.textProperty(), logika
+                                                        .velkyDostrelProperty());
+        Bindings.bindBidirectional(vahaTextField.textProperty(), logika
+                                                        .vahaProperty());
+        Bindings.bindBidirectional(zlatakyTextField.textProperty(), logika
+                                                        .zlatakyProperty());
+        Bindings.bindBidirectional(stribrnakyTextField.textProperty(), logika
+                                                        .stribrnakyProperty());
+        Bindings.bindBidirectional(medakyTextField.textProperty(), logika
+                                                        .medakyProperty());
+        Bindings.bindBidirectional(popisTextArea.textProperty(), logika
+                                                        .popisProperty());
 
-        Bindings.bindBidirectional(nazevChybaLabel.visibleProperty(), logika.nazevChybaVisibleProperty());
-        Bindings.bindBidirectional(silaChybaLabel.visibleProperty(), logika.SilaChybaVisibleProperty());
-        Bindings.bindBidirectional(utocnostChybaLabel.visibleProperty(), logika.UtocnostChybaVisibleProperty());
-        Bindings.bindBidirectional(malyDostrelChybaLabel.visibleProperty(), logika.MalyDostrelChybaVisibleProperty());
-        Bindings.bindBidirectional(stredniDostrelChybaLabel.visibleProperty(), logika.StredniDostrelChybaVisibleProperty());
-        Bindings.bindBidirectional(velkyDostrelChybaLabel.visibleProperty(), logika.VelkyDostrelChybaVisibleProperty());
-        Bindings.bindBidirectional(vahaChybaLabel.visibleProperty(), logika.vahaChybaVisibleProperty());
-        Bindings.bindBidirectional(zlatakyChybaLabel.visibleProperty(), logika.zlatakyChybaVisibleProperty());
-        Bindings.bindBidirectional(stribrnakyChybaLabel.visibleProperty(), logika.stribrnakyChybaVisibleProperty());
-        Bindings.bindBidirectional(medakyChybaLabel.visibleProperty(), logika.medakyChybaVisibleProperty());
+        Bindings.bindBidirectional(nazevChybaLabel.visibleProperty(), logika
+                                        .nazevChybaVisibleProperty());
+        Bindings.bindBidirectional(silaChybaLabel.visibleProperty(), logika
+                                        .SilaChybaVisibleProperty());
+        Bindings.bindBidirectional(utocnostChybaLabel.visibleProperty(), logika
+                                        .UtocnostChybaVisibleProperty());
+        Bindings.bindBidirectional(malyDostrelChybaLabel.visibleProperty(), logika
+                                        .MalyDostrelChybaVisibleProperty());
+        Bindings.bindBidirectional(stredniDostrelChybaLabel.visibleProperty(), logika
+                                        .StredniDostrelChybaVisibleProperty());
+        Bindings.bindBidirectional(velkyDostrelChybaLabel.visibleProperty(), logika
+                                        .VelkyDostrelChybaVisibleProperty());
+        Bindings.bindBidirectional(vahaChybaLabel.visibleProperty(), logika
+                                        .vahaChybaVisibleProperty());
+        Bindings.bindBidirectional(zlatakyChybaLabel.visibleProperty(), logika
+                                        .zlatakyChybaVisibleProperty());
+        Bindings.bindBidirectional(stribrnakyChybaLabel.visibleProperty(), logika
+                                        .stribrnakyChybaVisibleProperty());
+        Bindings.bindBidirectional(medakyChybaLabel.visibleProperty(), logika
+                                        .medakyChybaVisibleProperty());
 
         // nabindování vlastnosti Disable na validitu formuláře
         vlozitButton.disableProperty().bind(logika.validProperty().not());
@@ -144,7 +167,6 @@ public class ZbranSAVController implements Initializable {
         logika.pridejZbranSAV();
         zavriScenu();
     }
-
 
     /** Obsluha tlačítka Odejít - zavření dialogového okna Zbraň SaV. */
     @FXML
@@ -159,11 +181,5 @@ public class ZbranSAVController implements Initializable {
         seznamOdkazu.nactiOdkazy(TabulkaDB.ZBRAN_SAV.getNazev());
     }
 
-
-
-
-
-
 }
-
 

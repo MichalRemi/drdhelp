@@ -4,7 +4,6 @@
 package drdhelp.model;
 
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.After;
@@ -29,7 +28,7 @@ import static org.junit.Assert.*;
  * {@link VlastnostiTest}.
  *
  * @author  Michal Remišovský
- * @version 0.00.0000 — 20yy-mm-dd
+ * @version 0.01.0000 — 2017-04-15
  */
 public class VlastnostiTest
 {

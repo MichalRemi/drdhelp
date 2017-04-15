@@ -12,11 +12,11 @@ import javafx.collections.ObservableList;
 
 
 /*******************************************************************************
- * Instance třídy {@code SeznamOdkazu} představují FXCollections ObservableList
- * pro bindování s ListView ve formuláři
+ * Instance třídy {@code SeznamOdkazu} představuje FXCollections ObservableList
+ * pro nabindování seznamListView ve formuláři Main.
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-12-22
+ * @version 0.01.0000 — 2017-04-15
  */
 public class SeznamOdkazu {
 
@@ -101,15 +101,18 @@ public class SeznamOdkazu {
     public void nactiOdkazy(String nazevTlacitka){
         if (nazevTlacitka != null) {
             puvodniOdkazy = dataOut.nactiOdkazy(getTabName(nazevTlacitka));
-            serad(puvodniOdkazy);
-            odkazy.clear();
-            if (!odkazy.addAll(puvodniOdkazy)) {
-                System.err.println("SeznamOdkazu.nactiOdkazy(): Nezdařilo se přidání" +
-                                                                "ArrayList<Odkaz>:");
-                System.err.println(puvodniOdkazy);
+            if (puvodniOdkazy != null) {
+                serad(puvodniOdkazy);
+                odkazy.clear();
+                if (!odkazy.addAll(puvodniOdkazy)) {
+                    System.err.println("SeznamOdkazu.nactiOdkazy(): Nezdařilo" +
+                            " se přidání ArrayList<Odkaz>:");
+                    System.err.println(puvodniOdkazy);
+                }
             }
         } else {
-            System.err.println("SeznamOdkazu.nactiOdkazy(): Parametr nazevTlacitka je null");
+            System.err.println("SeznamOdkazu.nactiOdkazy(): Parametr " +
+                    "nazevTlacitka je null");
         }
     }
 
@@ -143,7 +146,6 @@ public class SeznamOdkazu {
         }
         return null;
     }
-
 
 
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================

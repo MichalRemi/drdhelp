@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Instance třídy {@code DataOut} načítají data z databáze drddesk_db.
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-09-18
+ * @version 0.01.0000 — 2017-04-15
  */
 public class DataOut extends Data {
 
@@ -277,9 +277,6 @@ public class DataOut extends Data {
                             .getTabNazev());
                     vystup.add(odkaz);
                 }
-                System.out.println("DataOut.getZvlSchopnostiPovolani()");
-                System.out.println(vystup);
-                System.out.println("");
                 return vystup;
             }
         } catch (SQLException ex) {
@@ -340,9 +337,6 @@ public class DataOut extends Data {
      * @return Instance třídy Postava.
      */
     public Postava getPostava(int id) {
-
-        System.out.println("DataOut.getPostava():");
-
         String sql = "SELECT * FROM postava WHERE id=?";
         try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
@@ -397,13 +391,7 @@ public class DataOut extends Data {
         } catch (SQLException ex) {
             System.err.println("DataOut.getPostava(): " + CHYBA);
             ex.printStackTrace();
-//        } catch (ParseException ex) {
-//            System.err.println("CHYBA: DataOut.vratKouzla():");
-//            System.err.println("Chybný formát dat v databázi drddesk_db, tabulka" +
-//                    " postava, sloupec kouzla u položky id: " + id);
-//            ex.printStackTrace();
         }
-        System.out.println("DataOut.getPostava(): konec null");
         return null;
     }
 
@@ -477,11 +465,6 @@ public class DataOut extends Data {
      * @return Zkušenosti potřebné na další úroveň.
      */
     public int getZkusenosti(String povolani, int uroven) {
-
-        System.out.println("DataOut.getZkusenosti(): povolani:" + povolani);
-        System.out.println("DataOut.getZkusenosti(): uroven: " + uroven);
-
-
         String sql = "SELECT * FROM zkusenosti WHERE uroven=?";
         try (Connection db = vytvorSpojeniDB();
             PreparedStatement dotaz = db.prepareStatement(sql); )
@@ -489,11 +472,6 @@ public class DataOut extends Data {
             dotaz.setInt(1, uroven);
             try (ResultSet vysledky = dotaz.executeQuery()) {
                 vysledky.next();
-
-//                if (povolani.equals("hraničář")) {
-//                    return vysledky.getInt("hranicar");
-//                }
-
                 switch (povolani) {
                     case "válečník": return vysledky.getInt("valecnik");
                     case "hraničář": return vysledky.getInt("hranicar");
@@ -678,9 +656,6 @@ public class DataOut extends Data {
     public ArrayList<Odkaz> stringToArrayListOdkaz(String seznamId, String tabulka) {
         if (seznamId != null) {
             String[] poleString = seznamId.split(";");
-
-            System.out.println(tabulka + "poleString: " + poleString);
-
              int id;
              ArrayList<Odkaz> arrayList = new ArrayList<>();
 
@@ -694,9 +669,6 @@ public class DataOut extends Data {
                              " CHYBA, pro id: " + id + " v tabulce: " + tabulka +
                              " neexistuje položka v databázi drddesk_db!");
                  }
-
-                 System.out.println("výsledný Arraylist: " + arrayList);
-
                  return arrayList;
              }
         }
@@ -721,9 +693,10 @@ public class DataOut extends Data {
             {
                 dotaz.setInt(1, id);
                 try (ResultSet vysledky = dotaz.executeQuery()) {
-                    vysledky.next();
-                    Odkaz odkaz = vratOdkaz(vysledky, tabulka);
-                    return odkaz;
+                    if (vysledky.next()) {
+                        Odkaz odkaz = vratOdkaz(vysledky, tabulka);
+                        return odkaz;
+                    }
                 }
             } catch (SQLException ex) {
             System.err.println("DataOut.nactiOdkaz(): " + CHYBA);
@@ -834,32 +807,6 @@ public class DataOut extends Data {
         return null;
     }
 
-//    /** Převede String s kouzly na ArrayList. Kouzlo reprezentuje id z databáze
-//     * drddesk_db a druh, ty jsou oddělené ",". Jednotlivá kouzla (tedy id a druh) jsou
-//     * oddělená ";". */
-//    private ArrayList<Kouzlo> vratKouzla(String kouzla) throws ParseException {
-//        if (kouzla != null) {
-//            ArrayList<Kouzlo> kouzlaArrayList = new ArrayList<>();
-//            Kouzlo kouzlo;
-//            int id;
-//            for (String s : ukazatele) {
-//                ukazatel = s.split(",");
-//                id = Integer.parseInt(ukazatel[1]);
-//                kouzlo = vratKouzlo(ukazatel[0], id);
-//                if (kouzlo != null) kouzlaArrayList.add(kouzlo);
-//            }
-//            return kouzlaArrayList;
-//        }
-//        return null;
-//    }
-
-//    /** Načte kouzlo z databaze drddesk_db podle id a druhu. */
-//    private Kouzlo vratKouzlo(String druh, int id) {
-//        if (druh.equals("k")) return getKouzlo(id);
-//        if (druh.equals("p")) return getPrirodniKouzlo(id);
-//        return null;
-//    }
-
     /** Načte z databáze drddesk_db hodnotu Integer, v případě null vrátí null.  */
     private Integer getInteger(ResultSet vysledky, String sloupecVDB) {
         try {
@@ -887,8 +834,6 @@ public class DataOut extends Data {
         }
         return nazvy;
     }
-
-
 
 
 

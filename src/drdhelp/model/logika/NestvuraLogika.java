@@ -26,10 +26,11 @@ import static drdhelp.model.Nestvura.*;
 
 
 /*******************************************************************************
- * Instance třídy {@code NestvuraLogika} představují
+ * Instance třídy {@code NestvuraLogika} představují logiku formuláře
+ * Nestvura.fxml.
  *
  * @author  Michal Remišovský
- * @version 0.00.0000 — 2017-01-17
+ * @version 0.01.0000 — 2017-04-15
  */
 public class NestvuraLogika extends Logika {
 
@@ -459,7 +460,6 @@ public class NestvuraLogika extends Logika {
     private void init() {
         // nastaví validitu fornuláře
         validProperty().set(jeFormularValidni());
-
         // listenery pro název, druh, váhu, zlaťáky, stříbrňáky a zlaťáky
         nazevProperty.addListener((observable, oldValue, newValue) -> {
             nazevChybaVisibleProperty.set(!jeNazevValidni(newValue));
@@ -482,8 +482,9 @@ public class NestvuraLogika extends Logika {
         });
 
         velikostProperty.addListener((observable, oldValue, newValue) -> {
-            if (newValue != null)
-            validProperty().set(jeFormularValidni());
+            if (newValue != null) {
+                validProperty().set(jeFormularValidni());
+            }
         });
 
         zranitelnostObjectProperty.addListener((observable, oldValue, newValue) -> {
@@ -491,7 +492,9 @@ public class NestvuraLogika extends Logika {
                 // po vybrání zranitelnosti v comboboxu naplní pole výpis
                 // skupin(zranitelnost) z enum Zranitelnost.skupinaZranitelnost
                 String skupinaZranitelnost = newValue.getSkupinyZranitelnost();
-                skupinyZranitelnostProperty.set(skupinaZranitelnost);
+                if (skupinaZranitelnost != null) {
+                    skupinyZranitelnostProperty.set(skupinaZranitelnost);
+                }
             }
         });
 
@@ -570,6 +573,12 @@ public class NestvuraLogika extends Logika {
         Vlastnost vytrvalost = new Vlastnost("Vytrvalost"
                 ,vyhodnotAVratInt(hodnotyVytrvalostObjectProperty.get()));
 
+        String zkusenost = zkusenostiProperty.get();
+        int zkusenostInt = 0;
+        if (zvalidujStringCislo(zkusenost, 0, 900000)) {
+            zkusenostInt = Integer.parseInt(zkusenost);
+        }
+
         return new Nestvura(id,
                 nazevProperty.get(),
                 vyhodnotZvtAVratInteger(zivotaschopnostProperty.get()),
@@ -589,7 +598,8 @@ public class NestvuraLogika extends Logika {
                 vyhodnotAVratInt(zaklSilaMysliProperty.get()),
                 vratPresvedceni(),
                 vyhodnotAVratString(pokladyProperty.get()),
-                vyhodnotAVratInt(zkusenostiProperty.get()),
+                zkusenostInt,
+                // vyhodnotAVratInt(zkusenostiProperty.get()),
                 vyhodnotAVratInt(ochoceniProperty.get()),
                 popisProperty.get());
     }

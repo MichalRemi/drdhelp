@@ -9,7 +9,7 @@ package drdhelp.model;
  * Instance třídy {@code Rasa} představují rasu v Dračím Doupěti
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-09-18
+ * @version 0.01.0000 — 2017-04-15
  */
 public class Rasa {
 //== CONSTANT CLASS ATTRIBUTES =================================================

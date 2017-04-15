@@ -18,10 +18,10 @@ import javafx.beans.property.StringProperty;
 
 
 /*******************************************************************************
- * Instance třídy {@code ZbrojLogika} představují
+ * Instance třídy {@code ZbrojLogika} představují logiku formuláře Zbroj.fxml.
  *
  * @author  Michal Remišovský
- * @version 0.00.0000 — 2017-01-17
+ * @version 0.01.0000 — 2017-04-15
  */
 public class ZbrojLogika extends VybaveniLogika
 {
@@ -42,7 +42,8 @@ public class ZbrojLogika extends VybaveniLogika
 //== CONSTANT INSTANCE ATTRIBUTES ==============================================
 
     private final StringProperty nazevProperty = new SimpleStringProperty();
-    private final ObjectProperty<Typ> druhObjectProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<Typ> druhObjectProperty =
+            new SimpleObjectProperty<>();
     private final StringProperty kvalitaProperty = new SimpleStringProperty();
     private final StringProperty vahaAProperty = new SimpleStringProperty();
     private final StringProperty vahaBProperty = new SimpleStringProperty();
@@ -52,14 +53,22 @@ public class ZbrojLogika extends VybaveniLogika
     private final StringProperty cenaCProperty = new SimpleStringProperty();
     private final StringProperty popisProperty = new SimpleStringProperty();
 
-    private final BooleanProperty nazevChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty kvalitaChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty vahaAChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty vahaBChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty vahaCChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty cenaAChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty cenaBChybaVisibleProperty = new SimpleBooleanProperty();
-    private final BooleanProperty cenaCChybaVisibleProperty = new SimpleBooleanProperty();
+    private final BooleanProperty nazevChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty kvalitaChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty vahaAChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty vahaBChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty vahaCChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty cenaAChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty cenaBChybaVisibleProperty =
+            new SimpleBooleanProperty();
+    private final BooleanProperty cenaCChybaVisibleProperty =
+            new SimpleBooleanProperty();
     private final BooleanProperty valid = new SimpleBooleanProperty(false);
 
 
@@ -366,7 +375,6 @@ public class ZbrojLogika extends VybaveniLogika
         public String toString() {
             return nazev;
         }
-
     }
 
 }

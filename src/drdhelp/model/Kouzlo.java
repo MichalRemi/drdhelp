@@ -9,7 +9,7 @@ package drdhelp.model;
  * Instance třídy {@code Kouzlo} představují kouzelnická kouzla z Dračího Doupěte.
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2017-02-13
+ * @version 0.01.0000 — 2017-04-15
  */
 public class Kouzlo {
 

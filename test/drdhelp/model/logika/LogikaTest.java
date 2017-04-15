@@ -27,7 +27,7 @@ import static org.junit.Assert.*;
  * {@link LogikaTest}.
  *
  * @author  Michal Remišovský
- * @version 0.00.0000 — 20yy-mm-dd
+ * @version 0.01.0000 — 2017-04-15
  */
 public class LogikaTest
 {
@@ -156,13 +156,7 @@ public class LogikaTest
         assertTrue(instance.zvalidujStringCislo("9", dolniMez, horniMez));
         assertFalse(instance.zvalidujStringCislo("11", dolniMez, horniMez));
         assertFalse(instance.zvalidujStringCislo("-1", dolniMez, horniMez));
-        try {
-            instance.zvalidujStringCislo("a", dolniMez, horniMez);
-            fail("Chyba, parsovani String -> Integer znaku \"a\" nevyhodilo vyjímku!");
-        } catch (NumberFormatException ex) {
-            System.out.println("Parsovani String -> Integer znaku \"a\" " +
-                    "správně vyhodilo vyjímku");
-        }
+        assertFalse(instance.zvalidujStringCislo("a", dolniMez, horniMez));
     }
 
     /**

@@ -1,17 +1,19 @@
 /* The file is saved in UTF-8 codepage.
  * Check: «Stereotype», Section mark-§, Copyright-©, Alpha-α, Beta-β, Smile-☺
  */
-package drdhelp.model.logika;
+package drdhelp;
 
 
 
 
 
 /*******************************************************************************
+ * Instance třídy {@code ChyboveHlaseni} zajišťují chybová hlášení.
+ *
  * @author  Michal Remišovský
  * @version 0.01.0000 — 2017-04-15
  */
-public abstract class VybaveniLogika extends Logika {
+public class ChyboveHlaseni {
 
 //== CONSTANT CLASS ATTRIBUTES =================================================
 //== VARIABLE CLASS ATTRIBUTES =================================================
@@ -38,37 +40,20 @@ public abstract class VybaveniLogika extends Logika {
     /***************************************************************************
      *
      */
-    public VybaveniLogika() {
+    public ChyboveHlaseni() {
     }
+
 
 
 //== ABSTRACT METHODS ==========================================================
 //== INSTANCE GETTERS AND SETTERS ==============================================
-
-
-
 //== OTHER NON-PRIVATE INSTANCE METHODS ========================================
 
-    /** Ověří platnost váhy, zda je to číslo v rozsahu 0 - 90 000 */
-    protected boolean jeVahaValidni(String vaha) {
-        return zvalidujStringCislo(vaha, 0, 90000);
+    public void chybaSpojeniDatabaze() {
+        Okno okno = new Okno("Chybová hláška",
+                "CHYBA!: Nepodařilo se navázat spojení s databází!\n" +
+                "Aplikace bude ukončena.");
     }
-
-    /** Ověří platnost zlaťáků, zda je to číslo v rozsahu 0 - 1 000 000 */
-    protected boolean jeZlatakyValidni(String zlataky) {
-        return zvalidujStringCislo(zlataky, 0, 1000000);
-    }
-
-    /** Ověří platnost stříbrňáků, zda je to číslo v rozsahu 0 - 9 */
-    protected boolean jeStribrnakyValidni(String stribrnaky) {
-        return zvalidujStringCislo(stribrnaky, 0, 9);
-    }
-
-    /** Ověří platnost měďáků, zda je to číslo v rozsahu 0 - 9 */
-    protected boolean jeMedakyValidni(String medaky) {
-        return zvalidujStringCislo(medaky, 0, 9);
-    }
-
 
 //== PRIVATE AND AUXILIARY INSTANCE METHODS ====================================
 

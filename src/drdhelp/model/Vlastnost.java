@@ -10,7 +10,7 @@ package drdhelp.model;
  * Součástí bonusu je i znaménko + a to i pro hodnotu 0.
  *
  * @author  Michal Remišovský
- * @version 0.01.0000 — 2016-09-18
+ * @version 0.01.0000 — 2017-04-15
  */
 public class Vlastnost {
 
@@ -65,22 +65,6 @@ public class Vlastnost {
         for (int i = 0; i < pocetKostek; i++) pomocna += k6.hod();
         return pomocna + konstanta;
     }
-
-//    /**
-//     * Vytvoří vzestupné pole hodnot od minima po maximum.
-//     * @param minimum Dolní mez intervalu včetně.
-//     * @param maximum Horní mez intervalu včetně.
-//     * @param krok Krok mezi sousedícími hodnotami.
-//     * @return pole Integer
-//     */
-//    public static Integer[] hodnotyPodleMezi(int minimum, int maximum, int krok) {
-//        int konstanta = ((maximum - minimum) / krok);
-//        Integer[] pomocne = new Integer[konstanta + 1];
-//        for (int i = 0; i <= konstanta; i++) {
-//            pomocne[i] = minimum + i * krok;
-//        }
-//        return pomocne;
-//    }
 
 
 //== PRIVATE AND AUXILIARY CLASS METHODS =======================================

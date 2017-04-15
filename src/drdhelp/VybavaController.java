@@ -6,7 +6,6 @@
 package drdhelp;
 
 import drdhelp.model.SeznamOdkazu;
-import drdhelp.model.TabulkaDB;
 import drdhelp.model.logika.VybavaLogika;
 import java.net.URL;
 import java.util.Arrays;
@@ -28,7 +27,7 @@ import javafx.stage.Stage;
  * FXML Controller class
  *
  * @author Michal Remišovský
- * @version 0.03.0000 — 2016-12-02
+ * @version 0.01.0000 — 2017-04-15
  */
 public class VybavaController implements Initializable {
 
@@ -82,22 +81,35 @@ public class VybavaController implements Initializable {
         druhComboBox.getItems().setAll(Arrays.asList(VybavaLogika.Druh.values()));
 
         // nastavení obousměrného bindingu
-        Bindings.bindBidirectional(nazevTextField.textProperty(), logika.nazevProperty());
-        Bindings.bindBidirectional(druhComboBox.valueProperty(), logika.druhObjectProperty());
-        Bindings.bindBidirectional(vahaTextField.textProperty(), logika.vahaProperty());
-        Bindings.bindBidirectional(zlatakyTextField.textProperty(), logika.zlatakyProperty());
-        Bindings.bindBidirectional(stribrnakyTextField.textProperty(), logika.stribrnakyProperty());
-        Bindings.bindBidirectional(medakyTextField.textProperty(), logika.medakyProperty());
-        Bindings.bindBidirectional(popisTextArea.textProperty(), logika.popisProperty());
+        Bindings.bindBidirectional(nazevTextField.textProperty(), logika
+                                                            .nazevProperty());
+        Bindings.bindBidirectional(druhComboBox.valueProperty(), logika
+                                                            .druhObjectProperty());
+        Bindings.bindBidirectional(vahaTextField.textProperty(), logika
+                                                            .vahaProperty());
+        Bindings.bindBidirectional(zlatakyTextField.textProperty(), logika
+                                                            .zlatakyProperty());
+        Bindings.bindBidirectional(stribrnakyTextField.textProperty(), logika
+                                                            .stribrnakyProperty());
+        Bindings.bindBidirectional(medakyTextField.textProperty(), logika
+                                                            .medakyProperty());
+        Bindings.bindBidirectional(popisTextArea.textProperty(), logika
+                                                            .popisProperty());
 
-        Bindings.bindBidirectional(nazevChybaLabel.visibleProperty(), logika.nazevChybaVisibleProperty());
-        Bindings.bindBidirectional(vahaChybaLabel.visibleProperty(), logika.vahaChybaVisibleProperty());
-        Bindings.bindBidirectional(zlatakyChybaLabel.visibleProperty(), logika.zlatakyChybaVisibleProperty());
-        Bindings.bindBidirectional(stribrnakyChybaLabel.visibleProperty(), logika.stribrnakyChybaVisibleProperty());
-        Bindings.bindBidirectional(medakyChybaLabel.visibleProperty(), logika.medakyChybaVisibleProperty());
+        Bindings.bindBidirectional(nazevChybaLabel.visibleProperty(), logika
+                                                .nazevChybaVisibleProperty());
+        Bindings.bindBidirectional(vahaChybaLabel.visibleProperty(), logika
+                                                .vahaChybaVisibleProperty());
+        Bindings.bindBidirectional(zlatakyChybaLabel.visibleProperty(), logika
+                                                .zlatakyChybaVisibleProperty());
+        Bindings.bindBidirectional(stribrnakyChybaLabel.visibleProperty(), logika
+                                                .stribrnakyChybaVisibleProperty());
+        Bindings.bindBidirectional(medakyChybaLabel.visibleProperty(), logika
+                                                .medakyChybaVisibleProperty());
 
         // nabindování vlastnosti Disable na validitu formuláře
         vlozitButton.disableProperty().bind(logika.validProperty().not());
+
     }
 
     /** Obsluha tlačítka Vložit - aktualizuje údaje a zavře okna Výbava. */
@@ -117,7 +129,6 @@ public class VybavaController implements Initializable {
     private void zavriScenu() {
         Stage stage = (Stage) odejitButton.getScene().getWindow();
         stage.close();
-        // seznamOdkazu.nactiOdkazy(TabulkaDB.VYBAVA.getNazev());
     }
 
 }

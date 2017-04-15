@@ -13,17 +13,17 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 
 
 
 
 
 /*******************************************************************************
- * Instance třídy {@code Okno} představují ...
+ * Instance třídy {@code Okno} představuje vyskakovací okno s volitelným názvem
+ * a textem hlášky v okně (parametry) a tlačítkem "OK" ńa ukončení okna.
  *
  * @author  Michal Remišovský
- * @version 0.00.0000 — 2017-03-01
+ * @version 0.01.0000 — 2017-04-15
  */
 public class Okno extends Stage {
 
@@ -56,10 +56,8 @@ public class Okno extends Stage {
         setTitle(nadpisOkna);
         setWidth(450);
         setHeight(200);
-
-//        initStyle(StageStyle.UTILITY);
-//        initModality(Modality.WINDOW_MODAL);
-//        initOwner(okno);
+        initStyle(StageStyle.UTILITY);
+        initModality(Modality.WINDOW_MODAL);
         setScene(novaScena(text));
         showAndWait();
     }
