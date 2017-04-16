@@ -136,6 +136,10 @@ public class ZbranSAV extends Vybava implements IPopis {
                 + "Váha:   " + super.getVaha() + " mn\n"
                 + "Cena:   " + super.getCenaVypis()
                 + super.vratPopis();
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     }
 
     /** Vrátí útočnost se znaménkem i pro kladná čísla a 0 */

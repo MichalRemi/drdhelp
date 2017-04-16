@@ -299,6 +299,10 @@ public class ZbranSAVLogika extends VybaveniLogika {
         stribrnakyProperty.setValue("0");
         medakyProperty.setValue("0");
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     }
 
     /** Načte hodnoty z formuláře a vrátí je v instanci ZbranSAV */

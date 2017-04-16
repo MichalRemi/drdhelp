@@ -39,7 +39,11 @@ public class DataIn extends Data {
 //##############################################################################
 //== CONSTANT INSTANCE ATTRIBUTES ==============================================
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/master
 
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
 

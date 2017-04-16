@@ -526,6 +526,10 @@ public class PostavaLogika extends Logika {
         vybavaObservableList.remove(vybava);
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     /**
      * Vyhodnotí, zda byly položky postavy vloženy, pokud ano, uloží změny
      * do příslušného ObservableListu.

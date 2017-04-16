@@ -3,6 +3,12 @@
  */
 package drdhelp;
 
+<<<<<<< HEAD
+=======
+import drdhelp.model.logika.MainLogika;
+import javafx.stage.Window;
+
+>>>>>>> origin/master
 
 
 
@@ -11,7 +17,11 @@ package drdhelp;
  * Instance třídy {@code ChyboveHlaseni} zajišťují chybová hlášení.
  *
  * @author  Michal Remišovský
+<<<<<<< HEAD
  * @version 0.01.0000 — 2017-04-15
+=======
+ * @version 0.00.0000 — 20yy-mm-dd
+>>>>>>> origin/master
  */
 public class ChyboveHlaseni {
 

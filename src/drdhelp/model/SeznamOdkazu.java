@@ -105,8 +105,13 @@ public class SeznamOdkazu {
                 serad(puvodniOdkazy);
                 odkazy.clear();
                 if (!odkazy.addAll(puvodniOdkazy)) {
+<<<<<<< HEAD
                     System.err.println("SeznamOdkazu.nactiOdkazy(): Nezdařilo" +
                             " se přidání ArrayList<Odkaz>:");
+=======
+                    System.err.println("SeznamOdkazu.nactiOdkazy(): Nezdařilo se přidání" +
+                                                                    "ArrayList<Odkaz>:");
+>>>>>>> origin/master
                     System.err.println(puvodniOdkazy);
                 }
             }

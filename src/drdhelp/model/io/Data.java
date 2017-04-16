@@ -78,6 +78,11 @@ public abstract class Data
             Connection db = DriverManager.getConnection(URL, USER, HESLO);
             return db;
         } catch (SQLException ex) {
+<<<<<<< HEAD
+=======
+            System.out.println("Nelze se připojit k databázi!");
+            System.out.println("chyba: " + ex);
+>>>>>>> origin/master
             chyboveHlaseni.chybaSpojeniDatabaze();
             System.exit(1);
         }

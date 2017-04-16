@@ -63,8 +63,12 @@ public class VybavaLogika extends VybaveniLogika {
             new SimpleBooleanProperty();
     private final BooleanProperty valid = new SimpleBooleanProperty(false);
 
+<<<<<<< HEAD
     private final ReadOnlyBooleanProperty zlatakyFocusProperty =
             new SimpleBooleanProperty();
+=======
+    private final ReadOnlyBooleanProperty zlatakyFocusProperty = new SimpleBooleanProperty();
+>>>>>>> origin/master
 
 
 //== VARIABLE INSTANCE ATTRIBUTES ==============================================
